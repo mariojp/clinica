@@ -7,5 +7,5 @@ Registro de consulta,
 Cancelamento de consulta.
 
 Equipe:
-Felipe Dias Diniz
-Felipe Kaian Mutti Almeida
+Felipe Dias Diniz;
+Felipe Kaian Mutti Almeida;
