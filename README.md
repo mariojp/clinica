@@ -1,6 +1,6 @@
 # clinica
 
-# Agendamento
+# Atendimento
 
 # Integrantes do grupo:
 # -----------------------
