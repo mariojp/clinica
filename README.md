@@ -1,8 +1,8 @@
 # Clinica
 
 ## Modulo Atendimento
-<img src= "https://drive.google.com/file/d/1CIv4mGnCSIMCRasd-AFifzvKYhbUPiM2/view?usp=sharing">
-![Diagrama do Banco de Dados](https://drive.google.com/file/d/1CIv4mGnCSIMCRasd-AFifzvKYhbUPiM2/view?usp=sharing)
+
+![Diagrama do Banco de Dados](https://drive.google.com/drive/u/1/my-drive)
 
 ## Equipe
 * Bruna Ribeiro
