@@ -13,42 +13,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import br.com.med.clinica.atendimento.model.Droga;
 import br.com.med.clinica.atendimento.repository.DrogaRepository;
 
-
-
 @Controller
 public class DrogaController {
 
-	
 	@Autowired
 	private DrogaRepository drogaRepository;
 
 	@GetMapping("/droga")
 	public String listDroga(Model model) {
-		List<Droga> drogas =  drogaRepository.findAll();
-		model.addAttribute("drogas",drogas);
+		List<Droga> drogas = drogaRepository.findAll();
+		model.addAttribute("drogas", drogas);
 		return "/atendimento/droga";
 	}
-	
+
 	@GetMapping("/droga/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Droga droga = new Droga();
-		if(id != null) {
+		if (id != null) {
 			Optional<Droga> op = drogaRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				droga = op.get();
 			}
 		}
-		model.addAttribute("droga",droga);
-		
+		model.addAttribute("droga", droga);
+
 		return "/atendimento/drogaform";
 	}
-	
+
 	@PostMapping("/droga/salvar")
 	public String salvar(Droga droga) {
 		drogaRepository.save(droga);
 		return "redirect:/droga";
 	}
-	
 
 	@GetMapping("/droga/delete")
 	public String delete(Long id) {
@@ -56,5 +52,4 @@ public class DrogaController {
 		return "redirect:/droga";
 	}
 
-	
 }
