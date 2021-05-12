@@ -3,7 +3,7 @@
 ## Modulo Atendimento
 
 
-![Diagrama do Banco de Dados](https://drive.google.com/file/d/1CIv4mGnCSIMCRasd-AFifzvKYhbUPiM2)
+![Diagrama do Banco de Dados](https://drive.google.com/file/d/1CIv4mGnCSIMCRasd-AFifzvKYhbUPiM2/view?usp=sharing)
 
 ## Equipe
 * Bruna Ribeiro
