@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "exames")
 public class Exame {
-
+	private Atendimento atendimento = new Atendimento();
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long oid;
