@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "receitas")
 public class Receita {
-	private Atendimento atendimento = new Atendimento();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

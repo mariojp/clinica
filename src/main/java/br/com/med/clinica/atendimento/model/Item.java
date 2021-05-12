@@ -10,8 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "itens")
 public class Item {
-	private Droga droga = new Droga();
-	private Receita receita = new Receita();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
