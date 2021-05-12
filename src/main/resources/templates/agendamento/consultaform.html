@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Convenio</title>
+<title>Consulta</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -32,8 +32,8 @@
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Convenio</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Consulta</a></li>
+					<li><a href="#" class="nav-link px-2 text-white">Convenio</a></li>
+					<li><a href="#" class="nav-link px-2 text-secondary">Consulta</a></li>
 					<li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
 				</ul>
 
@@ -52,17 +52,29 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Convenios</h2>
-				<form  th:action="@{/convenio/salvar}" th:object="${convenio}" method="post" >
+			<h2>Consultas</h2>
+				<form  th:action="@{/consulta/salvar}" th:object="${consulta}" method="post" >
 
 					<input type="hidden" name="oid" th:value="*{oid}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
 						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
-						<label for="nome" class="form-label">CNPJ</label>
-						<input type="text" id="cnpj" name="cnpj" th:value="*{cnpj}" class="form-control" />
-						<label for="nome" class="form-label">Telefone</label>
-						<input type="text" id="telefone" name="telefone" th:value="*{telefone}" class="form-control" />
+						<label for="nome" class="form-label">Data</label>
+						<input type="date" id="data" name="data" th:value="*{data}" class="form-control" />
+						<label for="hora" class="form-label">Hora</label>
+						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
+						<label for="role">Retorno</label>
+				    	<select id="role" name="role">
+				    		<option value="">Selecione</option>
+				    		<option value="true">SIM</option>
+				    		<option value="false">NÃO</option>
+				    	</select>
+				    	<label for="role">Cancelado</label>
+				    	<select id="role" name="role">
+				    		<option value="">Selecione</option>
+				    		<option value="true">SIM</option>
+				    		<option value="false">NÃO</option>
+				    	</select>
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
