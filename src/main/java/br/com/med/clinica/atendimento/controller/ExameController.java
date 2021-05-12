@@ -19,14 +19,14 @@ public class ExameController {
 
 	@Autowired
 	private ExameRepository exameRepository;
-	
+	//Criação da lista e linkando com o repositório
 	@GetMapping("/exame")
 	public String listDroga(Model model) {
 		List<Exame> exames =  exameRepository.findAll();
 		model.addAttribute("exames",exames);
 		return "/atendimento/exame";
 	}
-	
+	// Pegando um dado do repositório
 	@GetMapping("/exame/form")
 	public String form(Model model,@Param(value = "id") Long id) {
 		Exame exame = new Exame();
@@ -40,7 +40,7 @@ public class ExameController {
 		
 		return "atendimento/exameform";
 	}
-	
+	// Salvando algo na lista (Pegando os dados do .html)
 	@PostMapping("/exame/salvar")
 	public String salvar(Exame exame) {
 		exameRepository.save(exame);
