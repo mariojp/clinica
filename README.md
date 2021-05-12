@@ -2,4 +2,4 @@
 
 # Componentes :
 
-Bruno Pinho,Carlos Vitor,Ricardo Oliveira,Rondinelli  Vieira
+-Bruno Pinho,Carlos Vitor,Ricardo Oliveira,Rondinelli Vieira,Guilherme Pontes
