@@ -1,6 +1,6 @@
 # Clinica
 
-## Atendimento
+## Modulo Atendimento
 
 ## Equipe
 * Bruna Ribeiro
