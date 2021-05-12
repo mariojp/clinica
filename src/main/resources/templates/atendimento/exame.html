@@ -6,7 +6,7 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Droga</title>
+<title>Exame</title>
 </head>
 <body>
 <header class="p-3 bg-dark text-white">
@@ -21,8 +21,8 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-          <li><a href="droga" class="nav-link px-2 text-secondary">Droga</a></li>
-          <li><a href="exame" class="nav-link px-2 text-white">Exame</a></li>
+          <li><a href="droga" class="nav-link px-2 text-white">Droga</a></li>
+          <li><a href="exame" class="nav-link px-2 text-secondary">Exame</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
         </ul>
@@ -41,25 +41,25 @@
 
 <div class="container-fluid">	
 	<main>
-		<h2>Drogas</h2>
+		<h2>Exames</h2>
 		
 	<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th>#</th>
-              <th>Nome</th>
-              <th><a href="#" th:href="@{/droga/form}">
+              <th>Paciente</th>
+              <th><a href="#" th:href="@{/exame/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
             </tr>
           </thead>
           <tbody>
-          <!-- dro = variável (instancia ela na criação do for each) -->
-            <tr th:each="dro: ${drogas}" >
-              <td> <a href="#" th:href="@{/droga/form(id=${dro.oid})}"> <span th:text="${dro.oid}" > -1 </span></a></td>
-              <td th:text="${dro.nome}" > Nome </td>
-              <td><a href="#" th:href="@{/droga/delete(id=${dro.oid})}">
+          <!-- exa = variável (instancia ela na criação do for each) -->
+            <tr th:each="exa: ${exames}" >
+              <td> <a href="#" th:href="@{/exame/form(id=${exa.oid})}"> <span th:text="${exa.oid}" > -1 </span></a></td>
+              <td th:text="${exa.nome}" > Paciente </td>
+              <td><a href="#" th:href="@{/exame/delete(id=${exa.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>
