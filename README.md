@@ -1,3 +1,8 @@
-# Clinica
+# Clinica: Agendamento
 
-# Agendamento
+#Grupo:
+- Sara Sena
+- Tatiane Ximenes
+- Vinicius Candeias
+- Candido Peralva
+- Lara Ferreira
