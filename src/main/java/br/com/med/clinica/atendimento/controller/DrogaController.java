@@ -26,7 +26,7 @@ public class DrogaController {
 	public String listDroga(Model model) {
 		List<Droga> drogas =  drogaRepository.findAll();
 		model.addAttribute("drogas",drogas);
-		return "/atendimento/droga";
+		return "atendimento/droga";
 	}
 	
 	@GetMapping("/droga/form")
@@ -40,7 +40,7 @@ public class DrogaController {
 		}
 		model.addAttribute("droga",droga);
 		
-		return "/atendimento/drogaform";
+		return "atendimento/drogaform";
 	}
 	
 	@PostMapping("/droga/salvar")
