@@ -1,9 +1,12 @@
 package br.com.med.clinica.atendimento.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,16 +17,29 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
+	@Column(length = 250)
 	private String texto;
+
+	@ManyToOne
+	@JoinColumn(name = "droga_oid", nullable = false)
 	private Droga droga;
+
+	@ManyToOne
+	@JoinColumn(name = "receita_oid", nullable = false)
 	private Receita receita;
 
 	public Item() {
 
 	}
 
-	public Item(String texto, Droga droga, Receita receita) {
+	public Item(String texto) {
 		super();
+		this.texto = texto;
+	}
+
+	public Item(Long oid, String texto, Droga droga, Receita receita) {
+		this();
+		this.oid = oid;
 		this.texto = texto;
 		this.droga = droga;
 		this.receita = receita;
@@ -59,11 +75,6 @@ public class Item {
 
 	public void setReceita(Receita receita) {
 		this.receita = receita;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [oid=" + oid + ", texto=" + texto + ", droga=" + droga + ", receita=" + receita + "]";
 	}
 
 	@Override
@@ -107,6 +118,11 @@ public class Item {
 		} else if (!texto.equals(other.texto))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [oid=" + oid + ", texto=" + texto + ", droga=" + droga + ", receita=" + receita + "]";
 	}
 
 }

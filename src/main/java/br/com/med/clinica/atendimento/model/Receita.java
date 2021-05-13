@@ -1,9 +1,15 @@
 package br.com.med.clinica.atendimento.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,17 +20,31 @@ public class Receita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
+	@Column(length = 250)
 	private String texto;
+
+	@ManyToOne
+	@JoinColumn(name = "atendimento_oid", nullable = false)
 	private Atendimento atendimento;
+
+	@OneToMany(mappedBy = "receita")
+	private List<Item> itens;
 
 	public Receita() {
 
 	}
 
-	public Receita(String texto, Atendimento atendimento) {
+	public Receita(String texto) {
 		super();
 		this.texto = texto;
+	}
+
+	public Receita(Long oid, String texto, Atendimento atendimento, List<Item> itens) {
+		this();
+		this.oid = oid;
+		this.texto = texto;
 		this.atendimento = atendimento;
+		this.itens = itens;
 	}
 
 	public Long getOid() {
@@ -51,9 +71,12 @@ public class Receita {
 		this.atendimento = atendimento;
 	}
 
-	@Override
-	public String toString() {
-		return "Receita [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
 	}
 
 	@Override
@@ -61,6 +84,7 @@ public class Receita {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((atendimento == null) ? 0 : atendimento.hashCode());
+		result = prime * result + ((itens == null) ? 0 : itens.hashCode());
 		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
 		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
 		return result;
@@ -80,6 +104,11 @@ public class Receita {
 				return false;
 		} else if (!atendimento.equals(other.atendimento))
 			return false;
+		if (itens == null) {
+			if (other.itens != null)
+				return false;
+		} else if (!itens.equals(other.itens))
+			return false;
 		if (oid == null) {
 			if (other.oid != null)
 				return false;
@@ -91,6 +120,11 @@ public class Receita {
 		} else if (!texto.equals(other.texto))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Receita [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + ", itens=" + itens + "]";
 	}
 
 }

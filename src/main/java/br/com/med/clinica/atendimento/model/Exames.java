@@ -1,9 +1,12 @@
 package br.com.med.clinica.atendimento.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,16 +16,26 @@ public class Exames {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
-	
+
+	@Column(length = 250)
 	private String texto;
+
+	@ManyToOne
+	@JoinColumn(name = "atendimento_oid", nullable = false)
 	private Atendimento atendimento;
 
 	public Exames() {
 
 	}
 
-	public Exames(String texto, Atendimento atendimento) {
+	public Exames(String texto) {
 		super();
+		this.texto = texto;
+	}
+
+	public Exames(Long oid, String texto, Atendimento atendimento) {
+		this();
+		this.oid = oid;
 		this.texto = texto;
 		this.atendimento = atendimento;
 	}
@@ -49,11 +62,6 @@ public class Exames {
 
 	public void setAtendimento(Atendimento atendimento) {
 		this.atendimento = atendimento;
-	}
-
-	@Override
-	public String toString() {
-		return "Exames [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
 	}
 
 	@Override
@@ -92,9 +100,10 @@ public class Exames {
 			return false;
 		return true;
 	}
-	
-	
 
-
+	@Override
+	public String toString() {
+		return "Exames [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
+	}
 
 }
