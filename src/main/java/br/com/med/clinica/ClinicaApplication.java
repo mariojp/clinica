@@ -17,8 +17,7 @@ public class ClinicaApplication {
 
 	
 	@GetMapping("/")
-    @ResponseBody
     public String home() {
-      return "Hello World!";
+      return "index";
     }
 }
