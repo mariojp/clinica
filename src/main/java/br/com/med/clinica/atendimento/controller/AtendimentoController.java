@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import br.com.med.clinica.administrativo.model.Especialidade;
 import br.com.med.clinica.atendimento.model.Atendimento;
 import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 
@@ -43,8 +44,12 @@ public class AtendimentoController {
 
 	@PostMapping("/atendimento/salvar")
 	public String salvar(Atendimento atendimento) {
-		atendimentoRepository.save(atendimento);
-		return "redirect:/atendimento";
+		atendimentoRepository.save(atendimento); // esse save tem papel de update tbm
+		return "redirect:/atendimento"; // funciona de acordo ao que ele recebe
+										// para atendimento novo ou editado.
+		// se o id vir vazio, ele cria um novo id e salva o novo dado.
+		// se vier com id preenchido, o save vai trabalhar como update.
+
 	}
 
 	@GetMapping("/atendimento/delete")
@@ -53,18 +58,4 @@ public class AtendimentoController {
 		return "redirect:/atendimento";
 	}
 
-	@PutMapping("/atendimento/alterar")
-	public String alterar(Long id, String conduta) {
-		Atendimento atendimento = new Atendimento();
-		Optional<Atendimento> ok = atendimentoRepository.findById(id);
-
-		if (ok.isPresent()) {
-			atendimento = ok.get();
-			atendimento.setConduta(conduta);
-		}
-
-		salvar(atendimento);
-
-		return "redirect:/atendimento";
-	}
 }
