@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "exames")
-public class Exames {
+public class Exame {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +24,16 @@ public class Exames {
 	@JoinColumn(name = "atendimento_oid", nullable = false)
 	private Atendimento atendimento;
 
-	public Exames() {
+	public Exame() {
 
 	}
 
-	public Exames(String texto) {
+	public Exame(String texto) {
 		super();
 		this.texto = texto;
 	}
 
-	public Exames(Long oid, String texto, Atendimento atendimento) {
+	public Exame(Long oid, String texto, Atendimento atendimento) {
 		this();
 		this.oid = oid;
 		this.texto = texto;
@@ -82,7 +82,7 @@ public class Exames {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Exames other = (Exames) obj;
+		Exame other = (Exame) obj;
 		if (atendimento == null) {
 			if (other.atendimento != null)
 				return false;
