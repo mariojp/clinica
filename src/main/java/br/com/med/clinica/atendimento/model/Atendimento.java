@@ -33,7 +33,7 @@ public class Atendimento {
 	private List<Receita> receitas;
 
 	@OneToMany(mappedBy = "atendimento")
-	private List<Exames> exames;
+	private List<Exame> exames;
 
 	public Atendimento() {
 
@@ -44,7 +44,7 @@ public class Atendimento {
 		this.conduta = conduta;
 	}
 
-	public Atendimento(Long oid, String conduta, Long consultas_oid, List<Receita> receitas, List<Exames> exames) {
+	public Atendimento(Long oid, String conduta, Long consultas_oid, List<Receita> receitas, List<Exame> exames) {
 		this();
 		this.oid = oid;
 		this.conduta = conduta;
@@ -85,11 +85,11 @@ public class Atendimento {
 		this.receitas = receitas;
 	}
 
-	public List<Exames> getExames() {
+	public List<Exame> getExames() {
 		return exames;
 	}
 
-	public void setExames(List<Exames> exames) {
+	public void setExames(List<Exame> exames) {
 		this.exames = exames;
 	}
 
