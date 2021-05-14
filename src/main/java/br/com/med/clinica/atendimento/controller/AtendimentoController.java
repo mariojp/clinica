@@ -21,8 +21,10 @@ public class AtendimentoController {
 	@Autowired
 	private AtendimentoRepository atendimentoRepository;
 
+	private static Long sequence = 0l;
+
 	@GetMapping("/atendimento")
-	public String listDroga(Model model) {
+	public String listAtendimento(Model model) {
 		List<Atendimento> atendimentos = atendimentoRepository.findAll();
 		model.addAttribute("atendimentos", atendimentos);
 		return "/atendimento/atendimento";
@@ -44,6 +46,7 @@ public class AtendimentoController {
 
 	@PostMapping("/atendimento/salvar")
 	public String salvar(Atendimento atendimento) {
+		atendimento.setConsultas_oid(sequence++);
 		atendimentoRepository.save(atendimento); // esse save tem papel de update tbm
 		return "redirect:/atendimento"; // funciona de acordo ao que ele recebe
 										// para atendimento novo ou editado.
