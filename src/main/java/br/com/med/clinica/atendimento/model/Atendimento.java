@@ -26,6 +26,8 @@ public class Atendimento {
 	// @ManyToOne
 	// @JoinColumn(name = "consulta_oid", nullable = false)
 	// private Consulta consulta;
+	@Column
+	private Long consultas_oid;
 
 	@OneToMany(mappedBy = "atendimento")
 	private List<Receita> receitas;
@@ -42,11 +44,11 @@ public class Atendimento {
 		this.conduta = conduta;
 	}
 
-	// incluir Consulta depois
-	public Atendimento(Long oid, String conduta, List<Receita> receitas, List<Exames> exames) {
+	public Atendimento(Long oid, String conduta, Long consultas_oid, List<Receita> receitas, List<Exames> exames) {
 		this();
 		this.oid = oid;
 		this.conduta = conduta;
+		this.consultas_oid = consultas_oid;
 		this.receitas = receitas;
 		this.exames = exames;
 	}
@@ -67,6 +69,14 @@ public class Atendimento {
 		this.conduta = conduta;
 	}
 
+	public Long getConsultas_oid() {
+		return consultas_oid;
+	}
+
+	public void setConsultas_oid(Long consultas_oid) {
+		this.consultas_oid = consultas_oid;
+	}
+
 	public List<Receita> getReceitas() {
 		return receitas;
 	}
@@ -83,15 +93,58 @@ public class Atendimento {
 		this.exames = exames;
 	}
 
-//	public Consulta getConsulta() {
-//		return consulta;
-//	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((conduta == null) ? 0 : conduta.hashCode());
+		result = prime * result + ((consultas_oid == null) ? 0 : consultas_oid.hashCode());
+		result = prime * result + ((exames == null) ? 0 : exames.hashCode());
+		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+		result = prime * result + ((receitas == null) ? 0 : receitas.hashCode());
+		return result;
+	}
 
-//	public void setConsulta(Consulta consulta) {
-//		this.consulta = consulta;
-//	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Atendimento other = (Atendimento) obj;
+		if (conduta == null) {
+			if (other.conduta != null)
+				return false;
+		} else if (!conduta.equals(other.conduta))
+			return false;
+		if (consultas_oid == null) {
+			if (other.consultas_oid != null)
+				return false;
+		} else if (!consultas_oid.equals(other.consultas_oid))
+			return false;
+		if (exames == null) {
+			if (other.exames != null)
+				return false;
+		} else if (!exames.equals(other.exames))
+			return false;
+		if (oid == null) {
+			if (other.oid != null)
+				return false;
+		} else if (!oid.equals(other.oid))
+			return false;
+		if (receitas == null) {
+			if (other.receitas != null)
+				return false;
+		} else if (!receitas.equals(other.receitas))
+			return false;
+		return true;
+	}
 
-	// incluir equals hash code depois
-	// incluir toString
-
+	@Override
+	public String toString() {
+		return "Atendimento [oid=" + oid + ", conduta=" + conduta + ", consultas_oid=" + consultas_oid + ", receitas="
+				+ receitas + ", exames=" + exames + "]";
+	}
 }
