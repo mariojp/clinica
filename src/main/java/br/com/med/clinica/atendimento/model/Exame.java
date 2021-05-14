@@ -103,7 +103,7 @@ public class Exame {
 
 	@Override
 	public String toString() {
-		return "Exames [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
+		return "Exame [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
 	}
 
 }
