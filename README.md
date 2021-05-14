@@ -8,5 +8,5 @@ Cancelamento de consulta.
 
 Equipe:
 Felipe Dias Diniz;
-Felipe Kaian Mutti Almeida;
-Matheus Marques
+Felipe Kaian Mutti Almeida; 
+Matheus Marques;
