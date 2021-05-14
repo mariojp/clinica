@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+
+
+@Entity(name = "Atendimento")
 @Table(name = "atendimentos")
 public class Atendimento {
 
@@ -17,6 +19,7 @@ public class Atendimento {
 	
 	@Column(length = 250)
 	private String Conduta;
+	
 
 	public Long getOid() {
 		return oid;
@@ -33,4 +36,6 @@ public class Atendimento {
 	public void setConduta(String conduta) {
 		this.Conduta = conduta;
 	}
+
+	
 }
