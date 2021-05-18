@@ -39,7 +39,7 @@ public class AtendimentoController {
 				atendimento = op.get();
 			}
 		}
-		model.addAttribute("droga", atendimento);
+		model.addAttribute("atendimento", atendimento);
 
 		return "/atendimento/atendimentoform";
 	}
