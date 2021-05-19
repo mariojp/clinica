@@ -17,12 +17,13 @@
 <div class="container-fluid">
 		<main>
 			<h2>Marcar</h2>
-				<form  th:action="@{/droga/salvar}" th:object="${droga}" method="post" >
+				<form  th:action="@{/atendimento/salvar}" th:object="${atendimento}" method="post" >
 
 					<input type="hidden" name="oid" th:value="*{oid}"> 
+					<input type="hidden" name="oidc" th:value="*{consultas_oid}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+						<input type="text" id="conduta" name="conduta" th:value="*{conduta}" class="form-control" />
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
