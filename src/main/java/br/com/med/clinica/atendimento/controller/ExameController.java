@@ -3,18 +3,27 @@ package br.com.med.clinica.atendimento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.atendimento.model.Exame;
+import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 import br.com.med.clinica.atendimento.repository.ExameRepository;
 
 public class ExameController {
 
+	@Autowired
 	private ExameRepository exameRepository;
-	
+
+	@Autowired
+	private AtendimentoRepository atendimentoRepository;
+
 	@GetMapping("/exame")
 	public String listExame(Model model) {
 		List<Exame> exames = exameRepository.findAll();
@@ -31,13 +40,20 @@ public class ExameController {
 				exame = op.get();
 			}
 		}
-		model.addAttribute("Exame", exame);
-		
+
+		model.addAttribute("atendimentos", atendimentoRepository.findAll());
+		model.addAttribute("exame", exame);
+
 		return "/atendimento/exameform";
 	}
 
 	@PostMapping("/exame/salvar")
-	public String salvar(Exame exame) {
+	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			bindingResult.getAllErrors().forEach(e -> System.out.println(e));
+			model.addAttribute("atendimentos", atendimentoRepository.findAll());
+			return "/atendimento/exameform";
+		}
 		exameRepository.save(exame);
 		return "redirect:/exame";
 	}
