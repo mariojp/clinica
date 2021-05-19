@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <title>Exame</title>
 </head>
+<body>
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -18,7 +19,7 @@
 		  </svg>
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
           <li><a href="/droga" class="nav-link px-2 text-secondary">Droga</a></li>
           <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
@@ -29,17 +30,34 @@
           <input type="search" class="form-control form-control-dark" placeholder="Busca..." aria-label="Buscar">
         </form>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Registrar</button>
-        </div>
       </div>
     </div>
 </header>
-<body>
 
+<div class="container-fluid">	
+	<main>
+		<h2>Exame</h2>
+		
+	<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Exames</th>
+              <th>Texto</th>
+              	<th><a href="#" th:href="@{/exame/form}">
+              	<i class="bi bi-plus-square"></i>
+            </tr>
+          </thead>
+          <tbody>
+           
+          </tbody>
+        </table>
+      </div>
+	</main>
+</div>
 
-<h1>Exame</h1>
-
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 </body>
 </html>
