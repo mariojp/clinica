@@ -43,14 +43,25 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Nome</th>
-              <th>Condulta</th>
-              	<th><a href="#" th:href="@{/atendimento/form}">
+              <th>Conduta</th>
+              <th>Código Consulta</th>
+              <th>Receituário</th>
+              <th>Quadro de Exame</th>
+              <th><a href="#" th:href="@{/atendimento/form}">
               	<i class="bi bi-plus-square"></i>
             </tr>
           </thead>
           <tbody>
-           
+           <tr th:each="atend: ${atendimentos}" >
+              <td> <a href="#" th:href="@{/atendimento/form(id=${atend.oid})}"> <span th:text="${atend.oid}" > -1 </span></a></td>
+              <td th:text="${atend.conduta}" > Conduta </td>
+              <td th:text="${atend.consultas_oid}" > Código Consulta </td>
+              <td th:text="${atend.receitas}" > Receitas </td>
+              <td th:text="${atend.exames}" > Exames </td>
+              <td><a href="#" th:href="@{/atendimento/delete(id=${atend.oid})}">
+              	<i class="bi bi-trash"></i>
+              </a></td>
+            </tr>
           </tbody>
         </table>
       </div>
