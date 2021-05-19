@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+
 
 @Entity
 public class Especialidade {
@@ -13,6 +18,7 @@ public class Especialidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 	
+	@Size(min = 3, max = 25 )
 	@Column(length = 250)
 	private String nome;
 

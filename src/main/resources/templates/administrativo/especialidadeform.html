@@ -53,16 +53,23 @@
 	<div class="container-fluid">
 		<main>
 			<h2>Especialidades</h2>
-				<form  th:action="@{/especialidade/salvar}" th:object="${especialidade}" method="post" >
+			<form th:action="@{/especialidade/salvar}"
+				th:object="${especialidade}" method="post">
 
-					<input type="hidden" name="oid" th:value="*{oid}"> 
-					<div class="mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
-					</div>
-			
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</form>
+				
+				<input type="hidden" name="oid" th:value="*{oid}">
+				<div class="mb-3">
+					<label for="nome" class="form-label">Nome</label>
+					 <input
+						type="text" id="nome" name="nome" th:value="*{nome}"
+						class="form-control" th:field=*{nome} th:classappend="${#fields.hasErrors('nome')} ? 'alert alert-danger' : '' " />
+						<!--  mensagem de erro -->		
+						<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"  >Erro Message</div>
+				
+				</div>
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
 		</main>
 	</div>
 
