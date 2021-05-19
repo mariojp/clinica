@@ -43,14 +43,21 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Exames</th>
-              <th>Texto</th>
-              	<th><a href="#" th:href="@{/exame/form}">
-              	<i class="bi bi-plus-square"></i>
+              <th>Orientação Exame</th>
+              <th>Tipo de Atendimento</th>
+              <th><a href="#" th:href="@{/exame/form}">
+                <i class="bi bi-plus-square"></i>
             </tr>
           </thead>
           <tbody>
-           
+           <tr th:each="exa: ${exame}" >
+              <td> <a href="#" th:href="@{/exame/form(id=${exa.oid})}"> <span th:text="${exa.oid}" > -1 </span></a></td>
+              <td th:text="${exa.texto}" > Texto </td>
+              <td th:text="${exa.atendimento}" > Atendimento </td>
+              <td><a href="#" th:href="@{/exame/delete(id=${exa.oid})}">
+              	<i class="bi bi-trash"></i>
+              </a></td>
+            </tr>
           </tbody>
         </table>
       </div>
