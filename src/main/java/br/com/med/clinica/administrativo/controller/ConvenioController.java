@@ -1,4 +1,4 @@
-package br.com.med.clinica.agendamento.controller;
+package br.com.med.clinica.administrativo.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.med.clinica.agendamento.model.Convenio;
-import br.com.med.clinica.agendamento.repository.ConvenioRepository;
+import br.com.med.clinica.administrativo.model.Convenio;
+import br.com.med.clinica.administrativo.repository.ConvenioRepository;
 
 @Controller
 public class ConvenioController {
@@ -22,22 +22,23 @@ public class ConvenioController {
 	@GetMapping("/convenio")
 	public String listConvenio(Model model) {
 		List<Convenio> convenios =  convenioRepository.findAll();
+		
 		model.addAttribute("convenios",convenios);
-		return "/agendamento/convenio";
+		return "/administrativo/convenio";
 	}
 	
 	@GetMapping("/convenio/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model,@Param(value = "codigo") Long codigo) {
 		Convenio convenio = new Convenio();
-		if(id != null) {
-			Optional<Convenio> op = convenioRepository.findById(id);
+		if(codigo != null) {
+			Optional<Convenio> op = convenioRepository.findById(codigo);
 			if(op.isPresent()) {
 				convenio = op.get();
 			}
 		}
 		model.addAttribute("convenio",convenio);
 		
-		return "/agendamento/convenioform";
+		return "/administrativo/convenioform.html";
 	}
 	
 	@PostMapping("/convenio/salvar")
@@ -46,11 +47,9 @@ public class ConvenioController {
 		return "redirect:/convenio";
 	}
 	
-
 	@GetMapping("/convenio/delete")
-	public String delete(Long id) {
-		convenioRepository.deleteById(id);
+	public String delete(Long codigo) {
+		convenioRepository.deleteById(codigo);
 		return "redirect:/convenio";
 	}
-
 }

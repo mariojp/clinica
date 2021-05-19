@@ -6,20 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Especialidade {
+public class Convenio {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long oid;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long codigo;
 
 	private String nome;
 
-	public Long getOid() {
-		return oid;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setOid(Long oid) {
-		this.oid = oid;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -34,7 +34,7 @@ public class Especialidade {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -46,13 +46,12 @@ public class Especialidade {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Especialidade other = (Especialidade) obj;
-		if (oid == null) {
-			if (other.oid != null)
+		Convenio other = (Convenio) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!oid.equals(other.oid))
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
-
 }

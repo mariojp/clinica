@@ -53,8 +53,4 @@ public class EspecialidadeController {
 		especialidadeRepository.deleteById(id);
 		return "redirect:/especialidade";
 	}
-
-	
-	
-	
 }
