@@ -10,4 +10,5 @@ import br.com.med.clinica.administrativo.repository.UsuarioRepository;
 public class UsuariosController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+
 }
