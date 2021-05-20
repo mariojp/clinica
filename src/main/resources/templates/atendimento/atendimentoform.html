@@ -52,6 +52,8 @@
 
 		<h2>Formulário de atendimento</h2>
 		<br>
+		<form th:action="@{/atendimento/salvar}" th:object="${atendimento}"
+						method="post">
 		<label for="select" class="form-label">Selecionar Consulta</label>
 		<div class="dropdown">
 			<select class="select" name="select" id="select">
@@ -63,8 +65,7 @@
 
 				<main>
 
-					<form th:action="@{/atendimento/salvar}" th:object="${atendimento}"
-						method="post">
+					
 
 						<input type="hidden" name="oid" th:value="*{oid}"> <input
 							type="hidden" name="oidc" th:value="*{consultas_oid}">

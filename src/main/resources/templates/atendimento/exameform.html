@@ -50,7 +50,7 @@
 	<div class="container-fluid">
 	<h2>Formulário de Exame</h2>
 	<br>
-		
+		<form  th:action="@{/exame/salva}" th:object="${exame}" method="post" >
 		<label for="select" class="form-label">Selecionar Atendimento</label>
 		<div class="dropdown">
 			<select class="select" name="select" id="select">
@@ -58,13 +58,13 @@
 				<option value="Selecionar">1</option>
 				<option value="Selecionar">2</option>
 				<option value="Selecionar">3</option>
-			</select> <br> <br> <label for="Texto" class="form-label">Texto</label>
-			<input type="text" name="exame" class="form-control" /> <br> <br>
+			</select> <br> <br> <label for="texto" class="form-label">Texto</label>
+			<input type="text" name="texto" class="form-control" th:value="*{texto}"/> <br> <br>
 
 			<button type="submit" class="btn btn-primary">Salvar</button>
 			<!-- Salvar -->
 			</form>
-			</main>
+		
 		</div>
 	</div>
 
