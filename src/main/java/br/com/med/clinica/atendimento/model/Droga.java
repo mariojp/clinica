@@ -17,7 +17,7 @@ public class Droga {
 	
 	@Column(length = 250)
 	private String nome;
-
+	
 	public Long getOid() {
 		return oid;
 	}
@@ -33,7 +33,5 @@ public class Droga {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 	
 }

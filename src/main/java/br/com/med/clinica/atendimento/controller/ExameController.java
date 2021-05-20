@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -26,6 +28,7 @@ public class ExameController {
 		model.addAttribute("exames",exames);
 		return "/atendimento/exame";
 	}
+	
 	// Pegando um dado do repositório
 	@GetMapping("/exame/form")
 	public String form(Model model,@Param(value = "id") Long id) {
@@ -40,9 +43,11 @@ public class ExameController {
 		
 		return "atendimento/exameform";
 	}
+	
 	// Salvando algo na lista (Pegando os dados do .html)
+	
 	@PostMapping("/exame/salvar")
-	public String salvar(Exame exame) {
+	public String salvar(@Validated Exame exame, BindingResult bindingResult) {
 		exameRepository.save(exame);
 		return "redirect:/exame";
 	}

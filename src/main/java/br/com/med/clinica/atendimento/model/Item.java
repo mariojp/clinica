@@ -21,6 +21,9 @@ public class Item {
 	@Column(length = 250)
 	private String nome;
 	
+	@Column(length = 250)
+	private String texto;
+	
 	@ManyToOne
 	@JoinColumn(name = "receita_oid",
 			foreignKey = @ForeignKey(name = "RECEITA_OID_FK")
@@ -63,6 +66,14 @@ public class Item {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
 	}
 
 

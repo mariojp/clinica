@@ -20,6 +20,8 @@ public class Exame {
 		@Column(length = 250)
 		private String nome;
 		
+
+
 		@ManyToOne
 		@JoinColumn(name = "atendimento_oid",
 				foreignKey = @ForeignKey(name = "ATENDIMENTO_OID_FK")
@@ -51,6 +53,7 @@ public class Exame {
 		}
 		
 		
+
 		
 	}
 

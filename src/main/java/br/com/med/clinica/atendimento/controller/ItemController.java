@@ -3,12 +3,13 @@ package br.com.med.clinica.atendimento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -46,14 +47,20 @@ public class ItemController {
 				item = op.get();
 			}
 		}
-		model.addAttribute("droga",drogaRepository);
+		
+		model.addAttribute("drogas", drogaRepository.findAll());
 		model.addAttribute("item",item);
 		
 		return "atendimento/itemform";
 	}
 	// Salvando algo na lista (Pegando os dados do .html)
 	@PostMapping("/item/salvar")
-	public String salvar(@Validated Item item, BindingResult bindingResult) {
+	public String salvar(@Valid Item item, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			bindingResult.getAllErrors().forEach(a -> System.out.print(a));
+			model.addAttribute("drogas", drogaRepository.findAll());
+			return "atendimento/itemform";
+		}
 		itemRepository.save(item);
 		return "redirect:/item";
 	}
