@@ -55,6 +55,7 @@
     <h5> Cadastaro de Funcionario</h5>
    <form  th:action="@{/funcionario/salvar}" th:object="${funcionario}" method="post" >
       <div class="mb-3">
+      
       	<h5>Nome</h5>
         <input type="text" id="nome" name="nome" th:value="*{nome}"  class="form-control" />
         <h5>RG</h5>
