@@ -21,7 +21,7 @@ public class Exame {
 	private String texto;
 
 	@ManyToOne
-	@JoinColumn(name = "atendimento_oid", nullable = false)
+	@JoinColumn(name = "atendimento_oid", nullable = true)
 	private Atendimento atendimento;
 
 	public Exame() {

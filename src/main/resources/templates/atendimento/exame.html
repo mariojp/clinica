@@ -52,8 +52,8 @@
           <tbody>
            <tr th:each="exa: ${exame}" >
               <td> <a href="#" th:href="@{/exame/form(id=${exa.oid})}"> <span th:text="${exa.oid}" > -1 </span></a></td>
-              <td th:text="${exa.texto}" > Texto </td>
-              <td th:text="${exa.atendimento}" > Atendimento </td>
+              <td th:text="${exa.texto}" > Orientação Exame </td>
+              <td th:text="${exa.atendimento}" > Tipo de Atendimento </td>
               <td><a href="#" th:href="@{/exame/delete(id=${exa.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
