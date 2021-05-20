@@ -19,13 +19,11 @@
                 </svg>
             </a>
 
-            <ul
-              class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-        <li><a href="#" class="nav-link px-2 text-secondary">Funcionarios</a></li>
-        <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidades</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
-      		</ul>
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/endereco" class="nav-link px-2 text-white">Endereco</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Funcionario</a></li>
+          <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
+        </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <input type="search" class="form-control form-control-dark" placeholder="Busca..." aria-label="Buscar">
@@ -49,6 +47,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
+                    <th>Celular</th>
                     <th><a href="#" th:href="@{/funcionario/form}">
                         <i class="bi bi-plus-square"></i>
                     </a></th>
@@ -58,6 +57,7 @@
                 <tr th:each="esp: ${funcionarios}" >
                     <td> <a href="#" th:href="@{/funcionario/form(id=${esp.nome})}"> <span th:text="${esp.oid}" > -1 </span></a></td>
                     <td th:text="${esp.nome}" > Nome </td>
+                    <td th:text="${esp.celular}"> Celular</td>
                     <td><a href="#" th:href="@{/funcionario/delete(id=${esp.oid})}">
                         <i class="bi bi-trash"></i>
                     </a></td>

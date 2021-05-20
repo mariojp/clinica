@@ -20,10 +20,9 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-          <li><a href="#" class="nav-link px-2 text-secondary">Endereco</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Endereco</a></li>
           <li><a href="/funcionario" class="nav-link px-2 text-white">Funcionario</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
+          <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -48,6 +47,8 @@
             <tr>
               <th>#</th>
               <th>Logradouro</th>
+              <th>Bairro</th>
+              <th>Cidade</th>
               <th><a href="#" th:href="@{/endereco/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
@@ -56,7 +57,9 @@
           <tbody>
             <tr th:each="end: ${enderecos}" >
               <td> <a href="#" th:href="@{/endereco/form(id=${end.oid})}"> <span th:text="${end.oid}" > -1 </span></a></td>
-              <td th:text="${end.logradouro}" >Endereço </td>
+              <td th:text="${end.logradouro}" >Logradouro </td>
+              <td th:text="${end.bairro}" >Bairro </td>
+              <td th:text="${end.cidade}" >Cidade</td>
               <td><a href="#" th:href="@{/endereco/delete(id=${end.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
