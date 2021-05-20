@@ -33,7 +33,7 @@
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
         <li><a href="#" class="nav-link px-2 text-secondary">Funcionarios</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
+        <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidades</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
       </ul>
 
@@ -52,15 +52,21 @@
 
 <div class="container-fluid">
   <main>
-    <h2>Especialidades</h2>
-    <form  action="" method="post" >
+    <h5> Cadastaro de Funcionario</h5>
+   <form  th:action="@{/funcionario/salvar}" th:object="${funcionario}" method="post" >
       <div class="mb-3">
-        <input type="text"  name="nome"  class="form-control" />
-        <input type="text"  name="rg"  class="form-control" />
-        <input type="text"  name="orgao"  class="form-control" />
-        <input type="text"  name="cpf"  class="form-control" />
-        <input type="text"  name="telefone"  class="form-control" />
-        <input type="text"  name="celular"  class="form-control" />
+      	<h5>Nome</h5>
+        <input type="text" id="nome" name="nome" th:value="*{nome}"  class="form-control" />
+        <h5>RG</h5>
+        <input type="text" id="rg" name="rg" th:value="*{rg}"  class="form-control" />
+        <h5>Orgao</h5>
+        <input type="text" id="orgao" name="orgao"  th:value="*{orgao}"   class="form-control" />
+        <h5>CPF</h5>
+        <input type="text" id="cpf"  name="cpf"  th:value="*{cpf}"  class="form-control" />
+        <h5>Telefone</h5>
+        <input type="text" placeholder="(DDD)XXXXXXXX" id ="telefone" name="telefone"  th:value="*{telefone}"  class="form-control" />
+        <h5>Celular</h5>
+        <input type="text" placeholder="(DDD)(9)XXXXXXXX" id = "celular" name="celular"   th:value="*{celular}"  class="form-control" />
 
 
         <div th:each="detailedErrors : ${#fields.detailedErrors()}">

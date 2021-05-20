@@ -1,4 +1,4 @@
-package br.com.med.clinica.funcionario.model;
+package br.com.med.clinica.administrativo.model;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -16,18 +16,18 @@ public class Funcionario {
     private String nome;
 
     @Size(max = 10, min = 10)
-    private Integer rg;
+    private String rg;
 
     @Size(max = 5, min = 2)
     private String orgao;
 
     @CPF
-    private Integer cpf;
+    private String cpf;
 
-    @Size(max = 8, min = 8)
+    @Size(max = 10, min = 10)
     private String telefone;
 
-    @Size(max = 8, min = 8)
+    @Size(max =11, min =11)
     private String celular;
 
     public Long getOid() {
@@ -46,11 +46,11 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public Integer getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(Integer rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -62,11 +62,11 @@ public class Funcionario {
         this.orgao = orgao;
     }
 
-    public Integer getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

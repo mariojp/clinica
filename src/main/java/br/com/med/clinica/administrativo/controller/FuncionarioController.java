@@ -1,18 +1,22 @@
-package br.com.med.clinica.funcionario.controller;
-import br.com.med.clinica.funcionario.model.Funcionario;
-import br.com.med.clinica.funcionario.repository.FuncionarioRepository;
+package br.com.med.clinica.administrativo.controller;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import br.com.med.clinica.administrativo.model.Funcionario;
+import br.com.med.clinica.administrativo.repository.FuncionarioRepository;
 
+
+@Controller
 public class FuncionarioController {
 
     @Autowired
@@ -22,9 +26,10 @@ public class FuncionarioController {
     public String listFuncionario(Model model) {
         List<Funcionario> funcionarios =  funcionarioRepository.findAll();
         model.addAttribute("funcionarios",funcionarios);
-        return "/administrativo/funcionario";
-
+        return "/administrativo/funcionariolist";
+        		
     }
+   
 
     @GetMapping("/funcionario/form")
     public String form(Model model,@Param(value = "id") Long id) {
@@ -37,13 +42,15 @@ public class FuncionarioController {
         }
         model.addAttribute("funcionario",funcionario);
 
-        return "/administrativo/funcionariofom";
+        return "/administrativo/funcionarioform";
+
     }
+    
 
     @PostMapping("/funcionario/salvar")
     public String salvar(@Valid Funcionario funcionario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/administrativo/funcionariofom";
+            return "/administrativo/funcionarioform";
         }
         funcionarioRepository.save(funcionario);
         return "redirect:/funcionario";

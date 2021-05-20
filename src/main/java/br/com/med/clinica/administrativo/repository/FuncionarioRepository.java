@@ -1,7 +1,8 @@
-package br.com.med.clinica.funcionario.repository;
-import br.com.med.clinica.funcionario.model.Funcionario;
+package br.com.med.clinica.administrativo.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import br.com.med.clinica.administrativo.model.Funcionario;
 
 import java.util.List;
 
