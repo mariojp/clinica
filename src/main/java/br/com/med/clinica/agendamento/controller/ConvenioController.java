@@ -20,9 +20,9 @@ public class ConvenioController {
 	private ConvenioRepository convenioRepository;
 
 	@GetMapping("/convenio")
-	public String listConvenio(Model model) {
-		List<Convenio> convenios =  convenioRepository.findAll();
-		model.addAttribute("convenios",convenios);
+	public String listconvenio(Model model) {
+		List<Convenio> Convenio =  convenioRepository.findAll();
+		model.addAttribute("convenio",Convenio);
 		return "/agendamento/convenio";
 	}
 	

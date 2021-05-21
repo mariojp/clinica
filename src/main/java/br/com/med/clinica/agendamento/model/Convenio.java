@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name = "convenios")
 public class Convenio {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
@@ -35,9 +34,4 @@ public class Convenio {
 		this.nome = nome;
 	}
 
-
-
-	
-	
-	
 }
