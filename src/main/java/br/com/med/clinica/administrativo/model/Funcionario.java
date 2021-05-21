@@ -25,10 +25,10 @@ public class Funcionario {
     @CPF
     private String cpf;
 
-    @Size(max = 10, min = 10,message = "Telefone: Deve possuir 10 digitos")
+    @Size(max = 11, min = 11,message = "Telefone: Deve possuir 11 digitos")
     private String telefone;
 
-    @Size(max =11, min =11, message = "Celular: Deve possuir 11 digitos")
+    @Size(max =12, min =12, message = "Celular: Deve possuir 12 digitos")
     private String celular;
 
     public Long getOid() {
