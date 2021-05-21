@@ -1,5 +1,7 @@
 package br.com.med.clinica.agendamento.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Convenio {
 	private String nome;
 	private String cnpj;
 	private String telefone;
+	private List<Paciente> pacientes;
 	
 
 	public String getCnpj() {
@@ -52,6 +55,14 @@ public class Convenio {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
 
 

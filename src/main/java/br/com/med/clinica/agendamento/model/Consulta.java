@@ -1,5 +1,7 @@
 package br.com.med.clinica.agendamento.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +19,11 @@ public class Consulta {
 	private String data;
 	private Boolean retorno;
 	private Boolean cancelada;
-	private Long paciente_oid;
-	private Long agenda_oid;
+	private Paciente paciente;
+	private Agenda agenda;
+	//TODO subistituir o Long por Atendimento
+	//quando essa classe for criada pelo outro grupo
+	private List<Long> atendimentosId;
 	
 	public Long getOid() {
 		return oid;
@@ -56,17 +61,17 @@ public class Consulta {
 	public void setCancelada(Boolean cancelada) {
 		this.cancelada = cancelada;
 	}
-	public Long getPaciente_oid() {
-		return paciente_oid;
+	public Paciente getPaciente() {
+		return paciente;
 	}
-	public void setPaciente_oid(Long paciente_oid) {
-		this.paciente_oid = paciente_oid;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
-	public Long getAgenda_oid() {
-		return agenda_oid;
+	public Agenda getAgenda() {
+		return agenda;
 	}
-	public void setAgenda_oid(Long agenda_oid) {
-		this.agenda_oid = agenda_oid;
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 	
 	

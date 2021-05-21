@@ -16,6 +16,9 @@ public class Agenda {
 	private Long oid;
 	private List<Horario> horarios;
 	private List<Consulta> consultas;
+	//TODO subistituir o Long por Medico
+	//quando essa classe for criada pelo outro grupo
+	private Long medicoOid;
 	
 	public Long getOid() {
 		return oid;
@@ -34,6 +37,12 @@ public class Agenda {
 	}
 	public void setConsulta(List<Consulta> consultas) {
 		this.consultas = consultas;
+	}
+	public Long getMedicoOid() {
+		return medicoOid;
+	}
+	public void setMedicoOid(Long medicoOid) {
+		this.medicoOid = medicoOid;
 	}
 	
 }
