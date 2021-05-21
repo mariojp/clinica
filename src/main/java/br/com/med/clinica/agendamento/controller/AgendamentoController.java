@@ -34,6 +34,7 @@ public class AgendamentoController {
 			if (op.isPresent()) {
 				horario = op.get();
 			}
+			
 		}
 		model.addAttribute("horario", horario);
 
