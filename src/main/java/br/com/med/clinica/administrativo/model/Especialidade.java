@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Especialidade {
@@ -14,6 +16,7 @@ public class Especialidade {
 	private Long oid;
 	
 	@Column(length = 250)
+	@Size(max = 30,min = 2, message = "Este campo não pode ser vazio! Informe a especialidade!")
 	private String nome;
 
 	public Long getOid() {

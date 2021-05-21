@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.administrativo.model.Endereco;
 import br.com.med.clinica.administrativo.repository.EnderecoRepository;
+
+import javax.validation.Valid;
 
 @Controller()
 public class EnderecoController {
@@ -42,7 +45,11 @@ public class EnderecoController {
 	}
 	
 	@PostMapping("/endereco/salvar")
-	public String salvar(Endereco endereco) {
+	public String salvar(@Valid Endereco endereco, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			return "/administrativo/enderecoform";
+		}
 		enderecoRepository.save(endereco);
 		return "redirect:/endereco";
 	}

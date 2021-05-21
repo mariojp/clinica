@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.administrativo.model.Especialidade;
 import br.com.med.clinica.administrativo.repository.EspecialidadeRepository;
+
+import javax.validation.Valid;
 
 @Controller()
 public class EspecialidadeController {
@@ -42,7 +45,10 @@ public class EspecialidadeController {
 	}
 	
 	@PostMapping("/especialidade/salvar")
-	public String salvar(Especialidade especialidade) {
+	public String salvar(@Valid Especialidade especialidade, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()){
+			return "/administrativo/especialidadeform";
+		}
 		especialidadeRepository.save(especialidade);
 		return "redirect:/especialidade";
 	}

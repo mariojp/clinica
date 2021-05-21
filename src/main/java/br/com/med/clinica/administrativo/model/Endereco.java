@@ -6,23 +6,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Endereco implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
+
+	@Size(min = 2,max = 50,message = "Logradouro: Este campo não pode ser vazio")
 	private String logradouro;
+
+	@Size(min = 1,max = 8,message = "Número: Este campo não pode ser vazio")
 	private String numero;
+
+	@Size(min = 2,max = 50,message = "Complemento: Se não possuir complemento, escreva  ''NÃO POSSUI COMPLEMENTO''  ")
 	private String complemento;
+
+	@Size(min = 2,max = 50, message = "Bairro: Este campo não pode ser vazio")
 	private String bairro;
+
+	@Size(min = 2,max = 50,message = "Cidade: Este campo não pode ser vazio")
 	private String cidade;
+
+	@Size(max = 8, min = 8, message = "CEP: Este campo DEVE possuir  8 números!")
 	private String cep;
 	
 	public Endereco() {

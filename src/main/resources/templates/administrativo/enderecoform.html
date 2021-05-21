@@ -30,7 +30,7 @@
 				</a>
 
 				 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">Endereco</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Endereço</a></li>
           <li><a href="/funcionario" class="nav-link px-2 text-white">Funcionario</a></li>
           <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
         </ul>
@@ -69,11 +69,16 @@
 					<h5>Cidade</h5>
 					<input type="text"  id="cidade"
 						name="cidade" th:value="*{cidade}" class="form-control" />
-					<h5>Cep</h5>
+					<h5>CEP</h5>
 					<input type="text"  id="cep"
 						name="cep" th:value="*{cep}" class="form-control" />
-				</div>
 
+					<div th:each="detailedErrors : ${#fields.detailedErrors()}">
+						<div class="alert alert-danger" th:if = "${#fields.hasAnyErrors()}">
+							<span th:text="${detailedErrors.message}" ></span>
+						</div>
+						</div>
+				</div>
 				<button type="submit" class="btn btn-primary">Salvar</button>
 			</form>
 		</main>

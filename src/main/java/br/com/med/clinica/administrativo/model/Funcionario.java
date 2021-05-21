@@ -3,6 +3,7 @@ package br.com.med.clinica.administrativo.model;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -12,22 +13,22 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
-    @Size(max = 44, min = 2)
+    @Size(max = 44, min = 1, message = "Nome: Este campo não pode ser vazio")
     private String nome;
 
-    @Size(max = 10, min = 10)
+    @Size(max = 10, min = 10,message = "RG: Este campo deve possuir 10 DÍGITOS")
     private String rg;
 
-    @Size(max = 5, min = 2)
+    @NotEmpty(message = "Orgão: orgão emissor não pode ser vazio")
     private String orgao;
 
     @CPF
     private String cpf;
 
-    @Size(max = 10, min = 10)
+    @Size(max = 11, min = 11,message = "Telefone: Deve possuir 12 digitos")
     private String telefone;
 
-    @Size(max =11, min =11)
+    @Size(max =12, min =12, message = "Celular: Deve possuir 12 digitos")
     private String celular;
 
     public Long getOid() {

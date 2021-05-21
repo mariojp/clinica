@@ -57,8 +57,15 @@
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
 						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+
+						<div th:each="detailedErrors : ${#fields.detailedErrors()}">
+							<div class="alert alert-danger" th:if = "${#fields.hasAnyErrors()}">
+								<span th:text="${detailedErrors.message}" ></span>
+							</div>
+						</div>
+
 					</div>
-			
+
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>
 		</main>
