@@ -48,30 +48,40 @@
 	</header>
 	<!-- Menu fim -->
 	<div class="container-fluid">
-	<h2>Formulário de Exame</h2>
-	<br>
-		<form  th:action="@{/exame/salvar}" th:object="${exame}" method="post" >
-		<label for="select" class="form-label">Selecionar Atendimento</label>
-		<div class="dropdown">
-			<select class="select" name="select" id="select">
+		<main>
+		<h2>Formulário de Exame</h2>
+	
+		<form th:action="@{/exame/salvar}" th:object="${exame}" method="post">
+			<input type="hidden" name="oid" th:value="*{oid}">
+			
+	
+			<label for="atendimento" class="form-label">Selecionar Atendimento</label>
+				<div class="dropdown">
+				<select name ="atendimento" id="atendimento" th:value=*{atendimento} class="select">
 				<option value="Selecionar">Selecionar</option>
-				<c:forEach var="atendimento" items="${atendimentos}">
-						<option value="${atendimentos.oid}">${atendimentos.oid}</option>
-					     </th> 
-					</c:forEach>
-				
-				
-			</select> <br> <br> <label for="texto" class="form-label">Texto</label>
-			<input type="text" name="texto" class="form-control" th:value="*{texto}"/> <br> <br>
+				<option th:each="atend: ${atendimentos}" th:value="${atend.oid}"
+					th:text="${atend.conduta}"
+					th:selected="${exame.atendimento != null && atend.oid == exame.atendimento.oid}"></option>
 
-			<button type="submit" class="btn btn-primary">Salvar</button>
-			<!-- Salvar -->
-			</form>
-		
-		</div>
+				</select> 
+				</div>
+				
+			    <br>
+			    <br>
+				
+				<label for="texto" class="form-label">Texto</label> 
+				<input type="text" id="texto" name="texto" class="form-control" th:value="*{texto}"/>
+				
+				<br>
+				<br>
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+				<!-- Salvar -->
+		 </form>
+         </main>
 	</div>
-
-
+	
+	
 	<!-- JavaScript Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
