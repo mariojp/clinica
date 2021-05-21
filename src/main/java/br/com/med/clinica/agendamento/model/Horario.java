@@ -22,7 +22,7 @@ public class Horario {
 	private long category_id;
 	
 	@Column
-	private String diaDaSemana2;
+	private String diaDaSemana;
 	
 	@Column
 	private String hora;
@@ -37,11 +37,11 @@ public class Horario {
 	}
 
 	public String getDdiaDaSemana() {
-		return diaDaSemana2;
+		return diaDaSemana;
 	}
 
 	public void setdiaDaSemana(String diaDaSemana) {
-		this.diaDaSemana2 = diaDaSemana;
+		this.diaDaSemana = diaDaSemana;
 	}
 
 	public String getHora() {
