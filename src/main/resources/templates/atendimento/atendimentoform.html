@@ -49,46 +49,40 @@
 	<!-- Menu fim -->
 
 	<div class="container-fluid">
-
+    <main>
 		<h2>Formulário de atendimento</h2>
 		<br>
-		<form th:action="@{/atendimento/salvar}" th:object="${atendimento}"
-						method="post">
-		<label for="select" class="form-label">Selecionar Consulta</label>
+		<form th:action="@{/atendimento/salvar}" th:object="${atendimento}" method="post">
+		  <input type="hidden" name="oid" th:value="*{oid}">
+		  <input type="hidden" name="oidc" th:value="*{consultas_oid}">
+		
+		<label for="select" class="form-label">Selecionar Consulta - quando unir com a entidade Consulta -</label>
 		<div class="dropdown">
 			<select class="select" name="select" id="select">
-				<option value="Selecionar">Selecionar</option>
+				<option value="Selecionar">Código consulta</option>
 				<option value="Selecionar">1</option>
 				<option value="Selecionar">2</option>
-				<option value="Selecionar">3</option>
-
-
-				<main>
-
-					
-
-						<input type="hidden" name="oid" th:value="*{oid}"> <input
-							type="hidden" name="oidc" th:value="*{consultas_oid}">
-						<div class="mb-3">
-						<br>
+				<option value="Selecionar">3</option> 
+             </select> 
+             </div>
+				
+				<div class="mb-3">
+			    <br>
 				<br>
-							<label for="nome" class="form-label">Conduta</label> <input
-								type="text" id="conduta" name="conduta" th:value="*{conduta}"
-								class="form-control" />
-								
-								<label for="nome" class="form-label">Receituário</label>
-								<input
-								type="text" id="receituario" name="receituario" class="form-control" />
-								
-								<label for="nome" class="form-label">Quadro de Exame</label><input
-								type="text" id="quadroExame" name="quadroExame" class="form-control" />
-						</div>
-
-						<button type="submit" class="btn btn-primary">Salvar</button>
-					</form>
-				</main>
+				<label for="nome" class="form-label">Conduta</label> 
+				<input type="text" id="conduta" name="conduta" th:value="*{conduta}" class="form-control" />
+				<br>
+			    <label for="nome" class="form-label">Receituário</label>
+				<input type="text" id="receituario" name="receituario" class="form-control" />
+				<br>
+			    <label for="nome" class="form-label">Quadro de Exame</label>
+			    <input type="text" id="quadroExame" name="quadroExame" class="form-control" />
+				 </div>
+				 
+				 <button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
+		</main>
 		</div>
-
 		<!-- JavaScript Bundle with Popper -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
