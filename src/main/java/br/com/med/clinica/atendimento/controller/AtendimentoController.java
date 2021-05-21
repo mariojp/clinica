@@ -21,7 +21,7 @@ public class AtendimentoController {
 	@Autowired
 	private AtendimentoRepository atendimentoRepository;
 
-	private static Long sequence = 0l;
+	private static Long sequence = 1l;
 
 	@GetMapping("/atendimento")
 	public String listAtendimento(Model model) {
