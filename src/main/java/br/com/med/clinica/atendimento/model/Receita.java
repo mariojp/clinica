@@ -24,7 +24,7 @@ public class Receita {
 	private String texto;
 
 	@ManyToOne
-	@JoinColumn(name = "atendimento_oid", nullable = false)
+	@JoinColumn(name = "atendimento_oid")
 	private Atendimento atendimento;
 
 	@OneToMany(mappedBy = "receita")

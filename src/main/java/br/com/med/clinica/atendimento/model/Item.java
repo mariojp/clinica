@@ -21,11 +21,11 @@ public class Item {
 	private String texto;
 
 	@ManyToOne
-	@JoinColumn(name = "droga_oid", nullable = false)
+	@JoinColumn(name = "droga_oid")
 	private Droga droga;
 
 	@ManyToOne
-	@JoinColumn(name = "receita_oid", nullable = false)
+	@JoinColumn(name = "receita_oid")
 	private Receita receita;
 
 	public Item() {
