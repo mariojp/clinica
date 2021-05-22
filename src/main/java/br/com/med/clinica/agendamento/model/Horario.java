@@ -16,6 +16,9 @@ public class Horario {
 	private Long categoriaId;
 	private Date diaSemana;
 	private String hora;
+	//esse atributo e pra dizer se uma agenda qualquer
+	//não pegou esse horario
+	private boolean agendado;
 
 	public String getHora() {
 		return hora;
@@ -34,6 +37,12 @@ public class Horario {
 	}
 	public void setCategoriaId(Long categoriaId) {
 		this.categoriaId = categoriaId;
+	}
+	public boolean isAgendado() {
+		return agendado;
+	}
+	public void setAgendado(boolean agendado) {
+		this.agendado = agendado;
 	}
 	
 }
