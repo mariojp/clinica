@@ -1,15 +1,11 @@
 package br.com.med.clinica.administrativo.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,35 +13,42 @@ public class Funcionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long codigo;
+	private Long oid;
 
 	private String nome;
 	private String rg;
 	private String orgaoEmissor;
 	private String cpf;
-	private boolean medico;
+	private String telefone;
+	private String celular;
 
-	@ManyToMany
-	@JoinTable(name = "funcionario_endereco", joinColumns = @JoinColumn( name = "codigo_funcionario", 
-	referencedColumnName = "codigo", table = "funcionario"),
-	inverseJoinColumns = @JoinColumn(name = "endereco_id", referencedColumnName = "codigo", table = "endereco"))
-	private List<Endereco> list = new ArrayList<Endereco>();
-	
-	@OneToOne
-	private Usuario usuario;
+	@OneToOne(mappedBy = "funcionario")
+	private Medico medico;
 
-	public Long getCodigo() {
-		return codigo;
+	@ManyToOne
+	@JoinColumn(name = "endereco_oid")
+	private Endereco endereco;
+
+	public Long getOid() {
+		return oid;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 
 	public String getNome() {
 		return nome;
 	}
-
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -74,35 +77,35 @@ public class Funcionario {
 		this.cpf = cpf;
 	}
 
-	public boolean isMedico() {
-		return medico;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setMedico(boolean medico) {
-		this.medico = medico;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public List<Endereco> getList() {
-		return list;
+	public String getCelular() {
+		return celular;
 	}
 
-	public void setList(List<Endereco> list) {
-		this.list = list;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
 		return result;
 	}
 
@@ -115,10 +118,10 @@ public class Funcionario {
 		if (getClass() != obj.getClass())
 			return false;
 		Funcionario other = (Funcionario) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (oid == null) {
+			if (other.oid != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!oid.equals(other.oid))
 			return false;
 		return true;
 	}

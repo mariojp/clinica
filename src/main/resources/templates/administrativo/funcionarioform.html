@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Especialidade</title>
+<title>Funcionário</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -33,9 +33,6 @@
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
 					<li><a href="#" class="nav-link px-2 text-secondary">Especialidade</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Médicos</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Usuários</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Funcionários</a></li>
 					<li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
 					<li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
 				</ul>
@@ -55,33 +52,44 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Especialidades</h2>
+			<h2>Funcionário</h2>
+				<form  th:action="@{/funcionario/salvar}" th:object="${funcionario}" method="post" >
 
-			<div class="table-responsive">
-				<table class="table table-striped table-sm">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Nome</th>
-							<th><a href="#" th:href="@{/especialidade/form}"> <i
-									class="bi bi-plus-square"></i>
-							</a></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="esp: ${especialidades}">
-							<td><a href="#"
-								th:href="@{/especialidade/form(oid=${esp.oid})}"> <span
-									th:text="${esp.oid}"> -1 </span></a></td>
-							<td th:text="${esp.nome}">Nome</td>
-							<td><a href="#"
-								th:href="@{/especialidade/delete(oid=${esp.oid})}"> <i
-									class="bi bi-trash"></i>
-							</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+					<input type="hidden" name="oid" th:value="*{oid}"> 
+					
+					<div class="mb-3">
+						<label for="nome" class="form-label">Nome :</label>
+						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="rg" class="form-label">RG :</label>
+						<input type="text" id="rg" name="rg" th:value="*{rg}" class="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="orgaoEmissor" class="form-label">Orgão Emissor :</label>
+						<input type="text" id="orgaoEmissor" name="orgaoEmissor" th:value="*{orgaoEmissor}" class="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="cpf" class="form-label">CPF :</label>
+						<input type="text" id="cpf" name="cpf" th:value="*{cpf}" class="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="cpf" class="form-label">Telefone :</label>
+						<input type="text" id="telefone" name="telefone" th:value="*{telefone}" class="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<label for="cpf" class="form-label">Celular :</label>
+						<input type="text" id="celular" name="celular" th:value="*{celular}" class="form-control" />
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					
+				</form>
 		</main>
 	</div>
 

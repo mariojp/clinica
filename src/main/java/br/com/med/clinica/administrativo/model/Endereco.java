@@ -10,7 +10,7 @@ public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	private Long oid;
 
 	private String nomeEndereco;
 	private Integer numero;
@@ -20,12 +20,12 @@ public class Endereco {
 	private String estado;
 	private String cep;
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getOid() {
+		return oid;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setOid(Long oid) {
+		this.oid = oid;
 	}
 
 	public String getNomeEndereco() {
@@ -88,7 +88,7 @@ public class Endereco {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
 		return result;
 	}
 
@@ -101,10 +101,10 @@ public class Endereco {
 		if (getClass() != obj.getClass())
 			return false;
 		Endereco other = (Endereco) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (oid == null) {
+			if (other.oid != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!oid.equals(other.oid))
 			return false;
 		return true;
 	}

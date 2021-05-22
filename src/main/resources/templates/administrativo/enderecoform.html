@@ -55,7 +55,7 @@
 			<h2>Endereços</h2>
 				<form  th:action="@{/endereco/salvar}" th:object="${enderecos}" method="post" >
 
-					<input type="hidden" name="codigo" th:value="*{codigo}"> 
+					<input type="hidden" name="oid" th:value="*{oid}"> 
 					
 					<div class="mb-3">
 						<label for="nomeEndereco" class="form-label">Endereço :</label>

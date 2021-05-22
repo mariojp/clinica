@@ -26,10 +26,10 @@ public class EnderecoController {
 	}
 	
 	@GetMapping("/endereco/form")
-	public String form(Model model,@Param(value = "codigo") Long codigo) {
+	public String form(Model model,@Param(value = "oid") Long oid) {
 		Endereco endereco = new Endereco();
-		if(codigo != null) {
-			Optional<Endereco> op = enderecoRepository.findById(codigo);
+		if(oid != null) {
+			Optional<Endereco> op = enderecoRepository.findById(oid);
 			if(op.isPresent()) {
 				endereco = op.get();
 			}
@@ -47,8 +47,8 @@ public class EnderecoController {
 	
 
 	@GetMapping("/endereco/delete")
-	public String delete(Long codigo) {
-		enderecoRepository.deleteById(codigo);
+	public String delete(Long oid) {
+		enderecoRepository.deleteById(oid);
 		return "redirect:/endereco";
 	}
 	
