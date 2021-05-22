@@ -57,7 +57,11 @@
 					<input type="hidden" name="oid" th:value="*{oid}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" 
+						 th:classappend="${#fields.hasErrors('nome')} ? 'alert alert-danger' : '' " />
+					    <!--  mensagem de erro -->		
+						<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro Message</div>
+				           <!--bindingResult.hasFieldErrors(field);--> 
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>

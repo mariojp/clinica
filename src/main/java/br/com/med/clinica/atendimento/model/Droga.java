@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "drogas")
@@ -17,7 +19,9 @@ public class Droga {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
-
+  
+	@NotEmpty()  //pode combinar essas anotações, mas nesse caso, o size já resolve
+	@Size(min = 3, max = 50)
 	@Column(length = 250)
 	private String nome;
 

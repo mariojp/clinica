@@ -3,10 +3,13 @@ package br.com.med.clinica.atendimento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -41,7 +44,16 @@ public class DrogaController {
 	}
 
 	@PostMapping("/droga/salvar")
-	public String salvar(Droga droga) {
+	public String salvar(@Valid Droga droga, BindingResult bindingResult) { // resultado das validações
+		if (bindingResult.hasErrors()) {
+//			System.out.println("Erros");
+//			bindingResult.getAllErrors()
+//			.forEach(e -> System.out.println(e));
+
+			return "/atendimento/drogaform";// em caso de erro, volte para o form
+
+		}
+
 		drogaRepository.save(droga);
 		return "redirect:/droga";
 	}
