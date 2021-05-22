@@ -18,7 +18,7 @@ public class Paciente {
 	private String rg;
 	private String orgao;
 	private String cpf;
-	private List<Long> convenios_ids;
+	private Long convenios_ids;
 	private String telefone;
 	private String celular;
 	private String email;
@@ -53,10 +53,10 @@ public class Paciente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public List<Long> getConvenios_ids() {
+	public Long getConvenios_ids() {
 		return convenios_ids;
 	}
-	public void setConvenios_ids(List<Long> convenios_ids) {
+	public void setConvenios_ids(Long convenios_ids) {
 		this.convenios_ids = convenios_ids;
 	}
 	public String getTelefone() {
