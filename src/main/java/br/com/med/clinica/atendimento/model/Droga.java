@@ -25,6 +25,7 @@ public class Droga {
 	@Column(length = 250)
 	private String nome;
 
+	@Size(min = 3, max = 100)
 	@OneToMany(mappedBy = "droga")
 	private List<Item> itens;
 
