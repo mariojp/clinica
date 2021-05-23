@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,6 +23,7 @@ public class Exame {
 	private String texto;
 
 	
+
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
 	private Atendimento atendimento;
