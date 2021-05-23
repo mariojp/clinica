@@ -3,15 +3,16 @@ package br.com.med.clinica.atendimento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
-import br.com.med.clinica.administrativo.model.Especialidade;
 import br.com.med.clinica.atendimento.model.Atendimento;
 import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 
@@ -45,7 +46,16 @@ public class AtendimentoController {
 	}
 
 	@PostMapping("/atendimento/salvar")
-	public String salvar(Atendimento atendimento) {
+	public String salvar(@Valid Atendimento atendimento, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+//			System.out.println("Erros");
+//		bindingResult.getAllErrors()
+//		.forEach(e -> System.out.println(e));
+
+			return "/atendimento/atendimentoform";// em caso de erro, volte para o form
+
+		}
+
 		atendimento.setConsultas_oid(sequence++);
 		atendimentoRepository.save(atendimento); // esse save tem papel de update tbm
 		return "redirect:/atendimento"; // funciona de acordo ao que ele recebe

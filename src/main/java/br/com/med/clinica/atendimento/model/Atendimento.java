@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "atendimentos")
@@ -20,6 +21,7 @@ public class Atendimento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
+	@Size(min = 3, max = 150)
 	@Column(length = 250)
 	private String conduta;
 
@@ -29,9 +31,11 @@ public class Atendimento {
 	@Column
 	private Long consultas_oid;
 
+	@Size(min = 3, max = 150)
 	@OneToMany(mappedBy = "atendimento")
 	private List<Receita> receitas;
 
+	@Size(min = 3, max = 150)
 	@OneToMany(mappedBy = "atendimento")
 	private List<Exame> exames;
 
