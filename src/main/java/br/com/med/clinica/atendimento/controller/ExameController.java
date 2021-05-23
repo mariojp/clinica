@@ -52,8 +52,8 @@ public class ExameController {
 	@PostMapping("/exame/salvar")
 	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			bindingResult.getAllErrors().forEach(e -> System.out.println(e));
-			model.addAttribute("atendimentos", atendimentoRepository.findAll());
+			//bindingResult.getAllErrors().forEach(e -> System.out.println(e));
+			//model.addAttribute("atendimentos", atendimentoRepository.findAll());
 			return "/atendimento/exameform";
 		}
 		exameRepository.save(exame);
