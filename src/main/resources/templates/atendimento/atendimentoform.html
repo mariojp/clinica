@@ -65,12 +65,12 @@
 				<div th:if="${#fields.hasErrors('conduta')}" th:errors="*{conduta}">Erro Message</div>
 				 <br>          
 			    <label for="nome" class="form-label">Receituário</label>
-				<input type="text" id="receitas" name="receitas" class="form-control" 
+				<input type="text" id="receita" name="receitas" class="form-control" 
 				th:classappend="${#fields.hasErrors('receitas')} ? 'alert alert-danger' : '' "/>
 				<div th:if="${#fields.hasErrors('receitas')}" th:errors="*{receitas}">Erro Message</div>
 				<br>
 			    <label for="nome" class="form-label">Quadro de Exame</label>
-			    <input type="text" id="exames" name="exames" class="form-control" 
+			    <input type="text" id="exame" name="exames" class="form-control" 
 			    th:classappend="${#fields.hasErrors('exames')} ? 'alert alert-danger' : '' "/>
 				 <div th:if="${#fields.hasErrors('exames')}" th:errors="*{exames}">Erro Message</div>
 				 </div>
