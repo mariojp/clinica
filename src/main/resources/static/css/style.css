@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #dff9fb;
+}
+
+
+#banner{
+    width: 100%;
+	min-height: 350px;
+    background-image: url(../imagens/clinica-header2.jpg);
+    background-position: center;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+    background-repeat: no-repeat;
+    background-color: #d8f1f6;
+}
