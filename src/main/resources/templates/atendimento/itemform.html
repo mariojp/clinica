@@ -69,9 +69,20 @@
 				</div>
 				
 				<div class="mb-3">
+					<label for="receita" class="form-label">Receita</label> 
+					<select name="receita" id="receita" th:value=*{receita} class="form-control">
+						<option>Selecione</option>
+						<option th:each="rta: ${receitas}" th:value="${rta.atendimento}" th:text="${rta.oid}" 
+					 		th:selected="${item.receita!= null && rta.oid == item.atendimento.oid}"	></option>
+					         <!-- através do ID, mantém a referencia do item clicado, mesmo ocorrendo erro no salvar -->
+					</select>
+				</div>
+				
+				<div class="mb-3">
 					<label for="texto" class="form-label">Texto</label> 
-					<input type="text" id="texto" name="texto" th:value="*{texto}"
-						class="form-control" />
+					<input type="text" id="texto" name="texto" th:value="*{texto}"class="form-control" 
+					th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "/>
+					<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Salvar</button>
