@@ -5,29 +5,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "horarios")
 public class Horario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long agenda_oid;
-	
-	@Column
 	private long horario_oid;
-	
+
+	@ManyToOne()
+	@JoinColumn(name= "agenda_oid")
+	private Agenda agenda;
+
 	@Column
 	private long category_id;
-	
+
 	@Column
 	private String diaDaSemana;
-	
+
 	@Column
-	private String hora;
-	
-	
+	private String horaInicio;
+
+	@Column
+	private String horaFinal;
+
+	public long getHorario_oid() {
+		return horario_oid;
+	}
+
+	public void setHorario_oid(long horario_oid) {
+		this.horario_oid = horario_oid;
+	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
 	public long getCategory_id() {
 		return category_id;
 	}
@@ -36,28 +57,28 @@ public class Horario {
 		this.category_id = category_id;
 	}
 
-	public String getDdiaDaSemana() {
+	public String getDiaDaSemana() {
 		return diaDaSemana;
 	}
 
-	public void setdiaDaSemana(String diaDaSemana) {
+	public void setDiaDaSemana(String diaDaSemana) {
 		this.diaDaSemana = diaDaSemana;
 	}
 
-	public String getHora() {
-		return hora;
+	public String getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHora(String hora) {
-		this.hora = hora;
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public long getAgenda_oid() {
-		return agenda_oid;
+	public String getHoraFinal() {
+		return horaFinal;
 	}
 
-	public void setAgenda_oid(long agenda_oid) {
-		this.agenda_oid = agenda_oid;
+	public void setHoraFinal(String horaFinal) {
+		this.horaFinal = horaFinal;
 	}
 
 }

@@ -6,7 +6,7 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Agendamento</title>
+<title>Agenda</title>
 </head>
 <body>
 <header class="p-3 bg-dark text-white">
@@ -22,7 +22,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
           <li><a href="#" class="nav-link px-2 text-secondary">Convenio</a></li>
-          <li><a href="#" class="nav-link px-2 text-secondary">Agendamento</a></li>
+          <li><a href="#" class="nav-link px-2 text-secondary">Agenda</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
         </ul>
@@ -41,23 +41,26 @@
 
 <div class="container-fluid">	
 	<main>
-		<h2>Agendamento</h2>
+		<h2>Agenda</h2>
 		
 	<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Horario agendado às :</th>
-              
-              <th><a href="#" th:href="@{/agendamento/form}">
+              <th>Horario disponivel inicia às :</th>
+              <th>Até às :</th>
+              <th>Na :</th>
+              <th><a href="#" th:href="@{/agenda/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="agnd: ${horarios}" >
-                <td th:text="${agnd.hora}" > Horario </td>
-              <td><a href="#" th:href="@{/agendamento/delete(id=${agnd.agenda_oid})}">
+            <tr th:each="horario: ${horarios}" >
+                <td th:text="${horario.horaInicio}" > Horario Inicial </td>
+                <td th:text="${horario.horaFinal}" > Horario Final</td>
+                 <td th:text="${horario.diaDaSemana}" > Dia da semana </td> 
+              <td><a href="#" th:href="@{/agenda/delete(id=${horario.agenda})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

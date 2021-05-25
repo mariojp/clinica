@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.med.clinica.agendamento.model.Agendamento;
+import br.com.med.clinica.agendamento.model.Agenda;
 
 @Repository
-public interface AgendamentoRepository extends CrudRepository<Agendamento, Long>{
+public interface AgendaRepository extends CrudRepository<Agenda, Long>{
 
 	
-	List<Agendamento> findAll();
+	List<Agenda> findAll();
 
 }
