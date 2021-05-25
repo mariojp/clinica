@@ -73,8 +73,8 @@
 					<label for="receita" class="form-label">Receita</label> 
 					<select name="receita" id="receita" th:value=*{receita} class="form-control">
 						<option>Selecione</option>
-						<option th:each="rta: ${receitas}" th:value="${rta.oid}" th:text="${rta.atendimento.conduta}" 
-					 		th:selected="${item.receita!= null && rta.oid == item.atendimento.oid}"	></option>
+						<option th:each="rta: ${receitas}" th:value="${rta.oid}" th:text="${rta.texto}" 
+					 		th:selected="${item.receita!= null && rta.oid == item.receita.oid}"	></option>
 					         <!-- através do ID, mantém a referencia do item clicado, mesmo ocorrendo erro no salvar -->
 					</select>
 				</div>
