@@ -22,8 +22,6 @@ public class Exame {
 	@Column(length = 250)
 	private String texto;
 
-	
-
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
 	private Atendimento atendimento;
