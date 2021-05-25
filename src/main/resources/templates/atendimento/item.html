@@ -25,6 +25,7 @@
 		   <li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 		   <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 		   <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
+		   <li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -49,6 +50,7 @@
             <tr>
               <th>#</th>
               <th>Droga</th>
+              <th>Receita</th>
               <th>Texto</th>
               <th><a href="#" th:href="@{/item/form}">
               	<i class="bi bi-plus-square"></i>
@@ -58,8 +60,9 @@
           <tbody>
             <tr th:each="item: ${items}" >
               <td> <a href="#" th:href="@{/item/form(id=${item.oid})}"> <span th:text="${item.oid}" > -1 </span></a></td>
-              <td th:text="${item.droga.nome}" > Droga </td>
-              <td th:text="${item.texto}" > Texto </td>
+              <td th:text="${item.droga.nome}"> Droga </td>
+              <td th:text="${item.receita.texto}"> Receita </td>
+              <td th:text="${item.texto}"> Texto </td>
               
               <td><a href="#" th:href="@{/item/delete(id=${item.oid})}">
               	<i class="bi bi-trash"></i>

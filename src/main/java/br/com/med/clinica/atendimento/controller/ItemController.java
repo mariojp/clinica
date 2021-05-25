@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import br.com.med.clinica.atendimento.model.Item;
 import br.com.med.clinica.atendimento.repository.DrogaRepository;
 import br.com.med.clinica.atendimento.repository.ItemRepository;
+import br.com.med.clinica.atendimento.repository.ReceitaRepository;
 
 @Controller
 public class ItemController {
@@ -25,6 +26,9 @@ public class ItemController {
 
 	@Autowired
 	private DrogaRepository drogaRepository;
+	
+	@Autowired
+	private ReceitaRepository receitaRepository;
 
 	@GetMapping("/item")
 	public String listItem(Model model) {
@@ -43,6 +47,7 @@ public class ItemController {
 			}
 		}
 		model.addAttribute("drogas", drogaRepository.findAll());
+		model.addAttribute("receitas", receitaRepository.findAll());
 		model.addAttribute("item", item);
 
 		return "atendimento/itemform";
@@ -53,6 +58,7 @@ public class ItemController {
 		if (bindingResult.hasErrors()) {
 			//bindingResult.getAllErrors().forEach(a -> System.out.print(a));
 			model.addAttribute("drogas", drogaRepository.findAll()); //recupera a lista
+			model.addAttribute("receitas", receitaRepository.findAll());
 			
 			return "atendimento/itemform";
 		}

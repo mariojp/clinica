@@ -36,6 +36,7 @@
 					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
+					<li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -72,7 +73,7 @@
 					<label for="receita" class="form-label">Receita</label> 
 					<select name="receita" id="receita" th:value=*{receita} class="form-control">
 						<option>Selecione</option>
-						<option th:each="rta: ${receitas}" th:value="${rta.atendimento}" th:text="${rta.oid}" 
+						<option th:each="rta: ${receitas}" th:value="${rta.oid}" th:text="${rta.atendimento.conduta}" 
 					 		th:selected="${item.receita!= null && rta.oid == item.atendimento.oid}"	></option>
 					         <!-- através do ID, mantém a referencia do item clicado, mesmo ocorrendo erro no salvar -->
 					</select>
