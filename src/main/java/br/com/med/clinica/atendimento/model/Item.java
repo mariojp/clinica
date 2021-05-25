@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "itens")
@@ -17,12 +18,14 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
+	@NotEmpty
 	@Column(length = 250)
 	private String texto;
 
 	@ManyToOne
-	@JoinColumn(name = "droga_oid")
+	@JoinColumn(name = "droga_oid")//JC define que isso é um fk de outro item, e evita a criação de uma tabela associativa
 	private Droga droga;
+ 
 
 	@ManyToOne
 	@JoinColumn(name = "receita_oid")
