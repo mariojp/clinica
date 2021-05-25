@@ -48,7 +48,8 @@
               <th>Orientação Exame</th>
               <th>Código Atendimento</th>
               <th><a href="#" th:href="@{/exame/form}">
-                <i class="bi bi-plus-square"></i>
+              <i class="bi bi-plus-square"></i></a>
+              </th>
             </tr>
           </thead>
           <tbody>           
@@ -57,8 +58,8 @@
               <td th:text="${exa.texto}" > Orientação Exame </td>
               <td th:text="${exa.atendimento.oid}" > Atendimento </td>
               <td><a href="#" th:href="@{/exame/delete(id=${exa.oid})}">
-              	<i class="bi bi-trash"></i>
-              </a></td>
+              <i class="bi bi-trash"></i></a>
+              </td>
             </tr>
           </tbody>
         </table>
