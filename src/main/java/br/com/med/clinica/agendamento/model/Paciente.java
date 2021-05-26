@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "agendas")
+
 public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,10 @@ public class Paciente {
 	private String telefone;
 	private String celular;
 	private String email;
+	@ManyToOne
+	private Convenio convenio;
+	@OneToMany
+	@JoinColumn(name = "consultas_id")
 	private List<Consulta> consultas;
 	
 	public Long getOid() {
@@ -54,19 +60,19 @@ public class Paciente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-<<<<<<< HEAD
+
 	public Long getConvenios_ids() {
 		return convenios_ids;
 	}
 	public void setConvenios_ids(Long convenios_ids) {
 		this.convenios_ids = convenios_ids;
-=======
+	}
 	public Convenio getConvenio() {
 		return convenio;
 	}
 	public void setConvenioIds(Convenio convenio) {
 		this.convenio = convenio;
->>>>>>> cd843027e0e3eb763badadfb20e35269d6050581
+
 	}
 	public String getTelefone() {
 		return telefone;

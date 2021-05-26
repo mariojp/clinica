@@ -6,16 +6,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "agendas")
+
 public class Agenda {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
-	private List<Horario> horarios;
+	
+	@OneToMany
+	@JoinColumn(name = "consultas_id")
 	private List<Consulta> consultas;
+	@OneToMany
+	@JoinColumn(name = "horarios_id")
+	private List<Horario> horarios;
 	//TODO subistituir o Long por Medico
 	//quando essa classe for criada pelo outro grupo
 	private Long medicoOid;
@@ -26,23 +32,18 @@ public class Agenda {
 	public void setOid(Long oid) {
 		this.oid = oid;
 	}
-	public List<Horario> getHorario() {
-		return horarios;
-	}
-	public void setHorario(List<Horario> horarios) {
-		this.horarios = horarios;
-	}
-	public List<Consulta> getConsulta() {
-		return consultas;
-	}
-	public void setConsulta(List<Consulta> consultas) {
-		this.consultas = consultas;
-	}
+	
 	public Long getMedicoOid() {
 		return medicoOid;
 	}
 	public void setMedicoOid(Long medicoOid) {
 		this.medicoOid = medicoOid;
+	}
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
 	}
 	
 }

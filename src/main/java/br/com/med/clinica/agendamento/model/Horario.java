@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "horarios")
 public class Horario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long categoriaId;
 	private Date diaSemana;
 	private String hora;
+	@ManyToOne
+	private Agenda agenda;
 	//esse atributo e pra dizer se uma agenda qualquer
 	//não pegou esse horario
 	private boolean agendado;

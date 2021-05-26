@@ -1,15 +1,13 @@
 package br.com.med.clinica.agendamento.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "consultas")
 public class Consulta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +17,12 @@ public class Consulta {
 	private String data;
 	private Boolean retorno;
 	private Boolean cancelada;
+	@OneToOne
 	private Paciente paciente;
+	@ManyToOne
 	private Agenda agenda;
-	//TODO subistituir o Long por Atendimento
-	//quando essa classe for criada pelo outro grupo
-	private List<Long> atendimentosId;
+	//TODO Criar Lista de Atendimento
+	//quando a classe "Medico" for criada pelo outro grupo
 	
 	public Long getOid() {
 		return oid;

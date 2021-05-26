@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.agendamento.model.Agenda;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
-
+@Controller
 public class AgendaController {
 
 	@Autowired
