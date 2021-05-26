@@ -18,7 +18,7 @@ public class Atendimento {
 	private Long oid;
 	
 	@Column(length = 250)
-	private String Conduta;
+	private String conduta;
 	
 
 	public Long getOid() {
@@ -30,11 +30,11 @@ public class Atendimento {
 	}
 
 	public String getConduta() {
-		return Conduta;
+		return conduta;
 	}
 
 	public void setConduta(String conduta) {
-		this.Conduta = conduta;
+		this.conduta = conduta;
 	}
 
 	

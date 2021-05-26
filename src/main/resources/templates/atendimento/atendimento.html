@@ -71,9 +71,9 @@
           <tbody>
           <!-- exa = variável (instancia ela na criação do for each) -->
             <tr th:each="ate: ${atendimentos}" >
-              <td> <a href="#" th:href="@{/atendimento/form(id=${exa.oid})}"> <span th:text="${ate.oid}" > -1 </span></a></td>
+              <td> <a href="#" th:href="@{/atendimento/form(id=${ate.oid})}"> <span th:text="${ate.oid}" > -1 </span></a></td>
               <td th:text="${ate.conduta}" > Paciente </td>
-              <td><a href="#" th:href="@{/atendimento/delete(id=${exa.oid})}">
+              <td><a href="#" th:href="@{/atendimento/delete(id=${ate.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

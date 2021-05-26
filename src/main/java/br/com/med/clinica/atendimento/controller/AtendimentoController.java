@@ -44,13 +44,13 @@ public class AtendimentoController {
 	@PostMapping("/atendimento/salvar")
 	public String salvar(Atendimento atendimento) {
 		atendimentoRepository.save(atendimento);
-		return "redirect:/atendimento/atendimento";
+		return "redirect:/atendimento";
 	}
 	
 
 	@GetMapping("/atendimento/delete")
 	public String delete(Long id) {
 		atendimentoRepository.deleteById(id);
-		return "redirect:/atendimento/atendimento";
+		return "redirect:/atendimento";
 	}
 }
