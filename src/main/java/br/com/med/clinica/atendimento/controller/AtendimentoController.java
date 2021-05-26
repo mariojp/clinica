@@ -24,7 +24,7 @@ public class AtendimentoController {
 	public String listDroga(Model model) {
 		List<Atendimento> atendimentos =  atendimentoRepository.findAll();
 		model.addAttribute("atendimentos",atendimentos);
-		return "/atendimento";
+		return "/atendimento/atendimento";
 	}
 	// Pegando um dado do repositório
 	@GetMapping("/atendimento/form")
@@ -44,13 +44,13 @@ public class AtendimentoController {
 	@PostMapping("/atendimento/salvar")
 	public String salvar(Atendimento atendimento) {
 		atendimentoRepository.save(atendimento);
-		return "redirect:/atendimento";
+		return "redirect:/atendimento/atendimento";
 	}
 	
 
 	@GetMapping("/atendimento/delete")
 	public String delete(Long id) {
 		atendimentoRepository.deleteById(id);
-		return "redirect:/atendimento";
+		return "redirect:/atendimento/atendimento";
 	}
 }
