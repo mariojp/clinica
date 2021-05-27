@@ -3,10 +3,13 @@ package br.com.med.clinica.agendamento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -21,8 +24,8 @@ public class ConvenioController {
 
 	@GetMapping("/convenio")
 	public String listconvenio(Model model) {
-		List<Convenio> Convenio =  convenioRepository.findAll();
-		model.addAttribute("convenio",Convenio);
+		List<Convenio> Convenios =  convenioRepository.findAll();
+		model.addAttribute("convenios",Convenios);
 		return "/agendamento/convenio";
 	}
 	
@@ -41,7 +44,12 @@ public class ConvenioController {
 	}
 	
 	@PostMapping("/convenio/salvar")
-	public String salvar(Convenio convenio) {
+	public String salvar(@Valid Convenio convenio, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(a -> System.out.print(a));
+            model.addAttribute("convenio", convenioRepository.findAll());
+            return "agendamento/convenioform";
+        }
 		convenioRepository.save(convenio);
 		return "redirect:/convenio";
 	}

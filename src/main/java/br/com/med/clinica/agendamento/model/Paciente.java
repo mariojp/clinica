@@ -8,43 +8,43 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Paciente") 
-public class Paciente{
+@Table(name = "Paciente")
+public class Paciente {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long oid;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long paciente_oid;
 
-    @Column
-    private String nome;
+	@Column
+	private String nome;
 
-    @Column
-    private String rg;
+	@Column
+	private String rg;
 
-    @Column
-    private String orgao;
+	@Column
+	private String orgao;
 
-    @Column
-    private String cpf;
+	@Column
+	private String cpf;
 
-    @Column
-    private long convenios_oid;
+	@Column
+	private String telefone;
 
-    @Column
-    private String telefone;
+	@Column
+	private String celular;
 
-    @Column
-    private String celular;
+	@Column
+	private String email;
 
-    @Column
-    private String email;
+	@Column
+	private long convenio_oid;
 
-	public long getOid() {
-		return oid;
+	public long getPaciente_oid() {
+		return paciente_oid;
 	}
 
-	public void setOid(long oid) {
-		this.oid = oid;
+	public void setPaciente_oid(long paciente_oid) {
+		this.paciente_oid = paciente_oid;
 	}
 
 	public String getNome() {
@@ -79,14 +79,6 @@ public class Paciente{
 		this.cpf = cpf;
 	}
 
-	public long getConvenios_oid() {
-		return convenios_oid;
-	}
-
-	public void setConvenios_oid(long convenios_oid) {
-		this.convenios_oid = convenios_oid;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
@@ -110,7 +102,13 @@ public class Paciente{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
-    
+	
+	public long getConvenio_oid() {
+		return convenio_oid;
+	}
+
+	public void setConvenio_oid(long convenio_oid) {
+		this.convenio_oid = convenio_oid;
+	}
 
 }

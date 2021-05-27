@@ -29,12 +29,13 @@
 		  </svg>
 				</a>
 
-				<ul
+			<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Convenio</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
+					<li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
+					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
+					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
+					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -53,12 +54,18 @@
 	<div class="container-fluid">
 		<main>
 			<h2>Convenios</h2>
-				<form  th:action="@{/convenio/salvar}" th:object="${convenio}" method="post" >
-
-					<input type="hidden" name="oid" th:value="*{oid}"> 
+				<form  th:action="@{/convenio/salvar}" method="post" >
+					<input type="hidden" name="convenio_oid" th:value="*{convenio_oid}"> 
 					<div class="mb-3">
+					
 						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+							<input type="text" id="nome" name="nome" placeholder ="Nome do convenio" th:value="*{convenio.nome}" class="form-control" />
+						<label for="cnpj" class="form-label">CNPJ</label>
+							<input type="number" id="cnpj" name="cnpj" placeholder ="XXXXXXXXXXXX" th:value="*{convenio.cnpj}" class="form-control" />
+						<label for="nome" class="form-label">Telefone</label>
+							<input type="number" id="telefone" name="telefone" placeholder ="(XX) XXXXX-XXXX" th:value="*{convenio.telefone}" class="form-control" />
+					
+					
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>

@@ -1,6 +1,6 @@
 package br.com.med.clinica.agendamento.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ public class Agenda {
 	private long medico_oid;
 
 	@OneToMany(mappedBy = "agenda")
-	private Set<Horario> horarios;
+	private List<Horario> horarios;
 
 	public long getMedico_oid() {
 		return medico_oid;
@@ -40,11 +40,11 @@ public class Agenda {
 		this.agenda_oid = agenda_oid;
 	}
 
-	public Set<Horario> getHorarios() {
+	public List<Horario> getHorarios() {
 		return horarios;
 	}
 
-	public void setHorarios(Set<Horario> horarios) {
+	public void setHorarios(List<Horario> horarios) {
 		this.horarios = horarios;
 	}
 

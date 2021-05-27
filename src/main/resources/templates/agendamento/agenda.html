@@ -19,13 +19,14 @@
 		  </svg>
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-          <li><a href="#" class="nav-link px-2 text-secondary">Convenio</a></li>
-          <li><a href="#" class="nav-link px-2 text-secondary">Agenda</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
-        </ul>
+        <ul
+					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+					<li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
+					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
+					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
+					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+				</ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Busca..." aria-label="Buscar">
@@ -60,7 +61,7 @@
                 <td th:text="${horario.horaInicio}" > Horario Inicial </td>
                 <td th:text="${horario.horaFinal}" > Horario Final</td>
                  <td th:text="${horario.diaDaSemana}" > Dia da semana </td> 
-              <td><a href="#" th:href="@{/agenda/delete(id=${horario.agenda})}">
+              <td><a href="#" th:href="@{/agenda/delete(id=${horario.horario_oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

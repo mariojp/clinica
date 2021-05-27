@@ -18,11 +18,8 @@ public class Horario {
 	private long horario_oid;
 
 	@ManyToOne()
-	@JoinColumn(name= "agenda_oid")
+	@JoinColumn(name = "agenda_oid")
 	private Agenda agenda;
-
-	@Column
-	private long category_id;
 
 	@Column
 	private String diaDaSemana;
@@ -47,14 +44,6 @@ public class Horario {
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
-	}
-
-	public long getCategory_id() {
-		return category_id;
-	}
-
-	public void setCategory_id(long category_id) {
-		this.category_id = category_id;
 	}
 
 	public String getDiaDaSemana() {

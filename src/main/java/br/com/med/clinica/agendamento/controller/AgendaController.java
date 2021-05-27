@@ -51,7 +51,7 @@ public class AgendaController {
             model.addAttribute("horarios", horariosRepository.findAll());
             return "agendamento/agendaform";
         }
-		horariosRepository.save(horario);
+		horariosRepository.save(horario); 
 		return "redirect:/agenda";
 	}
 	
