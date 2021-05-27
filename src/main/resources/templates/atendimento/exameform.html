@@ -70,8 +70,9 @@
 			    <br>
 				
 				<label for="texto" class="form-label">Texto</label> 
-				<input type="text" id="texto" name="texto" class="form-control" th:value="*{texto}"
-				th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' " />
+				<textarea rows="3" type="text" id="texto" name="texto" class="form-control" th:value="*{texto}"
+				th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "  cols="100"></textarea>
+				
 				<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>
 				<br>
 				
