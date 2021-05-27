@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Funcionario {
@@ -21,10 +20,7 @@ public class Funcionario {
 	private String cpf;
 	private String telefone;
 	private String celular;
-
-	@OneToOne(mappedBy = "funcionario")
-	private Medico medico;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "endereco_oid")
 	private Endereco endereco;
@@ -35,14 +31,6 @@ public class Funcionario {
 
 	public void setOid(Long oid) {
 		this.oid = oid;
-	}
-
-	public Medico getMedico() {
-		return medico;
-	}
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
 	}
 
 	public String getNome() {
