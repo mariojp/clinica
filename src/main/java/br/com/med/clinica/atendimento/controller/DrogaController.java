@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import br.com.med.clinica.atendimento.model.Droga;
 import br.com.med.clinica.atendimento.repository.DrogaRepository;
 
-
-
 @Controller
 public class DrogaController {
 

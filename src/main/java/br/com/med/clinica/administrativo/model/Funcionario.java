@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 public class Funcionario {
@@ -112,5 +113,18 @@ public class Funcionario {
         builder.append("]");
 
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Funcionario)) return false;
+        Funcionario that = (Funcionario) o;
+        return getOid().equals(that.getOid());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOid());
     }
 }

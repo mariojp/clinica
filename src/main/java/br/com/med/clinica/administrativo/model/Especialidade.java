@@ -45,9 +45,20 @@ public class Especialidade {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Especialidade)) return false;
+
+		Especialidade that = (Especialidade) o;
+
+		return getOid().equals(that.getOid());
+	}
+
+	@Override
+	public int hashCode() {
+		return getOid().hashCode();
+	}
 }
