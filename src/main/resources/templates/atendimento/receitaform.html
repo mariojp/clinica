@@ -36,7 +36,7 @@
 					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-					<li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -55,32 +55,57 @@
 	<div class="container-fluid">
 		<main>
 			<h2>Receita</h2>
-			<form th:action="@{/receita/salvar}" th:object="${receita}" method="post">
+			<form th:action="@{/atendimento/receita/salvar}" th:object="${receitaDTO}" method="post">
 
-				<input type="hidden" name="oid" th:value="*{oid}">
+				<input type="hidden" name="oidReceita" th:value="*{oidReceita}">
+				<input type="hidden" name="oidAtendimento" th:value="*{oidAtendimento}">
 
 				<div class="mb-3">
-					<label for="atendimento" class="form-label">Atendimento</label> 
-					<select name="atendimento" id="atendimento" th:value=*{atendimento} class="form-control">
+					<label for="textoReceita" class="form-label">Texto</label> 
+					<textarea rows="3" cols="100" id="textoReceita" name="textoReceita" class="form-control" th:text="*{textoReceita}" 
+					th:classappend="${#fields.hasErrors('textoReceita')} ? 'alert alert-danger' : '' "></textarea>
+					<div th:if="${#fields.hasErrors('textoReceita')}" th:errors="*{textoReceita}">Erro Message</div>
+				</div>
+				
+				<div class="mb-3">
+					<label for="oidDroga" class="form-label">Drogas</label> 
+					<select name="oidDroga" id="oidDroga" th:value="*{oidDroga}" class="form-control">
 						<option>Selecione</option>
-						<option th:each="atend: ${atendimentos}" th:value="${atend.oid}" th:text="${atend.conduta}"
-					            th:selected="${receita.atendimento != null && atend.oid == receita.atendimento.oid}"></option>
-					         <!-- através do ID, mantém a referencia do item clicado, mesmo ocorrendo erro no salvar -->
+						<option th:each="droga: ${drogas}" th:value="${droga.oid}" th:text="${droga.nome}"></option>
 					</select>
 				</div>
 				
 				
 				<div class="mb-3">
-					<label for="texto" class="form-label">Texto</label> 
-					<textarea rows="3" cols="100" type="text" id="texto" name="texto" th:value="*{texto}"class="form-control" 
-					th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "></textarea>
-				
-					<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>
+					<label for="drogaTexto" class="form-label">Uso</label> 
+					<textarea rows="3" cols="100" id="drogaTexto" name="drogaTexto" class="form-control" th:text="*{drogaTexto}" ></textarea>
 				</div>
 
 				<button type="submit" class="btn btn-primary">Salvar</button>
 			</form>
-		</main>
+		
+		
+		    Itens
+		    <div class="table-responsive">
+            <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+              <th>Droga</th>
+              <th>Texto</th>
+            </tr>
+            </thead>
+             <tbody>
+              <tr th:each="item: ${itens}" >
+              <td th:text="${item.droga.nome}" >Nome</td>
+              <td th:text="${item.texto}" >Texto</td>
+              <td><a href="#" th:href="@{/item/delete(id=${item.oid})}">
+              	<i class="bi bi-trash"></i>
+              </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+	  </main>
 	</div>
 
 	<!-- JavaScript Bundle with Popper -->

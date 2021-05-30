@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "exames")
 public class Exame {
@@ -24,6 +27,7 @@ public class Exame {
 
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Atendimento atendimento;
 
 	public Exame() {

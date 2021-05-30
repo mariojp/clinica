@@ -26,7 +26,6 @@ public class Item {
 	@JoinColumn(name = "droga_oid")//JC define que isso é um fk de outro item, e evita a criação de uma tabela associativa
 	private Droga droga;
  
-
 	@ManyToOne
 	@JoinColumn(name = "receita_oid")
 	private Receita receita;

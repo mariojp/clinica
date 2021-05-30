@@ -37,7 +37,7 @@
 					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-					<li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -57,17 +57,71 @@
 		<form th:action="@{/atendimento/salvar}" th:object="${atendimento}" method="post">
 		  <input type="hidden" name="oid" th:value="*{oid}">
 		  <input type="hidden" name="oidc" th:value="*{consultas_oid}">
-		
-		
-				<div class="mb-3">
 			
-				<label for="nome" class="form-label">Conduta do Atendimento</label> 
-				<input type="text" id="conduta" name="conduta" th:value="*{conduta}" class="form-control"
-				th:classappend="${#fields.hasErrors('conduta')} ? 'alert alert-danger' : '' "/>
+				<label for="nome" class="form-label">Nome do Paciente</label> 
+				<input type="text" id="nome" name="paciente" th:value="*{paciente}" class="form-control"
+				th:classappend="${#fields.hasErrors('paciente')} ? 'alert alert-danger' : '' "/>
+				<div th:if="${#fields.hasErrors('paciente')}" th:errors="*{paciente}">Erro Message</div>
+				
+				<div class="mb-3">
+				
+			    <label for="conduta" class="form-label">Conduta</label> 
+				<textarea rows="3" cols="100" id="conduta" name="conduta" th:value="*{conduta}" th:text="*{conduta}" class="form-control"
+				th:classappend="${#fields.hasErrors('conduta')} ? 'alert alert-danger' : '' "></textarea> 
 				<div th:if="${#fields.hasErrors('conduta')}" th:errors="*{conduta}">Erro Message</div>
-				</div> 
-				 <button type="submit" class="btn btn-primary">Salvar</button>
-			</form>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Salvar</button>
+		    <br>
+		    <a href="#" th:href="@{/atendimento/receita/form(id=${atendimento.oid})}" class="btn btn-outline-warning">Add Receita</a>
+		                        
+		   <br>
+		   <a href="#" th:href="@{/exame/form}" class="btn btn-outline-info">Add Exame</a>
+			</form>    
+			
+			<br>
+		
+		Exames
+		<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Exame</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="exame: ${exames}" >
+              <td> <a href="#" th:href="@{/exame/form(id=${exame.oid})}"> <span th:text="${exame.oid}" > -1 </span></a></td>
+              <td th:text="${exame.texto}" > Exame </td>
+              <td><a href="#" th:href="@{/exame/delete(id=${exame.oid})}">
+              	<i class="bi bi-trash"></i>
+              </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      	 Receitas
+		<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Receituário</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="receita: ${receitas}" >
+              <td> <a href="#" th:href="@{/atendimento/receita/form(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
+              <td th:text="${receita.texto}" > Receita </td>
+              <td><a href="#" th:href="@{/atendimento/receita/delete(id=${receita.oid})}">
+              	<i class="bi bi-trash"></i>
+              </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 		</main>
 		</div>
 		<!-- JavaScript Bundle with Popper -->

@@ -25,7 +25,7 @@
 		   <li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 		   <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 		   <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-		   <li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+		   <li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -61,7 +61,6 @@
               <td> <a href="#" th:href="@{/receita/form(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
               <td th:text="${receita.texto}" > Texto </td>
               <td th:text="${receita.atendimento.oid}" > Atendimento </td>
-              
               <td><a href="#" th:href="@{/receita/delete(id=${receita.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
