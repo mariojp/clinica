@@ -25,7 +25,7 @@
           <li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
           <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
           <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-          <li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+          <li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -38,17 +38,18 @@
 
 <div class="container-fluid">	
 	<main>
-		<h2>Atendimento</h2>
+		<h2>Atendimentos</h2>
 		
 	<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th>#</th>
+              <th>Paciente</th>
               <th>Conduta</th>
               <th>Código Consulta</th>
-              <th>Receituário</th>
-              <th>Quadro de Exame</th>
+              <th>Receita</th>
+              <th>Exame</th>
               <th><a href="#" th:href="@{/atendimento/form}">
               	<i class="bi bi-plus-square"></i></a>
             </tr>
@@ -56,10 +57,11 @@
           <tbody>
            <tr th:each="atend: ${atendimentos}" >
               <td> <a href="#" th:href="@{/atendimento/form(id=${atend.oid})}"> <span th:text="${atend.oid}" > -1 </span></a></td>
+              <td th:text="${atend.paciente}" > Paciente </td>
               <td th:text="${atend.conduta}" > Conduta </td>
               <td th:text="${atend.consultas_oid}" > Código Consulta </td>
-              <td th:text="${atend.receitas}" > Receitas </td>
-              <td th:text="${atend.exames}" > Exames </td>
+              <td><a href="#" th:href="@{/atendimento/receita/form(id=${atend.oid})}">RECEITAS</a></td>
+              <td><a href="#" th:href="@{/exame/form(id=${atend.oid})}">EXAMES</a></td>
               <td><a href="#" th:href="@{/atendimento/delete(id=${atend.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>

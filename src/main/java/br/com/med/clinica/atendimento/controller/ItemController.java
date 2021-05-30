@@ -32,8 +32,8 @@ public class ItemController {
 
 	@GetMapping("/item")
 	public String listItem(Model model) {
-		List<Item> items = itemRepository.findAll();
-		model.addAttribute("items", items);
+		List<Item> item = itemRepository.findAll();
+		model.addAttribute("itens", item);
 		return "atendimento/item";
 	}
 

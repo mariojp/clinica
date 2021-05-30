@@ -37,7 +37,7 @@
 					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-					<li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -61,7 +61,7 @@
 				<div class="dropdown">
 				<select name ="atendimento" id="atendimento" th:value=*{atendimento} class="select" required>
 				<option value="Selecionar">Selecionar</option>
-				<option th:each="atend: ${atendimentos}" th:value="${atend.oid}" th:text="${atend.conduta}"
+				<option th:each="atend: ${atendimentos}" th:value="${atend.oid}" th:text="${atend.paciente}"
 					th:selected="${exame.atendimento != null && atend.oid == exame.atendimento.oid}"></option>
 				</select> 
 				</div>
@@ -70,8 +70,8 @@
 			    <br>
 				
 				<label for="texto" class="form-label">Texto</label> 
-				<textarea rows="3" type="text" id="texto" name="texto" class="form-control" th:value="*{texto}"
-				th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "  cols="100"></textarea>
+				<textarea rows="3" cols="100"  id="texto" name="texto" class="form-control" th:value="*{texto}" th:text="*{texto}" 
+				th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "></textarea>
 				
 				<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>
 				<br>

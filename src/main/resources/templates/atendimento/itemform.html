@@ -36,7 +36,7 @@
 					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-					<li><a href="/receita" class="nav-link px-2 text-white">Receita</a></li>
+					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -81,7 +81,7 @@
 				
 				<div class="mb-3">
 					<label for="texto" class="form-label">Texto</label> 
-					<textarea rows="3" cols="100" type="text" id="texto" name="texto" th:value="*{texto}"class="form-control" 
+					<textarea rows="3" cols="100" type="text" id="texto" name="texto" th:value="*{texto}"class="form-control" th:text="*{texto}"
 					th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "></textarea>
 					
 					<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>

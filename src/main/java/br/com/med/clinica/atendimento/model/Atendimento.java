@@ -21,6 +21,11 @@ public class Atendimento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
+	// private Paciente
+	@Size(min = 3, max = 25)
+	@Column(length = 50)
+	private String paciente;
+
 	@Size(min = 3, max = 150)
 	@Column(length = 250)
 	private String conduta;
@@ -31,30 +36,15 @@ public class Atendimento {
 	@Column
 	private Long consultas_oid;
 
-	@Size(min = 3, max = 150)
 	@OneToMany(mappedBy = "atendimento")
 	private List<Receita> receitas;
 
-	@Size(min = 3, max = 150)
+	
 	@OneToMany(mappedBy = "atendimento")
 	private List<Exame> exames;
 
 	public Atendimento() {
 
-	}
-
-	public Atendimento(String conduta) {
-		super();
-		this.conduta = conduta;
-	}
-
-	public Atendimento(Long oid, String conduta, Long consultas_oid, List<Receita> receitas, List<Exame> exames) {
-		this();
-		this.oid = oid;
-		this.conduta = conduta;
-		this.consultas_oid = consultas_oid;
-		this.receitas = receitas;
-		this.exames = exames;
 	}
 
 	public Long getOid() {
@@ -97,6 +87,14 @@ public class Atendimento {
 		this.exames = exames;
 	}
 
+	public String getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(String paciente) {
+		this.paciente = paciente;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,6 +103,7 @@ public class Atendimento {
 		result = prime * result + ((consultas_oid == null) ? 0 : consultas_oid.hashCode());
 		result = prime * result + ((exames == null) ? 0 : exames.hashCode());
 		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+		result = prime * result + ((paciente == null) ? 0 : paciente.hashCode());
 		result = prime * result + ((receitas == null) ? 0 : receitas.hashCode());
 		return result;
 	}
@@ -138,6 +137,11 @@ public class Atendimento {
 				return false;
 		} else if (!oid.equals(other.oid))
 			return false;
+		if (paciente == null) {
+			if (other.paciente != null)
+				return false;
+		} else if (!paciente.equals(other.paciente))
+			return false;
 		if (receitas == null) {
 			if (other.receitas != null)
 				return false;
@@ -148,7 +152,8 @@ public class Atendimento {
 
 	@Override
 	public String toString() {
-		return "Atendimento [oid=" + oid + ", conduta=" + conduta + ", consultas_oid=" + consultas_oid + ", receitas="
-				+ receitas + ", exames=" + exames + "]";
+		return "Atendimento [oid=" + oid + ", paciente=" + paciente + ", conduta=" + conduta + ", consultas_oid="
+				+ consultas_oid + ", receitas=" + receitas + ", exames=" + exames + "]";
 	}
+
 }
