@@ -65,23 +65,14 @@
 							<th>Endereço</th>
 							<th>Bairro</th>
 							<th>CEP</th>
-							<th><a href="#" th:href="@{/endereco/form}"> <i
-									class="bi bi-plus-square"> </i>
-							</a></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="e : ${enderecos}">
-							<td><a href="#"
-								th:href="@{/endereco/form(oid=${e.oid})}"> <span
-									th:text="${e.oid}"> </span></a></td>
+							<td></td>
 							<td th:text="${e.nomeEndereco}"></td>
 							<td th:text="${e.bairro}"></td>
 							<td th:text="${e.cep}"></td>
-							<td><a href="#"
-								th:href="@{/endereco/delete(oid=${e.oid})}"> <i
-									class="bi bi-trash"></i>
-							</a></td>
 						</tr>
 					</tbody>
 				</table>

@@ -65,23 +65,14 @@
 							<th>Nome</th>
 							<th>Concelho</th>
 							<th>Especialidade</th>
-							<th><a href="#" th:href="@{/medico/form}"> <i
-									class="bi bi-plus-square"> </i>
-							</a></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="m : ${medicos}">
-							<td><a href="#"
-								th:href="@{/medico/form(oid=${m.oid})}"> <span
-									th:text="${m.oid}"> </span></a></td>
+							<td></td>
 							<td th:text="${m.funcionario.nome}"></td>
 							<td th:text="${m.concelho}"></td>
 							<td th:text="${m.especialidade.nome}"></td>
-							<td><a href="#"
-								th:href="@{/medico/delete(oid=${m.oid})}"> <i
-									class="bi bi-trash"></i>
-							</a></td>
 						</tr>
 					</tbody>
 				</table>

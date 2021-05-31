@@ -1,6 +1,7 @@
 package br.com.med.clinica.administrativo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.administrativo.model.Endereco;
-import br.com.med.clinica.administrativo.model.Especialidade;
 import br.com.med.clinica.administrativo.model.Funcionario;
 import br.com.med.clinica.administrativo.model.FuncionarioEndereco;
 import br.com.med.clinica.administrativo.model.Medico;
@@ -44,17 +44,44 @@ public class FuncionarioController {
 	@GetMapping("/funcionario/form")
 	public String form(Model model, @Param(value = "oid") Long oid) {
 		// TODO resolver problema ao editar um funcionário
-//		Funcionario funcionario = new Funcionario();
-//		if(oid != null) {
-//			Optional<Funcionario> op = funcionarioRepository.findById(oid);
-//			if(op.isPresent()) {
-//				funcionario = op.get();
-//			}
-//		}
-
 		FuncionarioEndereco funcionario = new FuncionarioEndereco();
-
+		Funcionario aux = new Funcionario();
+		if(oid != null) {
+			Optional<Funcionario> op = funcionarioRepository.findById(oid);
+			if(op.isPresent()) {
+				aux = op.get();
+				
+				// setando dados no funcionarioEndereco
+				funcionario.setFuncionario_nome(aux.getNome());
+				funcionario.setFuncionario_celular(aux.getCelular());
+				funcionario.setFuncionario_cpf(aux.getCpf());
+				funcionario.setFuncionario_rg(aux.getRg());
+				funcionario.setFuncionario_celular(aux.getCelular());
+				funcionario.setFuncionario_oid(aux.getOid());
+				funcionario.setFuncionario_telefone(aux.getTelefone());
+				funcionario.setFuncionario_orgaoEmissor(aux.getOrgaoEmissor());
+				
+				funcionario.setEndereco_bairro(aux.getEndereco().getBairro());
+				funcionario.setEndereco_cep(aux.getEndereco().getCep());
+				funcionario.setEndereco_cidade(aux.getEndereco().getCidade());
+				funcionario.setEndereco_complemento(aux.getEndereco().getComplemento());
+				funcionario.setEndereco_estado(aux.getEndereco().getEstado());
+				funcionario.setEndereco_nome(aux.getEndereco().getNomeEndereco());
+				funcionario.setEndereco_numero(aux.getEndereco().getNumero());
+				funcionario.setEndereco_oid(aux.getEndereco().getOid());
+				
+				Medico medico = medicoRepository.findMedicoByFuncionarioId(aux.getOid());
+				
+				funcionario.setMedico_especialidade(medico.getEspecialidade());
+				funcionario.setMedico_concelho(medico.getConcelho());
+				funcionario.setMedico_oid(medico.getOid());
+				
+			}
+		}
+		
 		model.addAttribute("funcionario", funcionario);
+
+		model.addAttribute("especialidades", especialidadeRepository.findAll());
 
 		return "/administrativo/funcionarioform";
 	}
@@ -65,7 +92,6 @@ public class FuncionarioController {
 		Funcionario funcionario = new Funcionario();
 		Medico medico = new Medico();
 		Endereco endereco = new Endereco();
-		Especialidade especialidade = new Especialidade();
 
 		// setando dados no endereço
 		endereco.setBairro(obj.getEndereco_bairro());
@@ -78,12 +104,6 @@ public class FuncionarioController {
 		endereco.setOid(obj.getEndereco_oid());
 
 		endereco = enderecoRepository.save(endereco);
-
-		// Setando dados na especialidade
-		especialidade.setOid(obj.getEspecialidade_oid());
-		especialidade.setNome(obj.getEspecialidade_nome());
-
-		especialidade = especialidadeRepository.save(especialidade);
 
 		// setando dados no funcionário
 		funcionario.setNome(obj.getFuncionario_nome());
@@ -101,10 +121,12 @@ public class FuncionarioController {
 		// setando dados no Médico
 		medico.setOid(obj.getMedico_oid());
 		medico.setConcelho(obj.getMedico_concelho());
-		medico.setEspecialidade(especialidade);
+		medico.setEspecialidade(obj.getMedico_especialidade());
 		medico.setFuncionario(funcionario);
 
-		medico = medicoRepository.save(medico);
+		if (!medico.getConcelho().isEmpty() && medico.getEspecialidade() != null && medico.getFuncionario() != null) {
+			medico = medicoRepository.save(medico);
+		}
 
 		return "redirect:/funcionario";
 	}

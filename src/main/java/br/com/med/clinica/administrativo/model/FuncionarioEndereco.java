@@ -12,11 +12,10 @@ public class FuncionarioEndereco {
 	private String funcionario_celular;
 
 	// Se o funcionário for médico
+	private boolean funcionario_medico;
 	private Long medico_oid;
 	private String medico_concelho;
-	private Long especialidade_oid;
-	private String especialidade_nome;
-	private Funcionario medico_funcionario;
+	private Especialidade medico_especialidade;
 
 	// Endereço do funcionário
 	private Long endereco_oid;
@@ -83,6 +82,14 @@ public class FuncionarioEndereco {
 	public void setFuncionario_celular(String funcionario_celular) {
 		this.funcionario_celular = funcionario_celular;
 	}
+	
+	public boolean isFuncionario_medico() {
+		return funcionario_medico;
+	}
+
+	public void setFuncionario_medico(boolean funcionario_medico) {
+		this.funcionario_medico = funcionario_medico;
+	}
 
 	public Long getMedico_oid() {
 		return medico_oid;
@@ -100,28 +107,12 @@ public class FuncionarioEndereco {
 		this.medico_concelho = medico_concelho;
 	}
 
-	public Long getEspecialidade_oid() {
-		return especialidade_oid;
+	public Especialidade getMedico_especialidade() {
+		return medico_especialidade;
 	}
 
-	public void setEspecialidade_oid(Long especialidade_oid) {
-		this.especialidade_oid = especialidade_oid;
-	}
-
-	public String getEspecialidade_nome() {
-		return especialidade_nome;
-	}
-	
-	public void setEspecialidade_nome(String especialidade_nome) {
-		this.especialidade_nome = especialidade_nome;
-	}
-
-	public Funcionario getMedico_funcionario() {
-		return medico_funcionario;
-	}
-
-	public void setMedico_funcionario(Funcionario medico_funcionario) {
-		this.medico_funcionario = medico_funcionario;
+	public void setMedico_especialidade(Especialidade medico_especialidade) {
+		this.medico_especialidade = medico_especialidade;
 	}
 
 	public Long getEndereco_oid() {

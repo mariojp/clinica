@@ -104,7 +104,7 @@
 
 				<div class="mb-3">
 					<label for="isMedico">Médico : </label> <input type="checkbox"
-						id="isMedico" onclick="verificaMedico();">
+						id="isMedico"  onclick="verificaMedico();">
 				</div>
 
 				<div id="medico" style = "display :none;">
@@ -117,13 +117,14 @@
 							th:value="*{medico_concelho}" class="form-control" />
 					</div>
 
-					<input type="hidden" name="especialidade_oid"
-						th:value="*{especialidade_oid}">
-					<div class="mb-3">
-						<label for="nome" class="form-label">Especialidade</label> <input
-							type="text" id="nome" name="especialidade_nome"
-							th:value="*{especialidade_nome}" class="form-control" />
+					<div>
+					<label for="especialidade">Especialidade :</label>
+						<select class="form-select" th:field = "${funcionario.medico_especialidade}" >
+							<option value="" >---Choose---</option>
+							<option th:each = "e : ${especialidades}" th:text = "${e.nome}" th:value="${e.oid}" ></option>
+						</select>
 					</div>
+					<br>
 				</div>
 
 				<h3>Endereço</h3>

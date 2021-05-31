@@ -33,6 +33,7 @@ public class MedicoController {
 	public String listEndereco(Model model) {
 		Iterable<Medico> medicos =  medicoRepository.findAll();
 		model.addAttribute("medicos",medicos);
+		
 		return "/administrativo/medico";
 	}
 	
