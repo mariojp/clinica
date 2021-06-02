@@ -1,10 +1,10 @@
 package br.com.med.clinica.administrativo.model;
-
 import org.hibernate.validator.constraints.br.CPF;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -31,6 +31,33 @@ public class Funcionario {
 
     @Size(max =12, min =12, message = "Celular: Deve possuir 12 digitos")
     private String celular;
+
+    @OneToMany
+    @JoinColumn(name = "endereco_oid")
+    private List<Endereco> endereco = new ArrayList<>();
+
+    @OneToOne
+    @MapsId
+    private Usuario usuario;
+
+    @OneToOne(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    private Medico medico;
+
+    public List<Endereco> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<Endereco> endereco) {
+        this.endereco = endereco;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Long getOid() {
         return oid;

@@ -1,5 +1,6 @@
 package br.com.med.clinica.administrativo.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,41 +19,45 @@ import javax.validation.Valid;
 
 @Controller()
 public class EspecialidadeController {
-	
-	
+
 	@Autowired
 	private EspecialidadeRepository especialidadeRepository;
 
 	@GetMapping("/especialidade")
 	public String listEspecialidade(Model model) {
-		List<Especialidade> especialidades =  especialidadeRepository.findAll();
-		model.addAttribute("especialidades",especialidades);
+		List<Especialidade> especialidades = especialidadeRepository.findAll();
+		model.addAttribute("especialidades", especialidades);
 		return "/administrativo/especialidade";
 	}
-	
+
 	@GetMapping("/especialidade/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Especialidade especialidade = new Especialidade();
-		if(id != null) {
+		if (id != null) {
 			Optional<Especialidade> op = especialidadeRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				especialidade = op.get();
 			}
 		}
-		model.addAttribute("especialidade",especialidade);
-		
+		model.addAttribute("especialidade", especialidade);
+
 		return "/administrativo/especialidadeform";
 	}
-	
+
 	@PostMapping("/especialidade/salvar")
 	public String salvar(@Valid Especialidade especialidade, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()){
+		if (bindingResult.hasErrors()) {
 			return "/administrativo/especialidadeform";
 		}
-		especialidadeRepository.save(especialidade);
+
+		Especialidade especialidade1 = new Especialidade("Cardiologista");
+		Especialidade especialidade2 = new Especialidade("Nutricionista");
+		Especialidade especialidade3 = new Especialidade("Oftamologista");
+
+		especialidadeRepository.saveAll(Arrays.asList(especialidade1, especialidade2, especialidade3));
+
 		return "redirect:/especialidade";
 	}
-	
 
 	@GetMapping("/especialidade/delete")
 	public String delete(Long id) {
@@ -60,7 +65,4 @@ public class EspecialidadeController {
 		return "redirect:/especialidade";
 	}
 
-	
-	
-	
 }
