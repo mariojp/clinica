@@ -17,6 +17,22 @@ public class Horario {
 	private String hora;
 	@ManyToOne
 	private Agenda agenda;
+	private Long agendaoid;
+	public Agenda getAgenda() {
+		return agenda;
+	}
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+	public Long getAgendaoid() {
+		return agendaoid;
+	}
+	public void setAgendaoid(Long agendaoid) {
+		this.agendaoid = agendaoid;
+	}
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
 	//esse atributo e pra dizer se uma agenda qualquer
 	//não pegou esse horario
 	private boolean agendado;

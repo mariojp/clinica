@@ -60,10 +60,16 @@
 					<input type="hidden" name="categoriaId" th:value="*{categoriaId}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Dia da semana</label>
-						<input type="text" id="diaSemana" name="diaSemana" th:value="*{diaSemana}" class="form-control" />
+						<input type="date" id="diaSemana" name="diaSemana" th:value="*{diaSemana}" class="form-control" />
 						<label for="nome" class="form-label">Horario</label>
-						<input type="text" id="horario" name="horario" th:value="*{horario}" class="form-control" />
+						<input type="time" id="horario" name="horario" th:value="*{horario}" class="form-control" />
 					</div>
+					<label for="nome" class="form-label">Adicionar na Agenda do Médico</label>
+						<select th:field="*{agendaoid}" class="form-control">
+							<option value="">Selecione</option>
+						    <option th:each="a : ${agendas}" th:value="${a.oid}" th:text="${a.medico.nome}">
+						    </option>
+						</select>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>

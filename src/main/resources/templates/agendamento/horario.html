@@ -51,6 +51,7 @@
               <th>#</th>
               <th>DiaSemana</th>
               <th>Horario</th>
+              <th>Médico</th>
               <th><a href="#" th:href="@{/horario/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
@@ -61,6 +62,7 @@
               <td> <a href="#" th:href="@{/horario/form(id=${con.categoriaId})}"> <span th:text="${con.categoriaId}" > -1 </span></a></td>
               <td th:text="${con.diasemana}" > DiaSemana </td>
               <td th:text="${con.horario}" > Horario </td>
+              <td th:text="${con.medico.nome}" > Medico </td>
               <td><a href="#" th:href="@{/horario/delete(id=${con.categoriaId})}">
               	<i class="bi bi-trash"></i>
               </a></td>
