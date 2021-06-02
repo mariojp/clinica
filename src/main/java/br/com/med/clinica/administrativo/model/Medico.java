@@ -2,7 +2,9 @@ package br.com.med.clinica.administrativo.model;
 
 import javax.persistence.*;
 
+
 @Entity
+@Table(name = "tb_medico")
 public class Medico {
 
     @Id
@@ -11,13 +13,15 @@ public class Medico {
 
     private String concelho;
 
-    @ManyToOne
-    @JoinColumn(name = "funcionario_oid")
+    @OneToOne
+    @MapsId
     private Funcionario funcionario;
 
     @ManyToOne
     @JoinColumn(name = "especialidade_oid")
     private Especialidade especialidade;
+
+
 
     public Long getOid() {
         return oid;
