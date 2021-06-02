@@ -11,12 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.agendamento.model.Agenda;
+import br.com.med.clinica.agendamento.model.Consulta;
+import br.com.med.clinica.agendamento.model.Horario;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
+import br.com.med.clinica.agendamento.repository.ConsultaRepository;
+import br.com.med.clinica.agendamento.repository.HorarioRepository;
 @Controller
 public class AgendaController {
 
 	@Autowired
 	private AgendaRepository agendaRepository;
+	@Autowired
+	private HorarioRepository horarioRepository;
+	@Autowired
+	private ConsultaRepository consultaRepository;
 
 	@GetMapping("/agenda")
 	public String listCompromissos(Model model) {
@@ -28,6 +36,8 @@ public class AgendaController {
 	@GetMapping("/agenda/form")
 	public String form(Model model,@Param(value = "id") Long id) {
 		Agenda agenda = new Agenda();
+		List<Horario> horario = horarioRepository.findAll();
+		List<Consulta> consulta = consultaRepository.findAll();
 		if(id != null) {
 			Optional<Agenda> op = agendaRepository.findById(id);
 			if(op.isPresent()) {
@@ -35,6 +45,8 @@ public class AgendaController {
 			}
 		}
 		model.addAttribute("agenda",agenda);
+		model.addAttribute("horarioList",horario);
+		model.addAttribute("consultaList",consulta);
 		
 		return "/agendamento/agendaform";
 	}

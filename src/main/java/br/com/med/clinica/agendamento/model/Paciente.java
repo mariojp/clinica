@@ -20,7 +20,7 @@ public class Paciente {
 	private String rg;
 	private String orgao;
 	private String cpf;
-	private Long convenios_ids;
+	private Long convenio_id;
 	private String telefone;
 	private String celular;
 	private String email;
@@ -61,16 +61,16 @@ public class Paciente {
 		this.cpf = cpf;
 	}
 
-	public Long getConvenios_ids() {
-		return convenios_ids;
+	public Long getConvenio_id() {
+		return convenio_id;
 	}
-	public void setConvenios_ids(Long convenios_ids) {
-		this.convenios_ids = convenios_ids;
+	public void setConvenio_id(Long convenio_id) {
+		this.convenio_id = convenio_id;
 	}
 	public Convenio getConvenio() {
 		return convenio;
 	}
-	public void setConvenioIds(Convenio convenio) {
+	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
 
 	}

@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.agendamento.model.Consulta;
+import br.com.med.clinica.agendamento.model.Paciente;
 import br.com.med.clinica.agendamento.repository.ConsultaRepository;
+import br.com.med.clinica.agendamento.repository.PacienteRepository;
 
 @Controller
 public class ConsultaController {
 
 	@Autowired
 	private ConsultaRepository consultaRepository;
+	@Autowired
+	private PacienteRepository pacienteRepository;
 
 	@GetMapping("/consulta")
 	public String listConvenio(Model model) {
@@ -29,6 +33,7 @@ public class ConsultaController {
 	@GetMapping("/consulta/form")
 	public String form(Model model,@Param(value = "id") Long id) {
 		Consulta consulta = new Consulta();
+		List<Paciente> pacientes = pacienteRepository.findAll();
 		if(id != null) {
 			Optional<Consulta> op = consultaRepository.findById(id);
 			if(op.isPresent()) {
@@ -36,13 +41,20 @@ public class ConsultaController {
 			}
 		}
 		model.addAttribute("consulta",consulta);
+		model.addAttribute("pacientes",pacientes);
 		
 		return "/agendamento/consultaform";
 	}
 	
 	@PostMapping("/consulta/salvar")
 	public String salvar(Consulta consulta) {
-		consultaRepository.save(consulta);
+		if(consulta.getPaciente_id() != null) {
+			Optional<Paciente> paciente = pacienteRepository.findById(consulta.getPaciente_id());
+			if(paciente.isPresent()) {
+				consulta.setPaciente(paciente.get());
+			}
+			consultaRepository.save(consulta);
+		}
 		return "redirect:/consulta";
 	}
 	

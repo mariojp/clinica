@@ -17,6 +17,7 @@ public class Consulta {
 	private String data;
 	private Boolean retorno;
 	private Boolean cancelada;
+	private Long paciente_id;
 	@OneToOne
 	private Paciente paciente;
 	@ManyToOne
@@ -59,6 +60,12 @@ public class Consulta {
 	}
 	public void setCancelada(Boolean cancelada) {
 		this.cancelada = cancelada;
+	}
+	public Long getPaciente_id() {
+		return paciente_id;
+	}
+	public void setPaciente_id(Long paciente_id) {
+		this.paciente_id = paciente_id;
 	}
 	public Paciente getPaciente() {
 		return paciente;

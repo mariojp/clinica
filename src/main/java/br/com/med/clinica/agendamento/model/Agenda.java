@@ -1,5 +1,6 @@
 package br.com.med.clinica.agendamento.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +27,11 @@ public class Agenda {
 	//quando essa classe for criada pelo outro grupo
 	private Long medicoOid;
 	
+	public Agenda() {
+		this.consultas = new ArrayList<>();
+		this.setHorarios(new ArrayList<>());
+	}
+	
 	public Long getOid() {
 		return oid;
 	}
@@ -44,6 +50,14 @@ public class Agenda {
 	}
 	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
+	}
+
+	public List<Horario> getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(List<Horario> horarios) {
+		this.horarios = horarios;
 	}
 	
 }
