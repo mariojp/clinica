@@ -24,8 +24,6 @@ public class Agenda {
 	@OneToMany
 	@JoinColumn(name = "horarios_id")
 	private List<Horario> horarios;
-	@ManyToOne
-	private Medico medico;
 	private Long medicooid;
 	
 
@@ -47,15 +45,7 @@ public class Agenda {
 	public void setMedicooid(Long medicooid) {
 		this.medicooid = medicooid;
 	}
-	
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-	
-	public Medico getMedico() {
-		return medico;
-	}
-	
+		
 	public List<Consulta> getConsultas() {
 		return consultas;
 	}

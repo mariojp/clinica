@@ -3,24 +3,14 @@ package br.com.med.clinica.agendamento.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
-@Entity
 public class Medico {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 	private String nome;
 	private String cpf;
 	private String especialidade;
-	@OneToMany
-	@JoinColumn(name = "agendas_id")
+	
 	private List<Agenda> agendas;
 	
 	public Medico() {
