@@ -29,7 +29,6 @@
 							d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z" />
 		  </svg>
 				</a>
-
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
@@ -39,18 +38,14 @@
 					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
 					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
-
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control form-control-dark"
 						placeholder="Busca..." aria-label="Buscar">
 				</form>
-
 			</div>
 		</div>
-	</header>
-	<!-- Menu fim -->
-
-	<div class="container-fluid">
+	</header> <!-- Menu fim -->
+<div class="container-fluid">
     <main>
 		<h2>Formulário de atendimento</h2>
 		<br>
@@ -71,16 +66,11 @@
 				<div th:if="${#fields.hasErrors('conduta')}" th:errors="*{conduta}">Erro Message</div>
 				</div>
 				
-				<button type="submit" class="btn btn-primary">Salvar</button><br>
-		    <br>
-		    <a href="#" th:href="@{/atendimento/receita/form(id=${atendimento.oid})}" class="btn btn-outline-warning">Add Receita</a>
-		      <br>                  
-		   <br>
+				<button type="submit" class="btn btn-primary">Salvar</button><br> <br>
+		   
+		    <a href="#" th:href="@{/atendimento/receita/form(id=${atendimento.oid})}" class="btn btn-outline-warning">Add Receita</a> <br> <br>  
 		   <a href="#" th:href="@{/exame/form}" class="btn btn-outline-info">Add Exame</a>
-			</form>    
-			
-			<br>
-		
+			</form> <br>	  
 		Exames
 		<div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -101,8 +91,7 @@
           </tbody>
         </table>
       </div>
-      
-      	 Receitas
+ 	    Receitas
 		<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -125,8 +114,7 @@
 		</main>
 		</div>
 		<!-- JavaScript Bundle with Popper -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
 			crossorigin="anonymous"></script>
 </body>
