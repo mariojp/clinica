@@ -20,9 +20,9 @@ import br.com.med.clinica.agendamento.repository.HorarioRepository;
 public class HorarioController {
 
 	@Autowired
-	private HorarioRepository horarioRepository;
+	private static HorarioRepository horarioRepository;
 	@Autowired
-	private AgendaRepository agendaRepository;
+	private static AgendaRepository agendaRepository;
 	
 	
 	@GetMapping("/horario")
@@ -48,9 +48,10 @@ public class HorarioController {
 		return "/agendamento/horarioform";
 	}
 	@PostMapping("/horario/salvar")
-	public String salvar(Horario horario) {
+	public String salvar(Horario horario) throws Exception {
 		if(horario.getAgendaoid() != null) {
 			Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
+			validaHorario(horario);
 			if(agenda.isPresent()) {
 				horario.setAgenda(agenda.get());
 			}
@@ -65,4 +66,13 @@ public class HorarioController {
 		horarioRepository.deleteById(id);
 		return "redirect:/agenda";
 	}
+	private static void validaHorario(Horario horario) throws Exception {
+		List<Horario> horarios =  horarioRepository.findAll();
+		for(Horario horario2 : horarios) {
+			if(horario == horario2) {
+				throw new Exception("Horario indisponivel ! ");
+			}
+		}
+	}
 }
+	

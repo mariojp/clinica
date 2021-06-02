@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,10 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Horario</title>
+<title>Paciente</title>
 </head>
 <body>
-<header class="p-3 bg-dark text-white">
+	<header class="p-3 bg-dark text-white">
 		<div class="container">
 			<div
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -31,9 +31,9 @@
 
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="#" th:href="@{/}" class="nav-link px-2 text-white">UNIFISIO</a></li>
+					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
 					<li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-white">Agenda</a></li>
-			          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-secondary">Horário</a></li>			          
+			          <!-- li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li-->			          
 			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
 			          <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-white">Consulta</a></li>
 			          <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
@@ -52,27 +52,64 @@
 		</div>
 	</header>
 
-<div class="container-fluid">
+	<div class="container-fluid">
 		<main>
-			<h2>Horario</h2>
-				<form  th:action="@{/horario/salvar}" th:object="${horario}" method="post" >
-
-					<input type="hidden" name="categoriaId" th:value="*{categoriaId}"> 
-					<div class="mb-3">
-						<label for="nome" class="form-label">Dia da semana</label>
-						<input type="date" id="diaSemana" name="diaSemana" th:value="*{diaSemana}" class="form-control" />
-						<label for="nome" class="form-label">Horario</label>
-						<input type="time" id="horario" name="horario" th:value="*{horario}" class="form-control" />
-					</div>
-					<label for="nome" class="form-label">Adicionar na Agenda do Médico</label>
-						<select th:field="*{agendaoid}" class="form-control">
-							<option value="">Selecione</option>
-						    <option th:each="a : ${agendas}" th:value="${a.oid}" th:text="${a.medico.nome}">
-						    </option>
-						</select>
+		<br>
+			<div class="jumbotron jumbotron-fluid">
+			  <div class="container">
+			    <h1 class="display-4">Agendamentos UNIFISIO</h1>
+			    <p class="lead">Realize os agendamentos e cadastros de pacientes no nosso sistema de UNIFISIO!</p>
+			  </div>
+			</div>
 			
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</form>
+			<br>
+			
+			<div class="row">
+			  <div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Realizar Agendamento</h5>
+			        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			        <a href="#" th:href="@{/agenda/form}" class="btn btn-primary">Iniciar</a>
+			      </div>
+			    </div>
+			  </div>
+			  
+			<div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Cadastrar Convênio</h5>
+						<p class="card-text">With supporting text below as a natural
+								lead-in to additional content.</p>
+						<a href="#" th:href="@{/convenio/form}" class="btn btn-primary">Iniciar</a>
+			      </div>
+			    </div>
+			</div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Cadastrar Paciente</h5>
+			        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			        <a href="#" th:href="@{/paciente/form}" class="btn btn-primary">Iniciar</a>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="col-sm-6">
+			    <div class="card">
+			      <div class="card-body">
+			        <h5 class="card-title">Cadastrar Consulta</h5>
+			        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			        <a href="#" th:href="@{/consulta/form}" class="btn btn-primary">Iniciar</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
 		</main>
 	</div>
 

@@ -10,14 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import br.com.med.clinica.agendamento.model.Agenda;
-import br.com.med.clinica.agendamento.model.Consulta;
-import br.com.med.clinica.agendamento.model.Horario;
 import br.com.med.clinica.agendamento.model.Medico;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
-import br.com.med.clinica.agendamento.repository.ConsultaRepository;
-import br.com.med.clinica.agendamento.repository.HorarioRepository;
 import br.com.med.clinica.agendamento.repository.MedicoRepository;
 @Controller
 public class AgendaController {
