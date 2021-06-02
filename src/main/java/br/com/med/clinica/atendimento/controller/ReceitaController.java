@@ -44,7 +44,7 @@ public class ReceitaController {
 			return "/atendimento/receita";
 
 		} else {
-			return "atendimento/receitaform";
+			return "/atendimento/receita/form";
 		}
 	}
 
