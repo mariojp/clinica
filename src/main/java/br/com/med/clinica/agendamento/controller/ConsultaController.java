@@ -26,7 +26,12 @@ public class ConsultaController {
 	@GetMapping("/consulta")
 	public String listConvenio(Model model) {
 		List<Consulta> consultas =  consultaRepository.findAll();
-		model.addAttribute("consultas",consultas);
+		List<Consulta> consultasFiltradas;
+		for (Consulta consulta : consultas) {
+			if(!consulta.getCancelada())
+				consultasFiltradas.add(consulta);
+		}
+		model.addAttribute("consultas",consultasFiltradas);
 		return "/agendamento/consulta";
 	}
 	

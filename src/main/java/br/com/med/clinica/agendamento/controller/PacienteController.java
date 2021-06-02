@@ -18,9 +18,9 @@ import br.com.med.clinica.agendamento.repository.PacienteRepository;
 @Controller
 public class PacienteController {
 	@Autowired
-	private PacienteRepository pacienteRepository;
+	private static PacienteRepository pacienteRepository;
 	@Autowired
-	private ConvenioRepository convenioRepository;
+	private static ConvenioRepository convenioRepository;
 
 	@GetMapping("/paciente")
 	public String listConvenio(Model model) {
@@ -46,10 +46,16 @@ public class PacienteController {
 	}
 	
 	@PostMapping("/paciente/salvar")
-	public String salvar(Paciente paciente) {
+	public String salvar(Paciente paciente) throws Exception {
 		if(paciente.getConvenio_id() != 0) {
 			Optional<Convenio> convenio = convenioRepository.findById(paciente.getConvenio_id());
 			if(convenio.isPresent()) {
+				try {
+				validaPaciente(paciente);
+				}catch(Exception e) {
+					//TODO mandar essa mensagem para o front.
+					System.out.print(e.getMessage());
+				}
 				paciente.setConvenio(convenio.get());
 			}
 			pacienteRepository.save(paciente);
@@ -57,6 +63,31 @@ public class PacienteController {
 		return "redirect:/paciente";
 	}
 	
+	
+	private void validaPaciente(Paciente paciente) throws Exception {
+		validaCPF(paciente.getCpf());
+		validaRG(paciente.getRg());
+		
+	}
+
+	private void validaRG(String rg) throws Exception {
+		List<Paciente> pacientes =  pacienteRepository.findAll();
+		for(Paciente paci : pacientes) {
+			if(paci.getRg() == rg) {
+				throw new Exception("RG já em uso");
+			}
+		}
+		
+	}
+
+	private void validaCPF(String cpf) throws Exception {
+		List<Paciente> pacientes =  pacienteRepository.findAll();
+		for(Paciente paci : pacientes) {
+			if(paci.getCpf() == cpf) {
+				throw new Exception("CPF já em uso");
+			}
+		}
+	}
 
 	@GetMapping("/paciente/delete")
 	public String delete(Long id) {

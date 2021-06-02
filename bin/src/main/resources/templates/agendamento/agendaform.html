@@ -31,10 +31,12 @@
 
 				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Convenio</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Consulta</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Agenda</a></li>
+					<li><a href="#" th:href="@{/}" class="nav-link px-2 text-white">UNIFISIO</a></li>
+					<li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li>			          
+			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
+			          <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-white">Consulta</a></li>
+			          <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -57,10 +59,12 @@
 
 					<input type="hidden" name="oid" th:value="*{oid}"> 
 					<div class="mb-3">
-						<label for="nome" class="form-label">Horarios</label>
-						<input type="text" id="horarios" name="horarios" th:value="*{horarios}" class="form-control" />
-						<label for="nome" class="form-label">Consultas</label>
-						<input type="text" id="consultas" name="consultas" th:value="*{consultas}" class="form-control" />
+						<label for="nome" class="form-label">Médico</label>
+						<select th:field="*{medicooid}" class="form-control">
+						    <option th:each="m : ${medicos}" th:value="${m.oid}" th:text="${m.nome}">
+						    </option>
+						</select>
+						
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
