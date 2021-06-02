@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.agendamento.model.Agenda;
-import br.com.med.clinica.agendamento.model.Convenio;
 import br.com.med.clinica.agendamento.model.Horario;
-import br.com.med.clinica.agendamento.model.Paciente;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
 import br.com.med.clinica.agendamento.repository.HorarioRepository;
 @Controller
@@ -51,6 +49,12 @@ public class HorarioController {
 	}
 	@PostMapping("/horario/salvar")
 	public String salvar(Horario horario) {
+		if(horario.getAgendaoid() != null) {
+			Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
+			if(agenda.isPresent()) {
+				horario.setAgenda(agenda.get());
+			}
+		}
 		horarioRepository.save(horario);
 		return "redirect:/agenda";
 	}
