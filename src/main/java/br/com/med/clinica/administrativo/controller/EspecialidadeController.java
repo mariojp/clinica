@@ -1,6 +1,5 @@
 package br.com.med.clinica.administrativo.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,13 +48,7 @@ public class EspecialidadeController {
 		if (bindingResult.hasErrors()) {
 			return "/administrativo/especialidadeform";
 		}
-
-		Especialidade especialidade1 = new Especialidade("Cardiologista");
-		Especialidade especialidade2 = new Especialidade("Nutricionista");
-		Especialidade especialidade3 = new Especialidade("Oftamologista");
-
-		especialidadeRepository.saveAll(Arrays.asList(especialidade1, especialidade2, especialidade3));
-
+		especialidadeRepository.save(especialidade);
 		return "redirect:/especialidade";
 	}
 

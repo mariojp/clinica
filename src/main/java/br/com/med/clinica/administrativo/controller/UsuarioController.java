@@ -51,10 +51,10 @@ public class UsuarioController {
     }
 
 
-    @GetMapping("/medico/delete")
+    @GetMapping("/usuario/delete")
     public String delete(Long id) {
         usuarioRepository.deleteById(id);
-        return "redirect:/medico";
+        return "redirect:/usuario";
     }
 
 

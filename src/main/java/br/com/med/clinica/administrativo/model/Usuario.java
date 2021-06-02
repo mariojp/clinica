@@ -2,19 +2,26 @@ package br.com.med.clinica.administrativo.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tb_usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
+    @Size(max = 15, min = 2, message = "O usuário deve ter de 2 a 15 Caracteres")
     private String Username;
 
+    @javax.validation.constraints.Email
     private String Email;
 
+    @Size(max = 8, min = 4, message = "A senha deve ser de 4 a 8 digitos")
     private String senha;
 
     @OneToOne

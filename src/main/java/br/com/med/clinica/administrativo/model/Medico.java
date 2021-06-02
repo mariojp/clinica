@@ -1,6 +1,7 @@
 package br.com.med.clinica.administrativo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -11,6 +12,7 @@ public class Medico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
 
+    @NotEmpty(message = "Não pode ser vazio")
     private String concelho;
 
     @OneToOne
