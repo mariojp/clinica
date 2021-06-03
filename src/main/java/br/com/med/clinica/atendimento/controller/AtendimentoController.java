@@ -21,6 +21,10 @@ import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 import br.com.med.clinica.atendimento.repository.ExameRepository;
 import br.com.med.clinica.atendimento.repository.ReceitaRepository;
 
+/** - Classe responsavel por gerenciar os atributos do "Model" (Atendimento) que serão encaminhados 
+ *    para o "Repository" (AtendimentoRepository) que implementam o CRUD.
+ */	
+
 @Controller
 public class AtendimentoController {
 
@@ -32,7 +36,14 @@ public class AtendimentoController {
 
 	@Autowired
 	private ReceitaRepository receitaRepository;
-
+	
+	/**
+	 * Carrega a lista de atendimentos ->
+	 * localhost/atendimento
+	 * @param model
+	 * @return Lista de atendimentos.
+	 */	
+	
 	@GetMapping("/atendimento")
 	public String listAtendimento(Model model) {
 		List<Atendimento> atendimentos = atendimentoRepository.findAll();
@@ -47,8 +58,9 @@ public class AtendimentoController {
 	 * 
 	 * @param model
 	 * @param id
-	 * @return
+	 * @return Formulario de atendimento
 	 */
+	
 	@GetMapping("/atendimento/form")
 	public String form(Model model, @Param(value = "id") Long id) {
 		Atendimento atendimento = new Atendimento();
@@ -78,12 +90,15 @@ public class AtendimentoController {
 	}
 
 	/**
+	 * Método responsavel por salvar e validar um atendimento. ->
 	 * redirect: 302 redirecione para /atendimento
 	 * 
 	 * @param atendimento
 	 * @param bindingResult
-	 * @return
+	 * @return retorna para o formulario (caso encontre erro).
+	 * @return retorna para o metodo que carrega a lista de atendimento.
 	 */
+	
 	@PostMapping("/atendimento/salvar")
 	public String salvar(@Valid Atendimento atendimento, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -103,7 +118,13 @@ public class AtendimentoController {
 		// se vier com id preenchido, o save vai trabalhar como update.
 
 	}
-
+	
+	/**
+	 * Método responsavel por deletar um atendimento. ->
+	 * @param id (Id do atendimento)
+	 * @return retorna para a lista de atendimento , já atualizada. (/atendimento)
+	 */
+	
 	@GetMapping("/atendimento/delete")
 	public String delete(Long id) {
 		atendimentoRepository.deleteById(id);

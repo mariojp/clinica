@@ -17,6 +17,9 @@ import br.com.med.clinica.atendimento.model.Exame;
 import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 import br.com.med.clinica.atendimento.repository.ExameRepository;
 
+/** - Classe responsavel por gerenciar os atributos do "Model" (Exame) que serão encaminhados 
+ *    para o "Repository" (ExameRepository) que implementam o CRUD.
+ */	
 @Controller
 public class ExameController {
 
@@ -25,14 +28,30 @@ public class ExameController {
 
 	@Autowired
 	private AtendimentoRepository atendimentoRepository;
-
+	
+	/**
+	 * Carrega a lista de Exames ->
+	 * localhost/exame
+	 * @param model
+	 * @return Lista de exame.
+	 */	
+	
 	@GetMapping("/exame")
 	public String listExame(Model model) {
 		List<Exame> exames = exameRepository.findAll();
 		model.addAttribute("exame", exames);
 		return "/atendimento/exame";
 	}
-
+	
+	/**
+	 * Carrega o formulario para adicionar um novo exame->
+	 * localhost/exame/form com id formulario para edição do exame ->
+	 * localhost/exame/form?id=N
+	 * @param model
+	 * @param id
+	 * @return Formulario de exames.
+	 */	
+	
 	@GetMapping("/exame/form")
 	public String form(Model model, @Param(value = "id") Long id) {
 		Exame exame = new Exame();
@@ -48,7 +67,18 @@ public class ExameController {
 
 		return "/atendimento/exameform";
 	}
-
+	
+	/**
+	 * Método responsavel por salvar e validar um exame. ->
+	 * redirect: 302 redirecione para /exame
+	 * 
+	 * @param exame
+	 * @param bindingResult
+	 * @param model
+	 * @return retorna para o formulario (caso encontre erro).
+	 * @return retorna para o metodo que carrega a lista de exames.
+	 */
+	
 	@PostMapping("/exame/salvar")
 	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -60,7 +90,13 @@ public class ExameController {
 		exameRepository.save(exame);
 		return "redirect:/exame";
 	}
-
+	
+	/**
+	 * Método responsavel por deletar um exame. ->
+	 * @param id (Id do exame)
+	 * @return retorna para a lista de exames , já atualizada. (/exame)
+	 */
+	
 	@GetMapping("/exame/delete")
 	public String delete(Long id) {
 		exameRepository.deleteById(id);

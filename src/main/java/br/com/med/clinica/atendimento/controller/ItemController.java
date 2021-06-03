@@ -18,6 +18,10 @@ import br.com.med.clinica.atendimento.repository.DrogaRepository;
 import br.com.med.clinica.atendimento.repository.ItemRepository;
 import br.com.med.clinica.atendimento.repository.ReceitaRepository;
 
+/** - Classe responsavel por gerenciar os atributos do "Model" (Item) que serão encaminhados 
+ *    para o "Repository" (ItemRepository) que implementam o CRUD.
+ */
+
 @Controller
 public class ItemController {
 
@@ -29,13 +33,29 @@ public class ItemController {
 	
 	@Autowired
 	private ReceitaRepository receitaRepository;
-
+	
+	/**
+	 * Carrega a lista de itens ->
+	 * localhost/item
+	 * @param model
+	 * @return Lista de itens.
+	 */	
+	
 	@GetMapping("/item")
 	public String listItem(Model model) {
 		List<Item> item = itemRepository.findAll();
 		model.addAttribute("itens", item);
 		return "atendimento/item";
 	}
+
+	/**
+	 * Carrega o formulario para adicionar um novo item->
+	 * localhost/item/form com id formulario para edição do item ->
+	 * localhost/item/form?id=N
+	 * @param model
+	 * @param id
+	 * @return Formulario de item.
+	 */	
 
 	@GetMapping("/item/form")
 	public String form(Model model, @Param(value = "id") Long id) {
@@ -52,7 +72,18 @@ public class ItemController {
 
 		return "atendimento/itemform";
 	}
-
+	
+	/**
+	 * Método responsavel por salvar e validar um item. ->
+	 * redirect: 302 redirecione para /item
+	 * 
+	 * @param item
+	 * @param bindingResult
+	 * @param model
+	 * @return retorna para o formulario (caso encontre erro).
+	 * @return retorna para o metodo que carrega a lista de itens.
+	 */
+	
 	@PostMapping("/item/salvar")
 	public String salvar(@Valid Item item, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -65,6 +96,12 @@ public class ItemController {
 		itemRepository.save(item);
 		return "redirect:/item";
 	}
+	
+	/**
+	 * Método responsavel por deletar um item. ->
+	 * @param id (Id do item)
+	 * @return retorna para a lista de itens , já atualizada. (/exame)
+	 */
 
 	@GetMapping("/item/delete")
 	public String delete(Long id) {
