@@ -50,10 +50,14 @@ public class HorarioController {
 	@PostMapping("/horario/salvar")
 	public String salvar(Horario horario) throws Exception {
 		if(horario.getAgendaoid() != null) {
-			Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
-			validaHorario(horario);
-			if(agenda.isPresent()) {
-				horario.setAgenda(agenda.get());
+			if(horario.getAgendaoid().equals(horarioRepository.findAll())) {
+				throw new Exception("Horario indisponivel! ");
+			} else {
+				Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
+				validaHorario(horario);
+				if(agenda.isPresent()) {
+					horario.setAgenda(agenda.get());
+				}
 			}
 		}
 		horarioRepository.save(horario);
