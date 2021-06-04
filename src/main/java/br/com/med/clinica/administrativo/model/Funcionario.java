@@ -1,5 +1,6 @@
 package br.com.med.clinica.administrativo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,10 +22,10 @@ public class Funcionario {
 	private String telefone;
 	private String celular;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "endereco_oid")
 	private Endereco endereco;
-
+	
 	public Long getOid() {
 		return oid;
 	}

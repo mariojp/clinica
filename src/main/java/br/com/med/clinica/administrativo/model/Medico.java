@@ -1,5 +1,6 @@
 package br.com.med.clinica.administrativo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Medico {
 	@JoinColumn(name = "especialidade_oid")
 	private Especialidade especialidade;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "funcionario_oid")
 	private Funcionario funcionario;
 	

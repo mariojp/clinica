@@ -46,11 +46,11 @@ public class FuncionarioController {
 		// TODO resolver problema ao editar um funcionário
 		FuncionarioEndereco funcionario = new FuncionarioEndereco();
 		Funcionario aux = new Funcionario();
-		if(oid != null) {
+		if (oid != null) {
 			Optional<Funcionario> op = funcionarioRepository.findById(oid);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				aux = op.get();
-				
+
 				// setando dados no funcionarioEndereco
 				funcionario.setFuncionario_nome(aux.getNome());
 				funcionario.setFuncionario_celular(aux.getCelular());
@@ -60,7 +60,7 @@ public class FuncionarioController {
 				funcionario.setFuncionario_oid(aux.getOid());
 				funcionario.setFuncionario_telefone(aux.getTelefone());
 				funcionario.setFuncionario_orgaoEmissor(aux.getOrgaoEmissor());
-				
+
 				funcionario.setEndereco_bairro(aux.getEndereco().getBairro());
 				funcionario.setEndereco_cep(aux.getEndereco().getCep());
 				funcionario.setEndereco_cidade(aux.getEndereco().getCidade());
@@ -69,16 +69,16 @@ public class FuncionarioController {
 				funcionario.setEndereco_nome(aux.getEndereco().getNomeEndereco());
 				funcionario.setEndereco_numero(aux.getEndereco().getNumero());
 				funcionario.setEndereco_oid(aux.getEndereco().getOid());
-				
+
 				Medico medico = medicoRepository.findMedicoByFuncionarioId(aux.getOid());
-				
+
 				funcionario.setMedico_especialidade(medico.getEspecialidade());
 				funcionario.setMedico_concelho(medico.getConcelho());
 				funcionario.setMedico_oid(medico.getOid());
-				
+
 			}
 		}
-		
+
 		model.addAttribute("funcionario", funcionario);
 
 		model.addAttribute("especialidades", especialidadeRepository.findAll());
@@ -133,7 +133,18 @@ public class FuncionarioController {
 
 	@GetMapping("/funcionario/delete")
 	public String delete(Long oid) {
-		funcionarioRepository.deleteById(oid);
+		Funcionario funcionario = funcionarioRepository.getOne(oid);
+		Medico medico = medicoRepository.getMedicoByFuncionario(funcionario);
+		
+		boolean isMedico = medico != null ? true : false;
+		
+		if (isMedico) { //se for médico, deleta o médico junto com o funcionário
+			medicoRepository.delete(medico);
+		} else { // caso não seja médico, deleta o funcionário
+			funcionarioRepository.deleteById(oid);
+		}
+		
 		return "redirect:/funcionario";
 	}
+
 }
