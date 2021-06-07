@@ -14,10 +14,12 @@ import br.com.med.clinica.administrativo.model.Endereco;
 import br.com.med.clinica.administrativo.model.Funcionario;
 import br.com.med.clinica.administrativo.model.FuncionarioEndereco;
 import br.com.med.clinica.administrativo.model.Medico;
+import br.com.med.clinica.administrativo.model.Usuario;
 import br.com.med.clinica.administrativo.repository.EnderecoRepository;
 import br.com.med.clinica.administrativo.repository.EspecialidadeRepository;
 import br.com.med.clinica.administrativo.repository.FuncionarioRepository;
 import br.com.med.clinica.administrativo.repository.MedicoRepository;
+import br.com.med.clinica.administrativo.repository.UsuarioRepository;
 
 @Controller()
 public class FuncionarioController {
@@ -33,6 +35,9 @@ public class FuncionarioController {
 
 	@Autowired
 	private EspecialidadeRepository especialidadeRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/funcionario")
 	public String listFuncionario(Model model) {
@@ -43,7 +48,6 @@ public class FuncionarioController {
 
 	@GetMapping("/funcionario/form")
 	public String form(Model model, @Param(value = "oid") Long oid) {
-		// TODO resolver problema ao editar um funcionário
 		FuncionarioEndereco funcionario = new FuncionarioEndereco();
 		Funcionario aux = new Funcionario();
 		if (oid != null) {
@@ -71,11 +75,13 @@ public class FuncionarioController {
 				funcionario.setEndereco_oid(aux.getEndereco().getOid());
 
 				Medico medico = medicoRepository.findMedicoByFuncionarioId(aux.getOid());
-
-				funcionario.setMedico_especialidade(medico.getEspecialidade());
-				funcionario.setMedico_concelho(medico.getConcelho());
-				funcionario.setMedico_oid(medico.getOid());
-
+				
+				if (medico != null ) {
+					funcionario.setMedico_especialidade(medico.getEspecialidade());
+					funcionario.setMedico_concelho(medico.getConcelho());
+					funcionario.setMedico_oid(medico.getOid());
+				}
+				
 			}
 		}
 
@@ -132,19 +138,27 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/funcionario/delete")
-	public String delete(Long oid) {
+	public String delete(Long oid, Model model) {
 		Funcionario funcionario = funcionarioRepository.getOne(oid);
 		Medico medico = medicoRepository.getMedicoByFuncionario(funcionario);
+		Usuario user = usuarioRepository.getUserByFuncionario(funcionario);
+		
 		
 		boolean isMedico = medico != null ? true : false;
+		boolean isUser =  user != null ? true : false;
 		
-		if (isMedico) { //se for médico, deleta o médico junto com o funcionário
+		if (isUser) {
+			model.addAttribute("msg", "Atenção,  funcionário não pode ser excluido pois possui um usuário associado.");
+		}
+		else if (isMedico) { //se for médico, deleta o médico junto com o funcionário
 			medicoRepository.delete(medico);
 		} else { // caso não seja médico, deleta o funcionário
 			funcionarioRepository.deleteById(oid);
 		}
 		
-		return "redirect:/funcionario";
+		model.addAttribute("funcionarios", funcionarioRepository.findAll());
+		
+		return "/administrativo/funcionario";
 	}
 
 }

@@ -14,7 +14,7 @@ public class Funcionario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long oid;
-
+	
 	private String nome;
 	private String rg;
 	private String orgaoEmissor;

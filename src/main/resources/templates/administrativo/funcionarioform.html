@@ -58,38 +58,38 @@
 
 				<div class="mb-3">
 					<label for="nome" class="form-label">Nome :</label> <input
-						type="text" id="nome" name="funcionario_nome"
+						type="text" id="nome" name="funcionario_nome" required="required"
 						th:value="*{funcionario_nome}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
-					<label for="rg" class="form-label">RG :</label> <input type="text"
+					<label for="rg" class="form-label">RG :</label> <input type="text" required="required"
 						id="rg" name="funcionario_rg" th:value="*{funcionario_rg}"
 						class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="orgaoEmissor" class="form-label">Orgão Emissor
-						:</label> <input type="text" id="orgaoEmissor"
+						:</label> <input type="text" id="orgaoEmissor" required="required"
 						name="funcionario_orgaoEmissor"
 						th:value="*{funcionario_orgaoEmissor}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">CPF :</label> <input
-						type="text" id="cpf" name="funcionario_cpf"
+						type="text" id="cpf" name="funcionario_cpf" required="required"
 						th:value="*{funcionario_cpf}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">Telefone :</label> <input
-						type="text" id="telefone" name="funcionario_telefone"
+						type="text" id="telefone" name="funcionario_telefone" required="required"
 						th:value="*{funcionario_telefone}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">Celular :</label> <input
-						type="text" id="celular" name="funcionario_celular"
+						type="text" id="celular" name="funcionario_celular" required="required"
 						th:value="*{funcionario_celular}" class="form-control" />
 				</div>
 
@@ -124,43 +124,43 @@
 
 				<div class="mb-3">
 					<label for="nomeEndereco" class="form-label">Endereço :</label> <input
-						type="text" id="nomeEndereco" name="endereco_nome"
+						type="text" id="nomeEndereco" name="endereco_nome" required="required"
 						th:value="*{endereco_nome}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="numero" class="form-label">Número</label> <input
-						type="text" id="numero" name="endereco_numero"
+						type="text" id="numero" name="endereco_numero" required="required"
 						th:value="*{endereco_numero}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="complemento" class="form-label">Complemento</label> <input
-						type="text" id="complemento" name="endereco_complemento"
+						type="text" id="complemento" name="endereco_complemento" required="required"
 						th:value="*{endereco_complemento}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="bairro" class="form-label">Bairro</label> <input
-						type="text" id="bairro" name="endereco_bairro"
+						type="text" id="bairro" name="endereco_bairro" required="required"
 						th:value="*{endereco_bairro}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cidade" class="form-label">Cidade</label> <input
-						type="text" id="cidade" name="endereco_cidade"
+						type="text" id="cidade" name="endereco_cidade" required="required"
 						th:value="*{endereco_cidade}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="estado" class="form-label">Estado</label> <input
-						type="text" id="estado" name="endereco_estado"
+						type="text" id="estado" name="endereco_estado" required="required"
 						th:value="*{endereco_estado}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cep" class="form-label">Cep</label> <input type="text"
-						id="cep" name="endereco_cep" th:value="*{endereco_cep}"
+						id="cep" name="endereco_cep" th:value="*{endereco_cep}" required="required" pattern= "\d{5}-?\d{3}"
 						class="form-control" />
 				</div>
 

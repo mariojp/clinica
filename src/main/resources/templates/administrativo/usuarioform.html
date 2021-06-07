@@ -49,25 +49,25 @@
 
 				<div class="mb-3">
 					<label for="username" class="form-label">Username :</label> <input
-						type="text" id="username" name="username" th:value="*{username}"
+						type="text" id="username" name="username" th:value="*{username}" required="required"
 						class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for=email class="form-label">Email :</label> <input
-						type="text" id="email" name="email" th:value="*{email}"
-						class="form-control" />
+						type="text" id="email" name="email" th:value="*{email}" required="required"
+						class="form-control" /> 
 				</div>
 				
 				<div class="mb-3">
 					<label for="senha" class="form-label">Senha :</label> <input
-						type="password" id="senha" name="senha" th:value="*{senha}"
+						type="password" id="senha" name="senha" th:value="*{senha}" required="required"
 						class="form-control" />
 				</div>
 				
 				<div class="mb-3">
 					<label class="form-label"> Funcionário : </label> 
-					<select th:field="${usuario.funcionario}">
+					<select th:field="${usuario.funcionario}" required="required">
 						<option th:each="f : ${funcionarios}" th:value="${f.oid}"
 							th:text="${f.nome}" ></option>
 					</select>
