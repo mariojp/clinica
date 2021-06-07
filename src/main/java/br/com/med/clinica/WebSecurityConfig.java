@@ -61,15 +61,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-	@Bean
-	public DataSource getDataSource() { // exemplo de como criar um datasource
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
-		dataSource.setUsername("root");
-		dataSource.setPassword("root");
-		return dataSource;
-
-	}
+//	@Bean
+//	public DataSource getDataSource() { // exemplo de como criar um datasource
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//		dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
+//		dataSource.setUsername("root");
+//		dataSource.setPassword("root");
+//		return dataSource;
+//
+//	}
 
 }
