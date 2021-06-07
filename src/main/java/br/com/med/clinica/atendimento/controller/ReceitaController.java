@@ -3,10 +3,13 @@ package br.com.med.clinica.atendimento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -68,7 +71,13 @@ public class ReceitaController {
 	}
 
 	@PostMapping("/atendimento/receita/salvar")
-	public String salvar(ReceitaDTO receitaDTO, Model model) {
+	public String salvar(@Valid ReceitaDTO receitaDTO, Model model , BindingResult bindingresult) {
+		//Validação
+		if(bindingresult.hasErrors()) {
+			model.addAttribute("receitaDTO", receitaDTO);
+			model.addAttribute("drogas", drogaRepository.findAll());
+			return "atedimento/receitaform";
+		}
 
 		Receita receita = new Receita();
 		receita.setOid(receitaDTO.getOidReceita());
