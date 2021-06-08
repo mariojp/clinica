@@ -52,24 +52,12 @@ public class ReceitaController {
 	}
 
 	@GetMapping("/atendimento/receita/form")
-	public String form(Model model, @Param(value = "id") Long id) {
-		ReceitaDTO receitaDTO = new ReceitaDTO();
-		Atendimento atendimento = new Atendimento();
+	public String listReceita(Model model) {
+		List<Receita> receita = receitaRepository.findAll();
+		model.addAttribute("receita", receita);
+			return "/atendimento/receita";
 
-		if (id != null) {
-			Optional<Atendimento> op = atendimentoRepository.findById(id);
-			if (op.isPresent()) {
-				atendimento = op.get();
-			}
-		}
-		receitaDTO.setOidAtendimento(id);
-
-		model.addAttribute("receitaDTO", receitaDTO);
-		model.addAttribute("drogas", drogaRepository.findAll());
-
-		return "atendimento/receitaform";
 	}
-
 	@PostMapping("/atendimento/receita/salvar")
 	public String salvar(@Valid ReceitaDTO receitaDTO, Model model , BindingResult bindingresult) {
 		//Validação
