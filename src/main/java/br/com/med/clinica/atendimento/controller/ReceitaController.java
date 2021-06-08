@@ -38,17 +38,11 @@ public class ReceitaController {
 	private ItemRepository itemRepository;
 
 	@GetMapping("/atendimento/receita")
-	public String list(Model model, @Param(value = "atendimento") Long oidAtendimento) {
-		Atendimento atendimento = new Atendimento();
-		atendimento.setOid(oidAtendimento);
-		List<Receita> receitas = receitaRepository.findByAtendimento(atendimento);
-		if (!receitas.isEmpty()) {
-			model.addAttribute("receitas", receitas);
+	public String listReceita(Model model) {
+		List<Receita> receita = receitaRepository.findAll();
+		model.addAttribute("receita", receita);
 			return "/atendimento/receita";
 
-		} else {
-			return "/atendimento/receita/form";
-		}
 	}
 
 	@GetMapping("/atendimento/receita/form")

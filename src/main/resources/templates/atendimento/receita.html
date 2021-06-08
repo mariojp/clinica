@@ -49,19 +49,15 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Texto</th>
-              <th>Atendimento</th>
-              <th><a href="#" th:href="@{/receita/form}">
-              	<i class="bi bi-plus-square"></i>
-              </a></th>
+              <th>Receita</th>
+            
             </tr>
           </thead>
           <tbody>
             <tr th:each="receita: ${receitas}" >
-              <td> <a href="#" th:href="@{/receita/form(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
-              <td th:text="${receita.texto}" > Texto </td>
-              <td th:text="${receita.atendimento.oid}" > Atendimento </td>
-              <td><a href="#" th:href="@{/receita/delete(id=${receita.oid})}">
+              <td> <a href="#" th:href="@{/atendimento/receita/form(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
+              <td th:text="${receita.texto}" > Receita </td>
+              <td><a href="#" th:href="@{/atendimento/receita/delete(id=${receita.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>
