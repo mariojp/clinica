@@ -50,14 +50,6 @@ public class ReceitaController {
 			return "/atendimento/receita/form";
 		}
 	}
-
-	@GetMapping("/atendimento/receita/form")
-	public String listReceita(Model model) {
-		List<Receita> receita = receitaRepository.findAll();
-		model.addAttribute("receita", receita);
-			return "/atendimento/receita";
-
-	}
 	
 	@GetMapping("/atendimento/receita/form")
 	public String form(Model model, @Param(value = "id") Long id) {
