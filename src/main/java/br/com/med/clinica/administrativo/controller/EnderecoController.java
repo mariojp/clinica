@@ -7,53 +7,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.administrativo.model.Endereco;
 import br.com.med.clinica.administrativo.repository.EnderecoRepository;
 
-import javax.validation.Valid;
-
 @Controller()
 public class EnderecoController {
-	
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 
 	@GetMapping("/endereco")
 	public String listEndereco(Model model) {
-		List<Endereco> enderecos =  enderecoRepository.findAll();
-		model.addAttribute("enderecos",enderecos);
+		List<Endereco> enderecos = enderecoRepository.findAll();
+		model.addAttribute("enderecos", enderecos);
 		return "/administrativo/endereco";
 	}
 
 	@GetMapping("/endereco/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Endereco endereco = new Endereco();
-		if(id != null) {
+		if (id != null) {
 			Optional<Endereco> op = enderecoRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				endereco = op.get();
 			}
 		}
-		model.addAttribute("endereco",endereco);
-		
+		model.addAttribute("endereco", endereco);
+
 		return "/administrativo/enderecoform";
 	}
-	
-	@PostMapping("/endereco/salvar")
-	public String salvar(@Valid Endereco endereco, BindingResult bindingResult) {
-
-		if (bindingResult.hasErrors()) {
-			return "/administrativo/enderecoform";
-		}
-		enderecoRepository.save(endereco);
-		return "redirect:/endereco";
-	}
-	
 
 	@GetMapping("/endereco/delete")
 	public String delete(Long id) {
@@ -61,7 +45,4 @@ public class EnderecoController {
 		return "redirect:/endereco";
 	}
 
-	
-	
-	
 }
