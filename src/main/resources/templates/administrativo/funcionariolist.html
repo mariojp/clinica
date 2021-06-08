@@ -23,6 +23,8 @@
           <li><a href="/endereco" class="nav-link px-2 text-white">Endereco</a></li>
           <li><a href="#" class="nav-link px-2 text-white">Funcionario</a></li>
           <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
+          <li><a href="/medico" class="nav-link px-2 text-white">Medico</a></li>
+          <li><a href="/usuario" class="nav-link px-2 text-white">Usuario</a></li>
         </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -48,17 +50,22 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Celular</th>
+                    <th>Logradouro</th>
                     <th><a href="#" th:href="@{/funcionario/form}">
-                        <i class="bi bi-plus-square"></i>
+                        <i class="bi bi-plus-square">Cadastrar Funcionario normalmente</i>
+                    </a></th>
+                        <th><a href="#" th:href="@{/medico/form}">
+                        <i class="bi bi-plus-square">Cadastrar Medico</i>
                     </a></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="esp: ${funcionarios}" >
-                    <td> <a href="#" th:href="@{/funcionario/form(id=${esp.oid})}"> <span th:text="${esp.oid}" > -1 </span></a></td>
-                    <td th:text="${esp.nome}" > Nome </td>
-                    <td th:text="${esp.celular}"> Celular</td>
-                    <td><a href="#" th:href="@{/funcionario/delete(id=${esp.oid})}">
+                <tr th:each="obj: ${funcionarios}" >
+                    <td> <a href="#" th:href="@{/funcionario/form/update(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
+                    <td th:text="${obj.nome}" > Nome </td>
+                    <td th:text="${obj.celular}"> Celular</td>
+                     <td th:text="${obj.endereco.getLogradouro()}">Logradouro</td>
+                    <td><a href="#" th:href="@{/funcionario/delete(id=${obj.oid})}">
                         <i class="bi bi-trash"></i>
                     </a></td>
                 </tr>
