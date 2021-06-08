@@ -1,3 +1,3 @@
-INSERT INTO tb_especialidade (nome) values ('Cardiologista');
-INSERT INTO tb_especialidade (nome) values ('Oftamologista');
-INSERT INTO tb_especialidade (nome) values ('Dermatologista');
+INSERT INTO especialidade (nome) values ('Cardiologista');
+INSERT INTO especialidade (nome) values ('Nutricionista');
+INSERT INTO especialidade (nome) values ('Dermatologista');
