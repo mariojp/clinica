@@ -1,5 +1,6 @@
 package br.com.med.clinica.agendamento.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public class ConsultaController {
 	@GetMapping("/consulta")
 	public String listConvenio(Model model) {
 		List<Consulta> consultas =  consultaRepository.findAll();
-		List<Consulta> consultasFiltradas;
+		List<Consulta> consultasFiltradas = new ArrayList<>();
 		for (Consulta consulta : consultas) {
 			if(!consulta.getCancelada())
 				consultasFiltradas.add(consulta);

@@ -1,5 +1,6 @@
 package br.com.med.clinica.agendamento.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +19,10 @@ import br.com.med.clinica.agendamento.repository.PacienteRepository;
 @Controller
 public class PacienteController {
 	@Autowired
-	private static PacienteRepository pacienteRepository;
+	private PacienteRepository pacienteRepository;
+	
 	@Autowired
-	private static ConvenioRepository convenioRepository;
+	private ConvenioRepository convenioRepository;
 
 	@GetMapping("/paciente")
 	public String listConvenio(Model model) {
