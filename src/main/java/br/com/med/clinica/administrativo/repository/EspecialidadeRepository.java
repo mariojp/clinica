@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import br.com.med.clinica.administrativo.model.Especialidade;
 
 @Repository
-public interface EspecialidadeRepository extends CrudRepository<Especialidade,Long>{
+public interface EspecialidadeRepository extends CrudRepository<Especialidade, Long> {
 
-	
 	List<Especialidade> findAll();
+
 }
