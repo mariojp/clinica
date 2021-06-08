@@ -8,6 +8,6 @@ public class IndexController {
 
 	@GetMapping(value = {"/"})
 	public String index() {
-		return "/administrativo/especialidade";
+		return "/administrativo/funcionariolist";
 	}
 }
