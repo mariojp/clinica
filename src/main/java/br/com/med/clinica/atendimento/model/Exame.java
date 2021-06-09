@@ -22,7 +22,7 @@ public class Exame {
 
 	@Column(length = 250)
 	private String texto;
-
+	// Criação da ligação de Exame com Atendimento
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
 	@OnDelete(action = OnDeleteAction.CASCADE)

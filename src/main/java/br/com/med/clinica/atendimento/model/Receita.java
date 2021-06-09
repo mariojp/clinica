@@ -25,7 +25,7 @@ public class Receita {
 
 	@Column(length = 250)
 	private String texto;
-
+	//Criação da ligação de Receita com atendimento
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
 	@OnDelete(action = OnDeleteAction.CASCADE)

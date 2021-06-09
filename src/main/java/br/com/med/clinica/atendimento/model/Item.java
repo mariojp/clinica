@@ -23,12 +23,12 @@ public class Item {
 		@NotEmpty
 		@Column(length = 250)
 		private String texto;
-
+		// Criação da ligação de droga com item
 		@ManyToOne
 		@JoinColumn(name = "droga_oid",
 		foreignKey = @ForeignKey(name = "DROGA_OID_FK"))
 		private Droga droga;
-	 
+		// Criação do elo bidirecional de receita com item
 		@ManyToOne
 		@JoinColumn(name = "receita_oid")
 		private Receita receita;

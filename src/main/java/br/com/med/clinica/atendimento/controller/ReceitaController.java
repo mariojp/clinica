@@ -38,12 +38,16 @@ public class ReceitaController {
 	@GetMapping("/atendimento/receita")
 	public String list(Model model, @Param(value = "atendimento") Long oidAtendimento) {
 		Atendimento atendimento = new Atendimento();
+		
+		//Seta o id de atendimento na receita
+		
 		atendimento.setOid(oidAtendimento);
 		List<Receita> receitas = receitaRepository.findAll();
+		// Se a receita estiver vazia, ele atribui
 				if (!receitas.isEmpty()) {
 			model.addAttribute("receitas", receitas);
 			return "/atendimento/receita";
-
+			// se não, ele manda pra o formulário
 		} else {
 			return "/atendimento/receita/form";
 		}
@@ -80,7 +84,7 @@ public class ReceitaController {
 
 		return "atendimento/receitaform";
 	}
-
+	// Salvando algo na lista (Pegando os dados do .html)
 	@PostMapping("/atendimento/receita/salvar")
 	public String salvar(ReceitaDTO receitaDTO, Model model) {
 		//Aqui ocorre a utilização do Receita DTO, aqui que ele atribui a receitaDTO os devidos valores

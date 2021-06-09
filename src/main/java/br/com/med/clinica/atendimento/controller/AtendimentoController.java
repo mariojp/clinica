@@ -82,6 +82,7 @@ public class AtendimentoController {
 	
 	@PostMapping("/atendimento/salvar")
 	public String salvar(@Valid Atendimento atendimento, BindingResult bindingResult) {
+		//Biding Result é uma estrutura para ajudar captar resultados, nesse caso está captando erros
 		if (bindingResult.hasErrors()) {
 			System.out.println("Erros");
 			bindingResult.getAllErrors().forEach(e -> System.out.println(e));
@@ -89,7 +90,7 @@ public class AtendimentoController {
 			return "/atendimento/atendimentoform";
 
 		}
-
+		// Aqui é responsável por gerar o id da consulta (Aleatoriamente)
 		atendimento.setConsultas_oid((long) (Math.random() * 10000));
 		atendimentoRepository.save(atendimento);
 		return "redirect:/atendimento"; 

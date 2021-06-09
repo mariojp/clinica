@@ -59,8 +59,9 @@ public class ExameController {
 	
 	@PostMapping("/exame/salvar")
 	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
+		//Biding Result é uma estrutura para ajudar captar resultados, nesse caso está captando erros
 		if (bindingResult.hasErrors()) {
-			// bindingResult.getAllErrors().forEach(e -> System.out.println(e));
+			bindingResult.getAllErrors().forEach(e -> System.out.println(e));
 			model.addAttribute("atendimentos", atendimentoRepository.findAll());
 			return "/atendimento/exameform";
 		}
