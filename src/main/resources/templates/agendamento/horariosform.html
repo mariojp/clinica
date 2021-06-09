@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Agendamento</title>
+<title>Agenda</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -29,13 +29,13 @@
 		  </svg>
 				</a>
 
-			<ul
+				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -53,17 +53,30 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Agendamento</h2>
-				<form  th:action="@{/horarios/salvar}" th:object="${horario}" method="post" >
-
-					<input type="hidden" name="oid" th:value="*{oid}"> 
+			<h2>Horarios</h2>
+				<form  th:action="@{/horarios/salvar(id=${AgendaOid})}" method="post" >
+					<input type="hidden" name="horarioOid" th:value="*{horarioOid}"/> 
 					<div class="mb-3">
-						<label for="diaDaSemana" class="form-label">Data</label>
-						<input type="date" id="diaDaSemana" name="diaDaSemana" th:value="*{diaDaSemana}" class="form-control" />
-						<label for="hora" class="form-label">Hora</label>
-						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
+
+						<label for="diaDaSemana" class="form-label">Dia Da Semana</label>
+						<select id="diaDaSemana" name="diaDaSemana" th:value="*{horario.diaDaSemana}" class="form-control" required>
+    						<option  value="" disabled selected>Selecione</option>
+
+							<option value = "Domingo">Domingo</option>
+    						<option value = "Segunda-feira">Segunda-feira</option>
+							<option value = "Terça-feira">Terça-feira</option>
+							<option value = "Quarta-feira">Quarta-feira</option>
+							<option value = "Quinta-feira">Quinta-feira</option>
+							<option value = "Sexta-feira">Sexta-feira</option>
+							<option value = "Sábado">Sábado</option>
+    		
+    					</select> 
+						<label for="horaInicio" class="form-label">Horario Inicial</label>
+						<input type="time" id="horaInicio" name="horaInicio" th:value="*{horario.horaInicio}" class="form-control" required/>
+						<label for="horaFinal" class="form-label">Horario Final</label>
+						<input type="time" id="horaFinal" name="horaFinal" th:value="*{horario.horaFinal}" class="form-control" required/>
+
 					</div>
-			
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>
 		</main>

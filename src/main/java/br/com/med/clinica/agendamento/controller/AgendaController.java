@@ -13,45 +13,45 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.med.clinica.agendamento.model.Horario;
-import br.com.med.clinica.agendamento.repository.HorarioRepository;
+import br.com.med.clinica.agendamento.model.Agenda;
+import br.com.med.clinica.agendamento.repository.AgendaRepository;
 
 @Controller
 public class AgendaController {
 
 	@Autowired
-	private HorarioRepository horariosRepository;
+	private AgendaRepository agendaRepository;
 
 	@GetMapping("/agenda")
 	public String listagendas(Model model) {
-		List<Horario> Horarios = horariosRepository.findAll();
-		model.addAttribute("horarios", Horarios);
+		List<Agenda> agendas = agendaRepository.findAll();
+		model.addAttribute("agendas", agendas);
 		return "/agendamento/agenda";
 	}
 
 	@GetMapping("/agenda/form")
 	public String form(Model model, @Param(value = "id") Long id) {
-		Horario horario = new Horario();
+		Agenda agenda = new Agenda();
 		if (id != null) {
-			Optional<Horario> op = horariosRepository.findById(id);
+			Optional<Agenda> op = agendaRepository.findById(id);
 			if (op.isPresent()) {
-				horario = op.get();
+				agenda = op.get();
 			}
 			
 		}
-		model.addAttribute("horario", horario);
+		model.addAttribute("agenda", agenda);
 
 		return "/agendamento/agendaform";
 	}
 
 	@PostMapping("/agenda/salvar")
-	public String salvar(@Valid Horario horario, BindingResult bindingResult, Model model) {
+	public String salvar(@Valid Agenda agenda, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(a -> System.out.print(a));
-            model.addAttribute("horarios", horariosRepository.findAll());
+            model.addAttribute("agendas", agendaRepository.findAll());
             return "agendamento/agendaform";
         }
-		horariosRepository.save(horario); 
+		agendaRepository.save(agenda); 
 		return "redirect:/agenda";
 	}
 	
@@ -59,7 +59,7 @@ public class AgendaController {
 
 	@GetMapping("/agenda/delete")
 	public String delete(Long id) {
-		horariosRepository.deleteById(id);
+		agendaRepository.deleteById(id);
 		return "redirect:/agenda";
 	}
 

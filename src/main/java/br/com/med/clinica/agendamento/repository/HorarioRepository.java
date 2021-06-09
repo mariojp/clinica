@@ -11,5 +11,7 @@ import br.com.med.clinica.agendamento.model.Horario;
 	public interface HorarioRepository extends CrudRepository<Horario, Long>{
 
 		List<Horario> findAll();
+		List<Horario> findByAgendaAgendaOid(Long id);
+		Horario findByHorarioOid(Long id);
 
 	}

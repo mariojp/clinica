@@ -9,8 +9,8 @@ import br.com.med.clinica.agendamento.model.Agenda;
 
 @Repository
 public interface AgendaRepository extends CrudRepository<Agenda, Long>{
-
 	
 	List<Agenda> findAll();
+	List<Agenda> findByAgendaOid(Long id);
 
 }

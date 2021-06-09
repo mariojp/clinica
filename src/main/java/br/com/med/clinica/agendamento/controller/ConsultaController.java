@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.med.clinica.agendamento.model.Consulta;
+import br.com.med.clinica.agendamento.model.Horario;
 import br.com.med.clinica.agendamento.model.Paciente;
 import br.com.med.clinica.agendamento.repository.ConsultaRepository;
+import br.com.med.clinica.agendamento.repository.HorarioRepository;
 import br.com.med.clinica.agendamento.repository.PacienteRepository;
 
 @Controller
@@ -26,6 +28,9 @@ public class ConsultaController {
 
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private HorarioRepository horarioRepository;
 
 	@GetMapping("/consulta")
 	public String listconsultas(Model model) {
@@ -47,6 +52,8 @@ public class ConsultaController {
 		model.addAttribute("consulta", Consulta);
 		List<Paciente> pacientes = pacienteRepository.findAll();
 		model.addAttribute("pacientes", pacientes);
+		List<Horario> horarios = horarioRepository.findAll();
+		model.addAttribute("horarios", horarios);
 		return "/agendamento/consultaform";
 	}
 
@@ -57,6 +64,16 @@ public class ConsultaController {
 			model.addAttribute("consultas", consultaRepository.findAll());
 			return "agendamento/consultaform";
 		}
+		List<Consulta> consultas = consultaRepository.findAll();
+		for (Consulta consulta : consultas){
+			if(consulta.getHorarios().getHorarioOid() == Consulta.getHorarios().getHorarioOid() && consulta.getHorarios().getHoraInicio() == Consulta.getData()){
+				return "redirect:/consulta/form/?error=Horario indisponivel";
+			}
+		}
+		Horario horario = horarioRepository.findByHorarioOid(Consulta.getHorarios().getHorarioOid());
+		System.out.println(Consulta.getPacienteOid());
+		Consulta.setHora(horario.getHoraInicio());
+		Consulta.setNome(horario.getAgenda().getMedico());
 		consultaRepository.save(Consulta);
 		return "redirect:/consulta";
 	}

@@ -13,7 +13,7 @@ public class Convenio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long convenio_oid;
+	private Long convenioOid;
 
 	@Column(length = 250)
 	private String nome;
@@ -24,12 +24,12 @@ public class Convenio {
 	@Column
 	private String telefone;
 
-	public Long getConvenio_oid() {
-		return convenio_oid;
+	public Long getConvenioOid() {
+		return convenioOid;
 	}
 
-	public void setConvenio_oid(Long convenio_oid) {
-		this.convenio_oid = convenio_oid;
+	public void setConvenioOid(Long convenioOid) {
+		this.convenioOid = convenioOid;
 	}
 
 	public String getNome() {

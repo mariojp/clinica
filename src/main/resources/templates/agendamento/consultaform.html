@@ -35,7 +35,7 @@
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -54,25 +54,32 @@
 	<div class="container-fluid">
 		<main>
 			<h2>Consulta</h2>
+			<h1>
+				<div class="alert alert-danger" role="alert" th:text="${error}"></div>
+			</h1>
 				<form  th:action="@{/consulta/salvar}" th:object="${consulta}" method="post" >
-					<input type="hidden" name="consulta_oid" th:value="*{consulta_oid}"/> 
+					<input type="hidden" name="consultaOid" th:value="*{consultaOid}"/> 
 					<div class="mb-3">
 					
-					<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
-					<label for="hora" class="form-label">Hora</label>
-						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
+					<label for="horarios" class="form-label">Medico/Horario</label>
+					<select id="horarios" name="horarios" th:value="*{horarios}" class="form-control" required>
+    						<option  value="" disabled selected >Selecione</option>
+
+							<option th:each="horario: ${horarios}" value="*{horario}" th:text="${horario.agenda.medico}+' - '+${horario.diaDaSemana}+' ás '+${horario.horaInicio}"> </option>
+    		
+    				</select>
+
 					<label for="data" class="form-label">Data</label>
-						<input type="date" id="data" name="data" th:value="*{data}" class="form-control" />
+						<input type="week" id="data" name="data" th:value="*{data}" class="form-control" required/>
 
-					<label for="paciente" class="form-label">Paciente</label>
-						<select id="paciente" name="paciente" th:value="*{paciente_oid}" class="form-control" >
-    						<option  value="" disabled selected required >Selecione</option>
+					<!-- <label for="paciente" class="form-label">Paciente</label>
+					<select id="paciente" name="paciente" th:value="*{paciente}" class="form-control" required>
+    						<option  value="" disabled selected >Selecione</option>
 
-							<option th:each="paciente: ${pacientes}" value="${paciente.paciente_oid}" th:text="${paciente.nome}"> </option>
+							<option th:each="paciente: ${pacientes}" value="${paciente}" th:text="${paciente.nome}"> </option>
     		
     				</select> 
-
+						-->
 					</div>
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>

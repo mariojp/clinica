@@ -25,7 +25,7 @@
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -69,7 +69,7 @@
                  <td th:text="${paciente.telefone}" > Telefone </td>
                  <td th:text="${paciente.celular}" > Celular </td>
                  <td th:text="${paciente.email}" > Email </td> 
-              <td><a href="#" th:href="@{/paciente/delete(id=${paciente.paciente_oid})}">
+              <td><a href="#" th:href="@{/paciente/delete(id=${paciente.pacienteOid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

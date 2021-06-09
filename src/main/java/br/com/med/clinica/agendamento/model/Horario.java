@@ -1,5 +1,7 @@
 package br.com.med.clinica.agendamento.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,10 +18,10 @@ public class Horario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long horario_oid;
+	private Long horarioOid;
 
 	@ManyToOne()
-	@JoinColumn(name = "agenda_oid")
+	@JoinColumn(name = "agendaOid")
 	private Agenda agenda;
 
 	@Column
@@ -29,13 +32,16 @@ public class Horario {
 
 	@Column
 	private String horaFinal;
+	
+	@OneToMany(mappedBy = "horarios")
+	private List<Consulta> consultas;
 
-	public long getHorario_oid() {
-		return horario_oid;
+	public Long getHorarioOid() {
+		return horarioOid;
 	}
 
-	public void setHorario_oid(long horario_oid) {
-		this.horario_oid = horario_oid;
+	public void setHorarioOid(Long horarioOid) {
+		this.horarioOid = horarioOid;
 	}
 
 	public Agenda getAgenda() {
@@ -68,6 +74,14 @@ public class Horario {
 
 	public void setHoraFinal(String horaFinal) {
 		this.horaFinal = horaFinal;
+	}
+
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
 	}
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,13 +15,17 @@ public class Consulta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long consulta_oid;
+	private Long consultaOid;
 
 	@Column
 	private String nome;
-
+	
 	@Column
 	private String hora;
+
+	@ManyToOne()
+	@JoinColumn(name = "horarioOid")
+	private Horario horarios;
 
 	@Column
 	private String data;
@@ -31,17 +37,18 @@ public class Consulta {
 	private boolean cancelada;
 
 	@Column
-	private long paciente_oid;
+	@JoinColumn
+	private Long pacienteOid;
 
 	@Column
-	private long agenda_oid;
+	private Long agendaOid;
 
-	public long getConsulta_oid() {
-		return consulta_oid;
+	public Long getConsultaOid() {
+		return consultaOid;
 	}
 
-	public void setConsulta_oid(long consulta_oid) {
-		this.consulta_oid = consulta_oid;
+	public void setConsultaOid(Long consultaOid) {
+		this.consultaOid = consultaOid;
 	}
 
 	public String getNome() {
@@ -52,16 +59,20 @@ public class Consulta {
 		this.nome = nome;
 	}
 
-	public String getRetorno() {
-		return retorno;
-	}
-
 	public String getHora() {
 		return hora;
 	}
 
 	public void setHora(String hora) {
 		this.hora = hora;
+	}
+
+	public Horario getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(Horario horarios) {
+		this.horarios = horarios;
 	}
 
 	public String getData() {
@@ -72,7 +83,7 @@ public class Consulta {
 		this.data = data;
 	}
 
-	public String isRetorno() {
+	public String getRetorno() {
 		return retorno;
 	}
 
@@ -80,7 +91,7 @@ public class Consulta {
 		this.retorno = retorno;
 	}
 
-	public boolean getCancelada() {
+	public boolean isCancelada() {
 		return cancelada;
 	}
 
@@ -88,20 +99,22 @@ public class Consulta {
 		this.cancelada = cancelada;
 	}
 
-	public long getPaciente_oid() {
-		return paciente_oid;
+	public Long getPacienteOid() {
+		return pacienteOid;
 	}
 
-	public void setPaciente_oid(long paciente_oid) {
-		this.paciente_oid = paciente_oid;
+	public void setPacienteOid(Long pacienteOid) {
+		this.pacienteOid = pacienteOid;
 	}
 
-	public long getAgenda_oid() {
-		return agenda_oid;
+	public Long getAgendaOid() {
+		return agendaOid;
 	}
 
-	public void setAgenda_oid(long agenda_oid) {
-		this.agenda_oid = agenda_oid;
+	public void setAgendaOid(Long agendaOid) {
+		this.agendaOid = agendaOid;
 	}
 
+	
+	
 }

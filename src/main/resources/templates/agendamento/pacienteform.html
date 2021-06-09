@@ -35,7 +35,7 @@
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -55,28 +55,28 @@
 		<main>
 			<h2>Paciente</h2>
 				<form  th:action="@{/paciente/salvar}" th:object="${paciente}" method="post" >
-					<input type="hidden" name="paciente_oid" th:value="*{paciente_oid}"/> 
+					<input type="hidden" name="pacienteOid" th:value="*{pacienteOid}"/> 
 					<div class="mb-3">
 					
 					<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" placeholder ="Nome Completo" th:value="*{nome}" class="form-control" />
+						<input type="text" id="nome" name="nome" placeholder ="Nome Completo" th:value="*{nome}" class="form-control" required/>
 					<label for="rg" class="form-label">RG</label>
-						<input type="number" id="rg" name="rg" placeholder ="XXX.XXX.XXX-XX" th:value="*{rg}" class="form-control" />
+						<input type="number" id="rg" name="rg" placeholder ="XXX.XXX.XXX-XX" th:value="*{rg}" class="form-control" required/>
 					<label for="orgao" class="form-label">Orgão</label>
-						<input type="text" id="orgao" name="orgao" placeholder ="Nome do orgão" th:value="*{orgao}" class="form-control" />
+						<input type="text" id="orgao" name="orgao" placeholder ="Nome do orgão" th:value="*{orgao}" class="form-control" required/>
 					<label for="cpf" class="form-label">CPF</label>
-						<input type="number" id="cpf" name="cpf" placeholder ="XXX.XXX.XXX-XX" th:value="*{cpf}" class="form-control" />
+						<input type="number" id="cpf" name="cpf" placeholder ="XXX.XXX.XXX-XX" th:value="*{cpf}" class="form-control" required/>
 					<label for="telefone" class="form-label">Telefone</label>
-						<input type="number" id="telefone" name="telefone" placeholder ="+XX (XX) XXXX-XXXX" th:value="*{telefone}" class="form-control" />
+						<input type="number" id="telefone" name="telefone" placeholder ="+XX (XX) XXXX-XXXX" th:value="*{telefone}" class="form-control" required/>
 					<label for="celular" class="form-label">Celular</label>
-						<input type="number" id="celular" name="celular" placeholder ="+XX (XX) XXXXX-XXXX" th:value="*{celular}" class="form-control" />
+						<input type="number" id="celular" name="celular" placeholder ="+XX (XX) XXXXX-XXXX" th:value="*{celular}" class="form-control" required/>
 					<label for="email" class="form-label">Email</label>
-						<input type="text" id="email" name="email" placeholder ="exemplo@email.com" th:value="*{email}" class="form-control" />
+						<input type="text" id="email" name="email" placeholder ="exemplo@email.com" th:value="*{email}" class="form-control" required/>
 					<label for="convenio" class="form-label">Convenio</label>
-						<select id="convenio" name="convenio" th:value="*{convenio_oid}" class="form-control" required>
+						<select id="convenio" name="convenio" th:value="*{convenioOid}" class="form-control" required>
     						<option  value="" disabled selected >Selecione</option>
 
-							<option th:each="convenio: ${convenios}" value="${convenio.convenio_oid}" th:text="${convenio.nome}"> </option>
+							<option th:each="convenio: ${convenios}" value="${convenio.convenioOid}" th:text="${convenio.nome}"> </option>
     		
     					</select> 
 

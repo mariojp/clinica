@@ -25,7 +25,7 @@
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -57,9 +57,9 @@
           </thead>
           <tbody>
             <tr th:each="convenio: ${convenios}" >
-              <td> <a href="#" th:href="@{/convenio/form(id=${convenio.convenio_oid})}"> <span th:text="${convenio.convenio_oid}" > -1 </span></a></td>
+              <td> <a href="#" th:href="@{/convenio/form(id=${convenio.convenioOid})}"> <span th:text="${convenio.convenioOid}" > -1 </span></a></td>
               <td th:text="${convenio.nome}" > Nome </td>
-              <td><a href="#" th:href="@{/convenio/delete(id=${convenio.convenio_oid})}">
+              <td><a href="#" th:href="@{/convenio/delete(id=${convenio.convenioOid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

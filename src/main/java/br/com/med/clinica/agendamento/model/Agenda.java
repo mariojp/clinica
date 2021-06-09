@@ -16,28 +16,28 @@ public class Agenda {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long agenda_oid;
+	private Long agendaOid;
 
 	@Column
-	private long medico_oid;
+	private String medico;
 
 	@OneToMany(mappedBy = "agenda")
 	private List<Horario> horarios;
 
-	public long getMedico_oid() {
-		return medico_oid;
+	public Long getAgendaOid() {
+		return agendaOid;
 	}
 
-	public void setMedico_oid(long medico_oid) {
-		this.medico_oid = medico_oid;
+	public void setAgendaOid(Long agendaOid) {
+		this.agendaOid = agendaOid;
 	}
 
-	public long getAgenda_oid() {
-		return agenda_oid;
+	public String getMedico() {
+		return medico;
 	}
 
-	public void setAgenda_oid(long agenda_oid) {
-		this.agenda_oid = agenda_oid;
+	public void setMedico(String medico) {
+		this.medico = medico;
 	}
 
 	public List<Horario> getHorarios() {

@@ -13,7 +13,7 @@ public class Paciente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long paciente_oid;
+	private Long pacienteOid;
 
 	@Column
 	private String nome;
@@ -37,14 +37,14 @@ public class Paciente {
 	private String email;
 
 	@Column
-	private long convenio_oid;
+	private Long convenioOid;
 
-	public long getPaciente_oid() {
-		return paciente_oid;
+	public Long getPacienteOid() {
+		return pacienteOid;
 	}
 
-	public void setPaciente_oid(long paciente_oid) {
-		this.paciente_oid = paciente_oid;
+	public void setPacienteOid(Long pacienteOid) {
+		this.pacienteOid = pacienteOid;
 	}
 
 	public String getNome() {
@@ -102,13 +102,13 @@ public class Paciente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public long getConvenio_oid() {
-		return convenio_oid;
+
+	public Long getConvenioOid() {
+		return convenioOid;
 	}
 
-	public void setConvenio_oid(long convenio_oid) {
-		this.convenio_oid = convenio_oid;
+	public void setConvenioOid(Long convenioOid) {
+		this.convenioOid = convenioOid;
 	}
 
 }

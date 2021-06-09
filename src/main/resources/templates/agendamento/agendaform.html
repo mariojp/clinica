@@ -35,7 +35,7 @@
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
 					<li><a href="/paciente" class="nav-link px-2 text-secondary">Paciente</a></li>
 					<li><a href="/consulta" class="nav-link px-2 text-secondary">Consulta</a></li>
-					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agenda</a></li>
+					<li><a href="/agenda" class="nav-link px-2 text-secondary">Agendas</a></li>
 				</ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -55,26 +55,11 @@
 		<main>
 			<h2>Agenda</h2>
 				<form  th:action="@{/agenda/salvar}" method="post" >
-					<input type="hidden" name="agenda_id" th:value="${horario.agenda}"/> 
+					<input type="hidden" name="agenda_oid" th:value="*{agenda_oid}"/> 
 					<div class="mb-3">
 
-						<label for="diaDaSemana" class="form-label">Dia Da Semana</label>
-						<select id="diaDaSemana" name="diaDaSemana" th:value="${horario.diaDaSemana}" class="form-control" required>
-    						<option  value="" disabled selected>Selecione</option>
-
-							<option value = "Domingo">Domingo</option>
-    						<option value = "Segunda-feira">Segunda-feira</option>
-							<option value = "Terça-feira">Terça-feira</option>
-							<option value = "Quarta-feira">Quarta-feira</option>
-							<option value = "Quinta-feira">Quinta-feira</option>
-							<option value = "Sexta-feira">Sexta-feira</option>
-							<option value = "Sábado">Sábado</option>
-    		
-    					</select> 
-						<label for="horaInicio" class="form-label">Horario Inicial</label>
-						<input type="time" id="horaInicio" name="horaInicio" th:value="${horario.horaInicio}" class="form-control" />
-						<label for="horaFinal" class="form-label">Horario Final</label>
-						<input type="time" id="horaFinal" name="horaFinal" th:value="${horario.horaFinal}" class="form-control" />
+						<label for="medico" class="form-label">Nome do médico</label>
+						<input type="text" id="medico" name="medico" th:value="*{agenda.medico}" class="form-control" required/>
 
 					</div>
 					<button type="submit" class="btn btn-primary">Salvar</button>
