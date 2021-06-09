@@ -17,6 +17,8 @@ public class Consulta {
 	private String data;
 	private Boolean retorno;
 	private Boolean cancelada;
+	private String retornoSTR;
+	private String canceladaSTR;
 	private Long paciente_id;
 	@OneToOne
 	private Paciente paciente;
@@ -27,6 +29,18 @@ public class Consulta {
 	
 	public Long getOid() {
 		return oid;
+	}
+	public String getRetornoSTR() {
+		return retornoSTR;
+	}
+	public void setRetornoSTR(String retornoSTR) {
+		this.retornoSTR = retornoSTR;
+	}
+	public String getCanceladaSTR() {
+		return canceladaSTR;
+	}
+	public void setCanceladaSTR(String canceladaSTR) {
+		this.canceladaSTR = canceladaSTR;
 	}
 	public void setOid(Long oid) {
 		this.oid = oid;

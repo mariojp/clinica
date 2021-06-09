@@ -22,7 +22,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" th:href="@{/}" class="nav-link px-2 text-white">UNIFISIO</a></li>
           <li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-white">Agenda</a></li>
-          <!-- li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-secondary">Horário</a></li-->			          
+          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-secondary">Horário</a></li>			          
           <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
           <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-white">Consulta</a></li>
           <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
@@ -58,12 +58,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="con: ${horario}" >
-              <td> <a href="#" th:href="@{/horario/form(id=${con.categoriaId})}"> <span th:text="${con.categoriaId}" > -1 </span></a></td>
-              <td th:text="${con.diasemana}" > DiaSemana </td>
-              <td th:text="${con.horario}" > Horario </td>
-              <td th:text="${con.medico.nome}" > Medico </td>
-              <td><a href="#" th:href="@{/horario/delete(id=${con.categoriaId})}">
+            <tr th:each="con: ${horarios}" >
+              <td> <a href="#" th:href="@{/horario/form(id=${con.id})}"> <span th:text="${con.id}" > -1 </span></a></td>
+              <td th:text="${con.diaSemana}" > DiaSemana </td>
+              <td th:text="${con.hora}" > Horario </td>
+              <td th:text="${con.agenda.medico.nome}" > Medico </td>
+              <td><a href="#" th:href="@{/horario/delete(id=${con.id})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

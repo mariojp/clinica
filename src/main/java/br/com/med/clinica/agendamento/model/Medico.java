@@ -11,10 +11,8 @@ public class Medico {
 	private String cpf;
 	private String especialidade;
 	
-	private List<Agenda> agendas;
-	
 	public Medico() {
-		this.agendas = new ArrayList<>();
+		
 	}
 	
 	public Medico(Long oid, String nome, String cpf, String especialidade) {
@@ -48,11 +46,5 @@ public class Medico {
 	}
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
-	}
-	public List<Agenda> getAgendas() {
-		return agendas;
-	}
-	public void setAgendas(List<Agenda> agendas) {
-		this.agendas = agendas;
 	}
 }

@@ -30,6 +30,8 @@ public class ConsultaController {
 		List<Consulta> consultasFiltradas = new ArrayList<>();
 		for (Consulta consulta : consultas) {
 			if(!consulta.getCancelada())
+				consulta.setCanceladaSTR(consulta.getCancelada()? "SIM":"NÃO");
+				consulta.setRetornoSTR(consulta.getRetorno()? "SIM":"NÃO");
 				consultasFiltradas.add(consulta);
 		}
 		model.addAttribute("consultas",consultasFiltradas);
