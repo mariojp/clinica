@@ -4,10 +4,12 @@
 
 body{
 	
-	background-color: #adeee2;
+ background-image: linear-gradient( to right, rgb(79, 176, 214), rgb(151, 210, 238));
 	
 	
 }
+
+
 
 
 .slideshow-container {
@@ -28,46 +30,68 @@ img{
 }
 
 footer{
- position: auto;
+	margin-bottom: 0;
+ position: absolute;
    left: 0;
    bottom: 0;
    width: 100%;
    background-color: black;
    color: white;
    text-align: center;
-
+display: flex;
 
 }
 
 h1{
 	
-	
 	 font-family: 'Antonio', sans-serif;
+	border-color: white;
+	 border-width: 3px;
+  border-style: solid;
+	
 	text-align: center;
-	margin-top: 80px;
+	align-items:center;
+	justify-content:center;
+	margin-left:34.5%;
+	width:600px;
+	border-color: white;
+	 border-width: 4px;
+  border-style: solid;
+	
+	
 }
 
 .letrinha p{
 	font-size: 40px;
 		 font-family: 'Antonio', sans-serif;
 	text-align: center;
+	align-items:center;
+	justify-content:center;
+	margin-left:34.5%;
+	width:600px;
+	border-color: white;
+	 border-width: 4px;
+  border-style: solid;
 	
-		
 }
 
 #demo{
 		 font-family: 'Antonio', sans-serif;
 		font-size: 40px;	
 		text-align:center;
-		margin-top:20px;
+		margin-top:10px;
 }
 
 
 .nav{
 	
+		
 	font-family: 'Antonio', sans-serif;
 	font-size: 20px;
+	
 }
+
+
 
 
 
