@@ -40,10 +40,6 @@ public class Atendimento {
 	@OneToMany
 	private List<Exame> exames;
 
-	public Atendimento() {
-
-	}
-
 	public Long getOid() {
 		return oid;
 	}

@@ -34,17 +34,6 @@ public class Receita {
 	@OneToMany
 	private List<Item> itens;
 
-	public Receita() {
-
-	}
-	public Receita(Long oid, String texto, Atendimento atendimento, List<Item> itens) {
-		this();
-		this.oid = oid;
-		this.texto = texto;
-		this.atendimento = atendimento;
-		this.itens = itens;
-	}
-
 	public Long getOid() {
 		return oid;
 	}

@@ -28,22 +28,6 @@ public class Exame {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Atendimento atendimento;
 
-	public Exame() {
-
-	}
-
-	public Exame(String texto) {
-		super();
-		this.texto = texto;
-	}
-
-	public Exame(Long oid, String texto, Atendimento atendimento) {
-		this();
-		this.oid = oid;
-		this.texto = texto;
-		this.atendimento = atendimento;
-	}
-
 	public Long getOid() {
 		return oid;
 	}

@@ -33,23 +33,6 @@ public class Item {
 		@JoinColumn(name = "receita_oid")
 		private Receita receita;
 
-		public Item() {
-
-		}
-
-		public Item(String texto) {
-			super();
-			this.texto = texto;
-		}
-
-		public Item(Long oid, String texto, Droga droga) {
-			this();
-			this.oid = oid;
-			this.texto = texto;
-			this.droga = droga;
-			
-		}
-
 		public Long getOid() {
 			return oid;
 		}

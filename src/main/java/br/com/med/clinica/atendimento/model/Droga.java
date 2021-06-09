@@ -26,21 +26,7 @@ public class Droga {
 	@OneToMany(mappedBy = "droga")
 	private List<Item> itens;
 
-	public Droga() {
 
-	}
-
-	public Droga(String nome) {
-		super();
-		this.nome = nome;
-	}
-
-	public Droga(Long oid, String nome, List<Item> itens) {
-		this();
-		this.oid = oid;
-		this.nome = nome;
-		this.itens = itens;
-	}
 
 	public Long getOid() {
 		return oid;
