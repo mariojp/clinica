@@ -48,7 +48,7 @@ public class PacienteController {
 	}
 
 	@PostMapping("/paciente/salvar")
-	public String salvar(Paciente paciente) throws Exception {
+	public String salvar(Paciente paciente) {
 		if (paciente.getConvenio_id() != 0) {
 			Optional<Convenio> convenio = convenioRepository.findById(paciente.getConvenio_id());
 			if (convenio.isPresent()) {
@@ -57,7 +57,7 @@ public class PacienteController {
 					validaPaciente(paciente);
 					pacienteRepository.save(paciente);
 				} catch (Exception e) {
-
+					
 					e.printStackTrace();
 				}
 				
