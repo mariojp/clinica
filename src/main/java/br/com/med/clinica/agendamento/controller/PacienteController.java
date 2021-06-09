@@ -19,6 +19,8 @@ import br.com.med.clinica.agendamento.repository.PacienteRepository;
 public class PacienteController {
 	@Autowired
 	private PacienteRepository pacienteRepository;
+
+
 	@Autowired
 	private ConvenioRepository convenioRepository;
 

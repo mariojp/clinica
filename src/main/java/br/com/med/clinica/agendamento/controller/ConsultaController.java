@@ -25,7 +25,9 @@ public class ConsultaController {
 
 	@GetMapping("/consulta")
 	public String listConvenio(Model model) {
+
 		List<Consulta> consultas = consultaRepository.findAll();
+
 		for (Consulta consulta : consultas) {
 			if (consulta.getCancelada())
 				delete(consulta.getOid());
