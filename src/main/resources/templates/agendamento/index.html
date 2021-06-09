@@ -29,19 +29,19 @@
         </form>
 
         <div class="text-end">
-          <button type="button"  class="btn btn-outline-light me-2"><a th:href="@{/}">Login</a></button>
-          <a type="button" th:href="@{/registrar}" class="btn btn-warning">Registrar</a>
+          <button type="button"  class="btn btn-outline-light me-2"><a th:href="@{/login}">Login</a></button>
+          <a type="button" th:href="@{/usuario/salvar}" class="btn btn-warning">Registrar</a>
         </div>
       </div>
     </div>
 </header>
 <div class="container-fluid">	
 	<main>
-		<form class="form-signin" th:action="@{/agenda/salvar}" th:object="${agenda}" method="post" >
+		<form class="form-signin" th:action="@{/login}" th:object="${usuario}" method="post" >
 			<h1 class="h3 mb-3 font-weight-normal">AGENDA UNIFISIO</h1>
 			
-			<label for="email" class="form-label">E-mail</label>
-			<input type="text" id="email" name="email" th:value="*{email}" required class="form-control" />
+			<label for="text" class="form-label">Login</label>
+			<input type="text" id="login" name="email" th:value="*{login}" required class="form-control" />
 			<label for="senha" class="form-label">Senha</label>
 			<input type="password" id="senha" name="senha" th:value="*{senha}" required class="form-control" />
 			

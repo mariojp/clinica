@@ -1,10 +1,15 @@
 package br.com.med.clinica.agendamento.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class AgendaDto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Medico medico;
-	
-	
+		
 	public AgendaDto(Long id, Medico medico) {
 		super();
 		this.id = id;

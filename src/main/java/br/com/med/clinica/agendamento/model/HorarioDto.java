@@ -1,7 +1,13 @@
 package br.com.med.clinica.agendamento.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class HorarioDto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String diaSemana;
 	private String hora;
