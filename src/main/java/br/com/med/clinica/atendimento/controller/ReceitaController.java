@@ -44,7 +44,7 @@ public class ReceitaController {
 			return "/atendimento/receita";
 
 	}
-
+	
 	@GetMapping("/atendimento/receita/form")
 	public String form(Model model, @Param(value = "id") Long id) {
 		ReceitaDTO receitaDTO = new ReceitaDTO();
@@ -63,7 +63,7 @@ public class ReceitaController {
 
 		return "atendimento/receitaform";
 	}
-
+	
 	@PostMapping("/atendimento/receita/salvar")
 	public String salvar(@Valid ReceitaDTO receitaDTO, Model model , BindingResult bindingresult) {
 		//Validação
