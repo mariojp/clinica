@@ -48,19 +48,19 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Horarios</th>
-              <th>Consultas</th>
+              <th>Médico</th>
+              
               <th><a href="#" th:href="@{/agenda/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="agenda: ${agenda}" >
-              <td> <a href="#" th:href="@{/agenda/form(id=${agenda.oid})}"> <span th:text="${agenda.oid}" > -1 </span></a></td>
-              <td th:text="${agenda.horarios}" > Horarios </td>
-              <td th:text="${agenda.consultas}" > Consultas </td>
-              <td><a href="#" th:href="@{/agenda/delete(id=${agenda.oid})}">
+            <tr th:each="agenda: ${agendas}" >
+              <td> <a href="#" th:href="@{/agenda/form(id=${agenda.id})}"> <span th:text="${agenda.id}" > -1 </span></a></td>
+              <td th:text="${agenda.medico.nome}" > Médico </td>
+              
+              <td><a href="#" th:href="@{/agenda/delete(id=${agenda.id})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

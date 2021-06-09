@@ -22,7 +22,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" th:href="@{/}" class="nav-link px-2 text-white">UNIFISIO</a></li>
           <li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-white">Agenda</a></li>
-          <!-- li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li-->			          
+          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li>			          
           <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
           <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-secondary">Consulta</a></li>
           <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
@@ -65,8 +65,8 @@
               <td th:text="${con.nome}" > Nome </td>
               <td th:text="${con.data}" > Data </td>
               <td th:text="${con.hora}" > Hora </td>
-              <td th:text="${con.retorno}" > Retorno </td>
-              <td th:text="${con.cancelada}" > Cancelada </td>
+              <td th:text="${con.retornoSTR}" > Retorno </td>
+              <td th:text="${con.canceladaSTR}" > Cancelada </td>
               <td><a href="#" th:href="@{/consulta/delete(id=${con.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>

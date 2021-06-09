@@ -61,6 +61,7 @@
 					<div class="mb-3">
 						<label for="nome" class="form-label">Médico</label>
 						<select th:field="*{medicooid}" class="form-control">
+						<option th:value="false">Selecione</option>
 						    <option th:each="m : ${medicos}" th:value="${m.oid}" th:text="${m.nome}">
 						    </option>
 						</select>

@@ -1,5 +1,6 @@
 package br.com.med.clinica.agendamento.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +28,12 @@ public class ConsultaController {
 	public String listConvenio(Model model) {
 
 		List<Consulta> consultas = consultaRepository.findAll();
-
+		List<Consulta> consultasFiltradas = new ArrayList<>();
 		for (Consulta consulta : consultas) {
-			if (consulta.getCancelada())
-				delete(consulta.getOid());
+			if(!consulta.getCancelada())
+				consulta.setCanceladaSTR(consulta.getCancelada()? "SIM":"NÃO");
+				consulta.setRetornoSTR(consulta.getRetorno()? "SIM":"NÃO");
+				consultasFiltradas.add(consulta);
 		}
 		model.addAttribute("consultas", consultas);
 		return "/agendamento/consulta";

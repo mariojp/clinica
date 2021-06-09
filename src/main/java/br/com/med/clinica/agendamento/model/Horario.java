@@ -13,7 +13,7 @@ public class Horario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long categoriaId;
-	private Date diaSemana;
+	private String diaSemana;
 	private String hora;
 	@ManyToOne
 	private Agenda agenda;
@@ -44,10 +44,10 @@ public class Horario {
 	public void Hora(String hora) {
 		this.hora = hora;
 	}
-	public Date getDiaSemana() {
+	public String getDiaSemana() {
 		return diaSemana;
 	}
-	public void setDiaSemana(Date diaSemana) {
+	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
 	public Long getCategoriaId() {
