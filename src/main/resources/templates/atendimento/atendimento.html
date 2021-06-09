@@ -47,7 +47,6 @@
               <th>Paciente</th>
               <th>Conduta</th>
               <th>Código Consulta</th>
-              <th>Receita</th>
               <th>Exame</th>
               <th><a href="#" th:href="@{/atendimento/form}">
               	<i class="bi bi-plus-square"></i></a>
@@ -59,7 +58,6 @@
               <td th:text="${atend.paciente}" > Paciente </td>
               <td th:text="${atend.conduta}" > Conduta </td>
               <td th:text="${atend.consultas_oid}" > Código Consulta </td>
-              <td><a href="#" th:href="@{/atendimento/receita}">RECEITAS</a></td>
               <td><a href="#" th:href="@{/exame}">EXAMES</a></td>
               <td><a href="#" th:href="@{/atendimento/delete(id=${atend.oid})}">
               	<i class="bi bi-trash"></i>
