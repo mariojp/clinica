@@ -24,6 +24,7 @@ public class PacienteController {
 	@Autowired
 	private ConvenioRepository convenioRepository;
 
+	
 	@GetMapping("/paciente")
 	public String listConvenio(Model model) {
 		List<Paciente> pacientes = pacienteRepository.findAll();
