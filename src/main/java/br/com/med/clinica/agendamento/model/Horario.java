@@ -18,6 +18,7 @@ public class Horario {
 	@ManyToOne
 	private Agenda agenda;
 	private Long agendaoid;
+	
 	public Agenda getAgenda() {
 		return agenda;
 	}

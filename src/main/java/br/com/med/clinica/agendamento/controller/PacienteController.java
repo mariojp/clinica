@@ -18,72 +18,73 @@ import br.com.med.clinica.agendamento.repository.PacienteRepository;
 @Controller
 public class PacienteController {
 	@Autowired
-	private static PacienteRepository pacienteRepository;
+	private PacienteRepository pacienteRepository;
 	@Autowired
-	private static ConvenioRepository convenioRepository;
+	private ConvenioRepository convenioRepository;
 
 	@GetMapping("/paciente")
 	public String listConvenio(Model model) {
-		List<Paciente> pacientes =  pacienteRepository.findAll();
-		model.addAttribute("pacientes",pacientes);
+		List<Paciente> pacientes = pacienteRepository.findAll();
+		model.addAttribute("pacientes", pacientes);
 		return "/agendamento/paciente";
 	}
-	
+
 	@GetMapping("/paciente/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Paciente paciente = new Paciente();
 		List<Convenio> convenios = convenioRepository.findAll();
-		if(id != null) {
+		if (id != null) {
 			Optional<Paciente> op = pacienteRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				paciente = op.get();
 			}
 		}
-		model.addAttribute("paciente",paciente);
-		model.addAttribute("convenios",convenios);
-		
+		model.addAttribute("paciente", paciente);
+		model.addAttribute("convenios", convenios);
+
 		return "/agendamento/pacienteform";
 	}
-	
+
 	@PostMapping("/paciente/salvar")
 	public String salvar(Paciente paciente) throws Exception {
-		if(paciente.getConvenio_id() != 0) {
+		if (paciente.getConvenio_id() != 0) {
 			Optional<Convenio> convenio = convenioRepository.findById(paciente.getConvenio_id());
-			if(convenio.isPresent()) {
+			if (convenio.isPresent()) {
 				try {
-				validaPaciente(paciente);
-				}catch(Exception e) {
-					//TODO mandar essa mensagem para o front.
-					System.out.print(e.getMessage());
+					paciente.setConvenio(convenio.get());
+					validaPaciente(paciente);
+					pacienteRepository.save(paciente);
+				} catch (Exception e) {
+
+					e.printStackTrace();
 				}
-				paciente.setConvenio(convenio.get());
+				
 			}
-			pacienteRepository.save(paciente);
+			
 		}
 		return "redirect:/paciente";
 	}
-	
-	
+
 	private void validaPaciente(Paciente paciente) throws Exception {
 		validaCPF(paciente.getCpf());
 		validaRG(paciente.getRg());
-		
+
 	}
 
 	private void validaRG(String rg) throws Exception {
-		List<Paciente> pacientes =  pacienteRepository.findAll();
-		for(Paciente paci : pacientes) {
-			if(paci.getRg() == rg) {
+		List<Paciente> pacientes = pacienteRepository.findAll();
+		for (Paciente paci : pacientes) {
+			if (paci.getRg() == rg) {
 				throw new Exception("RG já em uso");
 			}
 		}
-		
+
 	}
 
 	private void validaCPF(String cpf) throws Exception {
-		List<Paciente> pacientes =  pacienteRepository.findAll();
-		for(Paciente paci : pacientes) {
-			if(paci.getCpf() == cpf) {
+		List<Paciente> pacientes = pacienteRepository.findAll();
+		for (Paciente paci : pacientes) {
+			if (paci.getCpf() == cpf) {
 				throw new Exception("CPF já em uso");
 			}
 		}
