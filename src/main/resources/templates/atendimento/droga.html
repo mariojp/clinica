@@ -19,17 +19,15 @@
 		  </svg>
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
-          <li><a href="/droga" class="nav-link px-2 text-secondary">Droga</a></li>
+          <li><a href="/droga" class="nav-link px-2 text-white">Droga</a></li>
           <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-          <li><a href="/item" class="nav-link px-2 text-white">Itens</a></li>
+          <li><a href="/item" class="nav-link px-2 text-secondary">Itens</a></li>
           <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
-          
-          <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
-        </ul>
-	
+          </ul>
+
+
       </div>
     </div>
 </header>
@@ -50,7 +48,6 @@
             </tr>
           </thead>
           <tbody>
-          <!-- dro = variável (instancia ela na criação do for each) -->
             <tr th:each="dro: ${drogas}" >
               <td> <a href="#" th:href="@{/droga/form(id=${dro.oid})}"> <span th:text="${dro.oid}" > -1 </span></a></td>
               <td th:text="${dro.nome}" > Nome </td>

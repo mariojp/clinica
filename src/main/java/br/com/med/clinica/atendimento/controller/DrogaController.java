@@ -45,13 +45,20 @@ public class DrogaController {
 		return "/atendimento/drogaform";
 	}
 	
+
 	@PostMapping("/droga/salvar")
 	public String salvar(@Valid Droga droga, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("Erros");
+			bindingResult.getAllErrors().forEach(e -> System.out.println(e));
+
+			return "/atendimento/drogaform";
+		}
+
 		drogaRepository.save(droga);
 		return "redirect:/droga";
-	}
+		}
 	
-
 	@GetMapping("/droga/delete")
 	public String delete(Long id) {
 		drogaRepository.deleteById(id);

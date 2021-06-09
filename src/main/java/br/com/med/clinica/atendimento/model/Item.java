@@ -9,74 +9,79 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 @Table(name = "itens")
 public class Item {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long oid;
-	
-	@Column(length = 250)
-	private String nome;
-	
-	@Column(length = 250)
-	private String texto;
-	
-	@ManyToOne
-	@JoinColumn(name = "receita_oid",
-			foreignKey = @ForeignKey(name = "RECEITA_OID_FK")
-	)
-	private Receita receita;
-	
-	@ManyToOne
-	@JoinColumn(name = "droga_oid",
-			foreignKey = @ForeignKey(name = "DROGA_OID_FK")
-	)
-	private Droga droga;
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long oid;
 
-	public Receita getReceita() {
-		return receita;
-	}
+		@NotEmpty
+		@Column(length = 250)
+		private String texto;
 
-	public void setReceita(Receita receita) {
-		this.receita = receita;
-	}
+		@ManyToOne
+		@JoinColumn(name = "droga_oid",
+		foreignKey = @ForeignKey(name = "DROGA_OID_FK"))
+		private Droga droga;
+	 
+		@ManyToOne
+		@JoinColumn(name = "receita_oid",
+		foreignKey = @ForeignKey(name = "RECEITA_OID_FK"))
+		private Receita receita;
 
-	public Droga getDroga() {
-		return droga;
-	}
+		public Item() {
 
-	public void setDroga(Droga droga) {
-		this.droga = droga;
-	}
+		}
 
-	public Long getOid() {
-		return oid;
-	}
+		public Item(String texto) {
+			super();
+			this.texto = texto;
+		}
 
-	public void setOid(Long oid) {
-		this.oid = oid;
-	}
+		public Item(Long oid, String texto, Droga droga, Receita receita) {
+			this();
+			this.oid = oid;
+			this.texto = texto;
+			this.droga = droga;
+			this.receita = receita;
+		}
 
-	public String getNome() {
-		return nome;
-	}
+		public Long getOid() {
+			return oid;
+		}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+		public void setOid(Long oid) {
+			this.oid = oid;
+		}
 
-	public String getTexto() {
-		return texto;
-	}
+		public String getTexto() {
+			return texto;
+		}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
+		public void setTexto(String texto) {
+			this.texto = texto;
+		}
+
+		public Droga getDroga() {
+			return droga;
+		}
+
+		public void setDroga(Droga droga) {
+			this.droga = droga;
+		}
+
+		public Receita getReceita() {
+			return receita;
+		}
+
+		public void setReceita(Receita receita) {
+			this.receita = receita;
+		}
 
 
-	
-	
 }

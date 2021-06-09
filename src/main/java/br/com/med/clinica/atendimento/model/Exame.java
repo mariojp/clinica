@@ -2,7 +2,6 @@ package br.com.med.clinica.atendimento.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,50 +9,63 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "Exame")
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+@Entity
 @Table(name = "exames")
 public class Exame {
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long oid;
-		
-		@Column(length = 250)
-		private String nome;
-		
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long oid;
 
-		@ManyToOne
-		@JoinColumn(name = "atendimento_oid",
-				foreignKey = @ForeignKey(name = "ATENDIMENTO_OID_FK")
-		)
-		private Atendimento atendimento;
-		
-		public Atendimento getAtendimento() {
-			return atendimento;
-		}
+	@Column(length = 250)
+	private String texto;
 
-		public void setAtendimento(Atendimento atendimento) {
-			this.atendimento = atendimento;
-		}
+	@ManyToOne
+	@JoinColumn(name = "atendimento_oid")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Atendimento atendimento;
 
-		public Long getOid() {
-			return oid;
-		}
+	public Exame() {
 
-		public void setOid(Long oid) {
-			this.oid = oid;
-		}
-
-		public String getNome() {
-			return nome;
-		}
-
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-		
-		
-
-		
 	}
 
+	public Exame(String texto) {
+		super();
+		this.texto = texto;
+	}
+
+	public Exame(Long oid, String texto, Atendimento atendimento) {
+		this();
+		this.oid = oid;
+		this.texto = texto;
+		this.atendimento = atendimento;
+	}
+
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public Atendimento getAtendimento() {
+		return atendimento;
+	}
+
+	public void setAtendimento(Atendimento atendimento) {
+		this.atendimento = atendimento;
+	}
+
+}

@@ -38,30 +38,33 @@ public class ExameController {
 	}
 	
 	// Pegando um dado do repositório
+	
 	@GetMapping("/exame/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Exame exame = new Exame();
-		if(id != null) {
+		if (id != null) {
 			Optional<Exame> op = exameRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				exame = op.get();
 			}
 		}
+
 		model.addAttribute("atendimentos", atendimentoRepository.findAll());
-		model.addAttribute("exame",exame);
-		
-		return "atendimento/exameform";
+		model.addAttribute("exame", exame);
+
+		return "/atendimento/exameform";
 	}
 	
 	// Salvando algo na lista (Pegando os dados do .html)
 	
 	@PostMapping("/exame/salvar")
 	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
-			bindingResult.getAllErrors().forEach(a -> System.out.print(a));
+		if (bindingResult.hasErrors()) {
+			// bindingResult.getAllErrors().forEach(e -> System.out.println(e));
 			model.addAttribute("atendimentos", atendimentoRepository.findAll());
-			return "atendimento/exameform";
+			return "/atendimento/exameform";
 		}
+
 		exameRepository.save(exame);
 		return "redirect:/exame";
 	}
