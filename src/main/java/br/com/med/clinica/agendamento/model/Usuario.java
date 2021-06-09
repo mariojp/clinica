@@ -15,6 +15,9 @@ public class Usuario {
 	private String senha;
 	private String email;
 	
+	public Usuario() {
+		
+	}
 	public Usuario(String nome, String senha, String email) {
 		
 		this.nome = nome;
