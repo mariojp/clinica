@@ -18,23 +18,23 @@ public class Consulta {
 	private Long consultaOid;
 
 	@Column
-	private String nome;
-	
-	@Column
-	private String hora;
+	private String nomeDiaHora;
 
 	@ManyToOne()
 	@JoinColumn(name = "horarioOid")
 	private Horario horarios;
 
 	@Column
-	private String data;
+	private String semana;
 
 	@Column
 	private String retorno = "Não disponivel";
 
 	@Column
 	private boolean cancelada;
+
+	@Column
+	private String paciente;
 
 	@Column
 	@JoinColumn
@@ -51,20 +51,21 @@ public class Consulta {
 		this.consultaOid = consultaOid;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeDiaHora() {
+		return nomeDiaHora;
+	}
+	
+
+	public String getPaciente() {
+		return paciente;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPaciente(String paciente) {
+		this.paciente = paciente;
 	}
 
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
+	public void setNomeDiaHora(String nomeDiaHora) {
+		this.nomeDiaHora = nomeDiaHora;
 	}
 
 	public Horario getHorarios() {
@@ -75,12 +76,12 @@ public class Consulta {
 		this.horarios = horarios;
 	}
 
-	public String getData() {
-		return data;
+	public String getSemana() {
+		return semana;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public void setSemana(String semana) {
+		this.semana = semana;
 	}
 
 	public String getRetorno() {

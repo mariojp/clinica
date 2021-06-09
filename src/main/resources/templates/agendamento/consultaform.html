@@ -61,25 +61,25 @@
 					<input type="hidden" name="consultaOid" th:value="*{consultaOid}"/> 
 					<div class="mb-3">
 					
-					<label for="horarios" class="form-label">Medico/Horario</label>
-					<select id="horarios" name="horarios" th:value="*{horarios}" class="form-control" required>
+					<label for="nomeDiaHora" class="form-label">Medico/Horario</label>
+					<select id="nomeDiaHora" name="nomeDiaHora" th:value="*{nomeDiaHora}" class="form-control" required>
     						<option  value="" disabled selected >Selecione</option>
 
-							<option th:each="horario: ${horarios}" value="*{horario}" th:text="${horario.agenda.medico}+' - '+${horario.diaDaSemana}+' ás '+${horario.horaInicio}"> </option>
+							<option th:each="horario: ${horarios}" th:value="${horario.agenda.medico}+'-'+${horario.diaDaSemana}+'-'+${horario.horaInicio}" th:text="${horario.agenda.medico}+' - '+${horario.diaDaSemana}+' ás '+${horario.horaInicio}"> </option>
     		
     				</select>
 
-					<label for="data" class="form-label">Data</label>
-						<input type="week" id="data" name="data" th:value="*{data}" class="form-control" required/>
+					<label for="semana" class="form-label">Data</label>
+						<input type="week" id="semana" name="semana" th:value="*{semana}" class="form-control" required/>
 
-					<!-- <label for="paciente" class="form-label">Paciente</label>
+					<label for="paciente" class="form-label">Paciente</label>
 					<select id="paciente" name="paciente" th:value="*{paciente}" class="form-control" required>
     						<option  value="" disabled selected >Selecione</option>
 
-							<option th:each="paciente: ${pacientes}" value="${paciente}" th:text="${paciente.nome}"> </option>
+							<option th:each="paciente: ${pacientes}" th:value="${paciente.nome}" th:text="${paciente.nome}"> </option>
     		
     				</select> 
-						-->
+						
 					</div>
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>

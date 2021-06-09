@@ -73,10 +73,10 @@
 					<label for="email" class="form-label">Email</label>
 						<input type="text" id="email" name="email" placeholder ="exemplo@email.com" th:value="*{email}" class="form-control" required/>
 					<label for="convenio" class="form-label">Convenio</label>
-						<select id="convenio" name="convenio" th:value="*{convenioOid}" class="form-control" required>
+						<select id="convenio" name="convenio" th:value="*{convenio}" class="form-control" required>
     						<option  value="" disabled selected >Selecione</option>
 
-							<option th:each="convenio: ${convenios}" value="${convenio.convenioOid}" th:text="${convenio.nome}"> </option>
+							<option th:each="convenio: ${convenios}" th:value="${convenio.nome}" th:text="${convenio.nome}"> </option>
     		
     					</select> 
 

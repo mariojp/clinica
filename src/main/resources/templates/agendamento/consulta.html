@@ -48,9 +48,9 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Horario</th>
-              <th>Data</th>
+              <th>Paciente</th>
+              <th>Agendamento</th>
+              <th>Semana</th>
               <th>Retorno</th>
               <th>Cancelada</th>
               <th><a href="#" th:href="@{/consulta/form}">
@@ -60,9 +60,9 @@
           </thead>
           <tbody>
             <tr th:each="consulta: ${consultas}" >
-                <td th:text="${consulta.nome}" > Nome </td>
-                <td th:text="${consulta.data}" > Data </td> 
-                 <td th:text="${consulta.hora}" > Horario</td>
+              <td th:text="${consulta.paciente}" > Paciente </td>
+                <td th:text="${consulta.nomeDiaHora}" > Agendamento </td>
+                <td th:text="${consulta.semana}" > Semana </td> 
                  <td th:text="${consulta.retorno}" > Retorno </td>
                  <td th:text="${consulta.cancelada}" > Cancelada </td>
               <td><a href="#" th:href="@{/consulta/delete(id=${consulta.consultaOid})}">

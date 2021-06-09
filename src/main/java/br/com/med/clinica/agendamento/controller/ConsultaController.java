@@ -66,14 +66,11 @@ public class ConsultaController {
 		}
 		List<Consulta> consultas = consultaRepository.findAll();
 		for (Consulta consulta : consultas){
-			if(consulta.getHorarios().getHorarioOid() == Consulta.getHorarios().getHorarioOid() && consulta.getHorarios().getHoraInicio() == Consulta.getData()){
+			if(consulta.getNomeDiaHora().equals(Consulta.getNomeDiaHora()) && consulta.getSemana().equals(Consulta.getSemana())){
 				return "redirect:/consulta/form/?error=Horario indisponivel";
 			}
 		}
-		Horario horario = horarioRepository.findByHorarioOid(Consulta.getHorarios().getHorarioOid());
 		System.out.println(Consulta.getPacienteOid());
-		Consulta.setHora(horario.getHoraInicio());
-		Consulta.setNome(horario.getAgenda().getMedico());
 		consultaRepository.save(Consulta);
 		return "redirect:/consulta";
 	}

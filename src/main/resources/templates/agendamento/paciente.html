@@ -55,6 +55,8 @@
               <th>Telefone</th>
               <th>Celular</th>
               <th>Email</th>
+              <th>Convenio</th>
+
               <th><a href="#" th:href="@{/paciente/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
@@ -65,10 +67,13 @@
                 <td th:text="${paciente.nome}" > Nome </td>
                 <td th:text="${paciente.rg}" > RG</td>
                  <td th:text="${paciente.orgao}" > Orgão </td>
-                 <td th:text="${paciente.cpf}" > CPF </td>
+                 <td th:text="${paciente.cpf}" > CPF </td> 
                  <td th:text="${paciente.telefone}" > Telefone </td>
                  <td th:text="${paciente.celular}" > Celular </td>
                  <td th:text="${paciente.email}" > Email </td> 
+                 <td th:text="${paciente.convenio}" > Convenio </td> 
+
+
               <td><a href="#" th:href="@{/paciente/delete(id=${paciente.pacienteOid})}">
               	<i class="bi bi-trash"></i>
               </a></td>

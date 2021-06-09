@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -36,8 +37,20 @@ public class Paciente {
 	@Column
 	private String email;
 
+	@JoinColumn
 	@Column
 	private Long convenioOid;
+	
+	@Column
+	private String convenio;
+
+	public String getConvenio() {
+		return convenio;
+	}
+
+	public void setConvenio(String convenio) {
+		this.convenio = convenio;
+	}
 
 	public Long getPacienteOid() {
 		return pacienteOid;
