@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import br.com.med.clinica.agendamento.model.Agenda;
+import br.com.med.clinica.agendamento.model.AgendaDto;
 import br.com.med.clinica.agendamento.model.Medico;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
 
@@ -36,7 +37,15 @@ public class AgendaController {
 
 	@GetMapping("/agenda")
 	public String listCompromissos(Model model) {
-		List<Agenda> agendas =  agendaRepository.findAll();
+		List<Agenda> agendasRespo =  agendaRepository.findAll();
+		List<AgendaDto> agendas = new ArrayList<>();
+		for (Agenda agenda : agendasRespo) {
+			for(Medico medico: medicos) {
+				if(agenda.getMedicooid() == medico.getOid()) {
+					agendas.add(new AgendaDto(agenda.getOid(), medico));
+				}
+			}
+		}
 		model.addAttribute("agendas",agendas);
 		return "/agendamento/agenda";
 	}

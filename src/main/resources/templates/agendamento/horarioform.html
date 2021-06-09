@@ -63,13 +63,13 @@
 						<input type="date" id="diaSemana" name="diaSemana" th:value="*{diaSemana}" class="form-control" />
 						<label for="hora" class="form-label">Horario</label>
 						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
-					</div>
-					<label for="nome" class="form-label">Adicionar na Agenda do Médico</label>
+						<label for="nome" class="form-label">Adicionar na Agenda do Médico</label>
 						<select th:field="*{agendaoid}" class="form-control">
 							<option value="">Selecione</option>
 						    <option th:each="a : ${agendas}" th:value="${a.id}" th:text="${a.medico.nome}">
 						    </option>
 						</select>
+					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>
