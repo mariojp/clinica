@@ -1,7 +1,5 @@
 package br.com.med.clinica.agendamento.controller;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +18,7 @@ import br.com.med.clinica.agendamento.model.HorarioDto;
 import br.com.med.clinica.agendamento.model.Medico;
 import br.com.med.clinica.agendamento.repository.AgendaRepository;
 import br.com.med.clinica.agendamento.repository.HorarioRepository;
+
 @Controller
 public class HorarioController {
 
@@ -63,15 +62,15 @@ public class HorarioController {
 		model.addAttribute("horarios",horarios);
 		return "/agendamento/horario";
 	}
-	
+
 	@GetMapping("/horario/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Horario horario = new Horario();
 		List<AgendaDto> agendas = new ArrayList<>();
 		List<Agenda> agendasRespo = agendaRepository.findAll();
 		if(id != null) {
 			Optional<Horario> op = horarioRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				horario = op.get();
 			}
 		}
@@ -88,39 +87,56 @@ public class HorarioController {
 		
 		model.addAttribute("horario",horario);
 		model.addAttribute("agendas",agendas);
-		
 		return "/agendamento/horarioform";
 	}
+
 	@PostMapping("/horario/salvar")
-	public String salvar(Horario horario) throws Exception {
-		if(horario.getAgendaoid() != null) {
-			if(horario.getAgendaoid().equals(horarioRepository.findAll())) {
-				throw new Exception("Horario indisponivel! ");
-			} else {
-				Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
-				validaHorario(horario);
-				if(agenda.isPresent()) {
-					horario.setAgenda(agenda.get());
-				}
-			}
+	public String salvar(Horario horario) {
+
+		Optional<Agenda> agenda = agendaRepository.findById(horario.getAgendaoid());
+		if (agenda.isPresent()) {
+		try {
+
+			validaHorario(horario);
+			horario.setAgenda(agenda.get());
+			horarioRepository.save(horario);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
 		}
 		horarioRepository.save(horario);
 		return "redirect:/horario";
 	}
-	
 
 	@GetMapping("/horario/delete")
 	public String delete(Long id) {
 		horarioRepository.deleteById(id);
 		return "redirect:/horario";
 	}
+
 	private void validaHorario(Horario horario) throws Exception {
+		horarioExiste(horario);
+		verificaId(horario.getAgendaoid());
+
+	}
+
+	private void verificaId(Long agendaoid) throws Exception {
+		if (agendaoid == null) {
+			throw new Exception("Id de agenda é nulo! ");
+		}
+
+	}
+
+	private void horarioExiste(Horario horario) throws Exception {
 		List<Horario> horarios = horarioRepository.findAll();
-		for(Horario horario2 : horarios) {
-			if(horario == horario2) {
+		for (Horario horario2 : horarios) {
+			if (horario == horario2) {
 				throw new Exception("Horario indisponivel ! ");
 			}
 		}
+
 	}
 }
-	

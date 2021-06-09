@@ -19,7 +19,7 @@ public class AgendaController {
 
 	@Autowired
 	private AgendaRepository agendaRepository;
-	private static List<Medico> medicos = new ArrayList<>();
+	private List<Medico> medicos = new ArrayList<>();
 	
 	public AgendaController() {
 		

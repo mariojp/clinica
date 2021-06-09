@@ -66,10 +66,5 @@ public class Convenio {
 	public void setPacientes(List<Paciente> pacientes) {
 		this.pacientes = pacientes;
 	}
-
-
-
-	
-	
 	
 }

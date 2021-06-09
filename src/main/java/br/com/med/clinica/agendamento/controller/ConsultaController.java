@@ -26,7 +26,8 @@ public class ConsultaController {
 
 	@GetMapping("/consulta")
 	public String listConvenio(Model model) {
-		List<Consulta> consultas =  consultaRepository.findAll();
+
+		List<Consulta> consultas = consultaRepository.findAll();
 		List<Consulta> consultasFiltradas = new ArrayList<>();
 		for (Consulta consulta : consultas) {
 			if(!consulta.getCancelada())
@@ -34,38 +35,63 @@ public class ConsultaController {
 				consulta.setRetornoSTR(consulta.getRetorno()? "SIM":"NÃO");
 				consultasFiltradas.add(consulta);
 		}
-		model.addAttribute("consultas",consultasFiltradas);
+		model.addAttribute("consultas", consultas);
 		return "/agendamento/consulta";
 	}
-	
+
 	@GetMapping("/consulta/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model, @Param(value = "id") Long id) {
 		Consulta consulta = new Consulta();
 		List<Paciente> pacientes = pacienteRepository.findAll();
-		if(id != null) {
+		if (id != null) {
 			Optional<Consulta> op = consultaRepository.findById(id);
-			if(op.isPresent()) {
+			if (op.isPresent()) {
 				consulta = op.get();
 			}
 		}
-		model.addAttribute("consulta",consulta);
-		model.addAttribute("pacientes",pacientes);
-		
+		model.addAttribute("consulta", consulta);
+		model.addAttribute("pacientes", pacientes);
+
 		return "/agendamento/consultaform";
 	}
-	
+
 	@PostMapping("/consulta/salvar")
 	public String salvar(Consulta consulta) {
-		if(consulta.getPaciente_id() != null) {
-			Optional<Paciente> paciente = pacienteRepository.findById(consulta.getPaciente_id());
-			if(paciente.isPresent()) {
+		Optional<Paciente> paciente = pacienteRepository.findById(consulta.getPaciente_id());
+		if (paciente.isPresent()) {
+			try {
+				validaConsulta(consulta);
 				consulta.setPaciente(paciente.get());
+				consultaRepository.save(consulta);
+			} catch (Exception e) {
+
+				e.printStackTrace();
 			}
-			consultaRepository.save(consulta);
 		}
 		return "redirect:/consulta";
 	}
-	
+
+	private void validaConsulta(Consulta consulta) throws Exception {
+		validaIdPaciente(consulta.getPaciente_id());
+		verificaConflitos(consulta);
+	}
+
+	private void verificaConflitos(Consulta consulta) throws Exception {
+		List<Consulta> consultas = consultaRepository.findAll();
+		for (Consulta con : consultas) {
+			if (con.getData().equals(consulta.getData()) && con.getHora().equals(consulta.getHora())) {
+				throw new Exception("Data indisponivel !");
+			}
+		}
+
+	}
+
+	private void validaIdPaciente(Long paciente_id) throws Exception {
+		if (paciente_id == null) {
+			throw new Exception(" Paciente Inválido !");
+		}
+
+	}
 
 	@GetMapping("/consulta/delete")
 	public String delete(Long id) {
