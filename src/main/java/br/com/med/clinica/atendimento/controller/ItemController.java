@@ -41,6 +41,7 @@ public class ItemController {
 	@GetMapping("/item/form")
 	public String form(Model model,@Param(value = "id") Long id) {
 		Item item = new Item();
+		//Se ja existe um id ele pega e atribui
 		if(id != null) {
 			Optional<Item> op = itemRepository.findById(id);
 			if(op.isPresent()) {
@@ -56,6 +57,7 @@ public class ItemController {
 	// Salvando algo na lista (Pegando os dados do .html)
 	@PostMapping("/item/salvar")
 	public String salvar(@Valid Item item, BindingResult bindingResult, Model model) {
+		//Biding Result é uma estrutura para ajudar captar resultados, nesse caso está captando erros
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors().forEach(a -> System.out.print(a));
 			model.addAttribute("drogas", drogaRepository.findAll());

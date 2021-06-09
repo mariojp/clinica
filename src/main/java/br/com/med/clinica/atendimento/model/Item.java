@@ -30,8 +30,7 @@ public class Item {
 		private Droga droga;
 	 
 		@ManyToOne
-		@JoinColumn(name = "receita_oid",
-		foreignKey = @ForeignKey(name = "RECEITA_OID_FK"))
+		@JoinColumn(name = "receita_oid")
 		private Receita receita;
 
 		public Item() {
@@ -43,12 +42,12 @@ public class Item {
 			this.texto = texto;
 		}
 
-		public Item(Long oid, String texto, Droga droga, Receita receita) {
+		public Item(Long oid, String texto, Droga droga) {
 			this();
 			this.oid = oid;
 			this.texto = texto;
 			this.droga = droga;
-			this.receita = receita;
+			
 		}
 
 		public Long getOid() {

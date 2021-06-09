@@ -1,11 +1,6 @@
 package br.com.med.clinica.atendimento.controller;
 
-/**
- * VO
- * 
- * @author lucasagw
- *
- */
+
 
 public class AtendimentoDTO {
 

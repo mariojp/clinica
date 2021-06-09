@@ -31,7 +31,7 @@ public class Receita {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Atendimento atendimento;
 
-	@OneToMany(mappedBy = "receita")
+	@OneToMany
 	private List<Item> itens;
 
 	public Receita() {

@@ -33,11 +33,11 @@ public class Atendimento {
 	@Column
 	private Long consultas_oid;
 
-	@OneToMany(mappedBy = "atendimento")
+	@OneToMany
 	private List<Receita> receitas;
 
 	
-	@OneToMany(mappedBy = "atendimento")
+	@OneToMany
 	private List<Exame> exames;
 
 	public Atendimento() {

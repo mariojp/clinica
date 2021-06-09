@@ -43,7 +43,7 @@ public class AtendimentoController {
 		return "/atendimento/atendimento";
 	}
 	
-	// Pegando um dado do repositório
+	// Pegando um dado do repositório e verificando se ja existe algo naquele id passado
 	
 	@GetMapping("/atendimento/form")
 	public String form(Model model, @Param(value = "id") Long id) {
@@ -51,20 +51,24 @@ public class AtendimentoController {
 		List<Exame> exames = new ArrayList<>();
 		List<Receita> receitas = new ArrayList<>();
 		List<Atendimento> historico = new ArrayList<>();
-
+		
 		if (id != null) {
 			Optional<Atendimento> op = atendimentoRepository.findById(id);
+			//Se ja existe um id ele pega e atribui
 			if (op.isPresent()) {
+				
 				atendimento = op.get();
-				// Lazy
+				
 				exames = exameRepository.findByAtendimento(atendimento);
-				// Eagle
-				// atendimento.getExames();
+				
 				receitas = receitaRepository.findByAtendimento(atendimento);
+				
+				// Historico = Tentativa de manipular pelo objeto Paciente
 				historico = atendimentoRepository.findAllByPaciente(atendimento.getPaciente());
 
 			}
 		}
+		//Aqui ele atribui às variaveis ao que foi passado
 		model.addAttribute("historico", historico); 
 		model.addAttribute("receitas", receitas);
 		model.addAttribute("exames", exames);

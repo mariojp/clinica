@@ -49,13 +49,14 @@ public class ReceitaController {
 		}
 	}
 
+	// Pegando um dado do repositório e verificando se ja existe algo naquele id passado
 	@GetMapping("/atendimento/receita/form")
 	public String form(Model model, @Param(value = "id") Long id) {
 		ReceitaDTO receitaDTO = new ReceitaDTO();
 		Atendimento atendimento = new Atendimento();
 		Receita receita = new Receita();
 		List<Receita> receitas = new ArrayList<>();
-
+		//Se ja existe um id ele pega e atribui
 		if (id != null) {
 			Optional<Receita> op = receitaRepository.findById(id);
 			if (op.isPresent()) {
@@ -66,6 +67,7 @@ public class ReceitaController {
 				
 			}
 		}
+		//Aqui ele atribui às variaveis ao que foi passado
 		model.addAttribute("atendimentos", atendimento);
 		
 		model.addAttribute("receitas", receitas);
@@ -81,7 +83,7 @@ public class ReceitaController {
 
 	@PostMapping("/atendimento/receita/salvar")
 	public String salvar(ReceitaDTO receitaDTO, Model model) {
-
+		//Aqui ocorre a utilização do Receita DTO, aqui que ele atribui a receitaDTO os devidos valores
 		Receita receita = new Receita();
 		receita.setOid(receitaDTO.getOidReceita());
 		receita.setTexto(receitaDTO.getTextoReceita());
@@ -89,7 +91,7 @@ public class ReceitaController {
 		atendimento.setOid(receitaDTO.getOidAtendimento());
 		receita.setAtendimento(atendimento);
 		receitaRepository.save(receita);
-
+		// Se ReceitaDTO ainda é vazio, ele apenas Setta o Id
 		if (receitaDTO.getOidReceita() == null) {
 			receitaDTO.setOidReceita(receita.getOid());
 		}
@@ -100,7 +102,7 @@ public class ReceitaController {
 		item.setTexto(receitaDTO.getDrogaTexto());
 		item.setReceita(receita);
 		itemRepository.save(item);
-
+		//Aqui ele atribui as variaveis
 		model.addAttribute("receitaDTO", receitaDTO);
 		model.addAttribute("itens", itemRepository.findByReceita(receita));
 		model.addAttribute("drogas", drogaRepository.findAll());
