@@ -25,7 +25,7 @@ public class Medico {
 	private Long oid;
 
 	/** The concelho. */
-	@NotBlank(message = "NAO pode ser vazio")
+	//@NotBlank(message = "NAO pode ser vazio")
 	private String concelho;
 
 	/** The funcionario. */

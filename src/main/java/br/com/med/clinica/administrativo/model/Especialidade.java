@@ -23,9 +23,7 @@ public class Especialidade {
 	private Long oid;
 
 	/** The nome. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
 	@Column(length = 250)
-	@Size(max = 30, min = 2, message = "Este campo NAO pode ser vazio! Informe a especialidade!")
 	private String nome;
 
 	/**
@@ -34,8 +32,7 @@ public class Especialidade {
 	 * @param oid the oid
 	 * @param nome the nome
 	 */
-	public Especialidade(Long oid,
-			@Size(max = 30, min = 2, message = "Este campo NAO pode ser vazio! Informe a especialidade!") String nome) {
+	public Especialidade(Long oid, String nome) {
 		super();
 		this.oid = oid;
 		this.nome = nome;

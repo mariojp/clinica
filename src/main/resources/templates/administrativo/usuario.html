@@ -19,13 +19,13 @@
                 </svg>
             </a>
 
-              <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/endereco" class="nav-link px-2 text-white">Endereco</a></li>
-          <li><a href="/funcionario" class="nav-link px-2 text-white">Funcionario</a></li>
-          <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Usuario</a></li>
-          <li><a href="/medico" class="nav-link px-2 text-white">Medico</a></li>
-        </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/endereco" class="nav-link px-2 text-white">Endereco</a></li>
+                <li><a href="/funcionario" class="nav-link px-2 text-white">Funcionario</a></li>
+                <li><a href="/especialidade" class="nav-link px-2 text-white">Especialidade</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Usuario</a></li>
+                <li><a href="/medico" class="nav-link px-2 text-white">Medico</a></li>
+            </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <input type="search" class="form-control form-control-dark" placeholder="Busca..." aria-label="Buscar">
             </form>
@@ -57,10 +57,10 @@
                 </thead>
                 <tbody>
                 <tr th:each="obj: ${usuarios}" >
-                    <td> <a href="#" th:href="@{/usuario/form(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
+                    <td th:text="${obj.oid}" > -1 </td>
                     <td th:text="${obj.username}" > Username </td>
                     <td th:text="${obj.email}"> Email</td>
-                     <td th:text="${obj.funcionario.getNome()}">Nome</td>
+                    <td th:text="${obj.funcionario.getNome()}">Nome</td>
                     <td><a href="#" th:href="@{/usuario/delete(id=${obj.oid})}">
                         <i class="bi bi-trash"></i>
                     </a></td>

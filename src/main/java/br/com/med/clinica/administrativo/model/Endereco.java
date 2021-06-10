@@ -30,37 +30,31 @@ public class Endereco implements Serializable {
 	private Long oid;
 	
 	/** The logradouro. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(min = 2, max = 50, message = "Logradouro: Este campo NAO pode ser vazio")
+	//@Size(min = 2, max = 50, message = "Logradouro: Este campo NAO pode ser vazio")
 	private String logradouro;
 	
 	/** The numero. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(min = 1, max = 8, message = "Número: Este campo NAO pode ser vazio")
+	//@Size(min = 1, max = 8, message = "Número: Este campo NAO pode ser vazio")
 	private String numero;
 	
 	/** The complemento. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(min = 2, max = 50, message = "Complemento: Se NAO possuir complemento, escreva  ''NAO POSSUI COMPLEMENTO''  ")
+	//@Size(min = 2, max = 50, message = "Complemento: Se NAO possuir complemento, escreva  ''NAO POSSUI COMPLEMENTO''  ")
 	private String complemento;
 	
 	/** The bairro. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(min = 2, max = 50, message = "Bairro: Este campo NAO pode ser vazio")
+	//@Size(min = 2, max = 50, message = "Bairro: Este campo NAO pode ser vazio")
 	private String bairro;
 	
 	/** The cidade. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(min = 2, max = 50, message = "Cidade: Este campo NAO pode ser vazio")
+	//@Size(min = 2, max = 50, message = "Cidade: Este campo NAO pode ser vazio")
 	private String cidade;
 	
 	/** The cep. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 8, min = 8, message = "CEP: Este campo DEVE possuir  8 números!")
+	//@Size(max = 8, min = 8, message = "CEP: Este campo DEVE possuir  8 números!")
 	private String cep;
 	
 	/** The estado. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
 	private String estado;
 
 	/** The funcionarios. */

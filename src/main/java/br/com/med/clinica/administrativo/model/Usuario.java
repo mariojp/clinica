@@ -27,17 +27,14 @@ public class Usuario {
 	private Long oid;
 
 	/** The username. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 15, min = 2, message = "O usuário deve ter de 2 a 15 Caracteres")
+	//@Size(max = 15, min = 2, message = "O usuário deve ter de 2 a 15 Caracteres")
 	private String username;
 
 	/** The email. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
 	@Email
 	private String email;
 
 	/** The password. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
 	@Size(max = 8, min = 4, message = "A senha deve ser de 4 a 8 digitos")
 	private String password;
 

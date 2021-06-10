@@ -32,33 +32,33 @@ public class Funcionario {
 	private Long oid;
 	
 	/** The nome. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 44, min = 1, message = "Nome: Este campo nao pode ser vazio")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@Size(max = 44, min = 1, message = "Nome: Este campo nao pode ser vazio")
 	private String nome;
 	
 	/** The rg. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 10, min = 10, message = "RG: Este campo deve possuir 10 DIGITOS")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@Size(max = 10, min = 10, message = "RG: Este campo deve possuir 10 DIGITOS")
 	private String rg;
 	
 	/** The orgao. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@NotEmpty(message = "Orgão: orgao emissor nao pode ser vazio")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@NotEmpty(message = "Orgão: orgao emissor nao pode ser vazio")
 	private String orgao;
 	
 	/** The cpf. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@CPF
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@CPF
 	private String cpf;
 	
 	/** The telefone. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 11, min = 11, message = "Telefone: Deve possuir 11 digitos")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@Size(max = 11, min = 11, message = "Telefone: Deve possuir 11 digitos")
 	private String telefone;
 	
 	/** The celular. */
-	@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
-	@Size(max = 12, min = 12, message = "Celular: Deve possuir 12 digitos")
+	//@NotBlank(message = "CAMPO OBRIGATÓRIO - NAO PODE ESTAR VAZIO")
+	//@Size(max = 12, min = 12, message = "Celular: Deve possuir 12 digitos")
 	private String celular;
 
 	/**
