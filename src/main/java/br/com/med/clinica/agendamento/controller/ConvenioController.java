@@ -42,10 +42,26 @@ public class ConvenioController {
 	
 	@PostMapping("/convenio/salvar")
 	public String salvar(Convenio convenio) {
-		convenioRepository.save(convenio);
+		try {
+			validaConvenio(convenio);
+			convenioRepository.save(convenio);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
 		return "redirect:/convenio";
 	}
 	
+
+	private void validaConvenio(Convenio convenio) throws Exception {
+		List<Convenio> convenios = convenioRepository.findAll();
+		for(Convenio con: convenios) {
+			if(con.getNome().equals(convenio.getNome())||con.getCnpj().equals(convenio.getCnpj())||con.getTelefone().equals(convenio.getTelefone())) {
+				throw new Exception("Convenio já Cadastrado!");
+			}
+		}
+	}
 
 	@GetMapping("/convenio/delete")
 	public String delete(Long id) {

@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Convenio</title>
+<title>Consulta</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -33,9 +33,9 @@
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" th:href="@{/home}" class="nav-link px-2 text-white">UNIFISIO</a></li>
           			<li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-white">Agenda</a></li>
-			          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li>			          
-			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-secondary">Convênio</a></li>
-			          <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-white">Consulta</a></li>
+					<li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li>		          
+			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
+			          <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-secondary">Consulta</a></li>
 			          <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
 				</ul>
 
@@ -53,17 +53,41 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Convenios</h2>
-				<form  th:action="@{/convenio/salvar}" th:object="${convenio}" method="post" >
+			<h2>Consultas</h2>
+				<form  th:action="@{/consulta/salvar}" th:object="${consulta}" method="post" >
 
 					<input type="hidden" name="oid" th:value="*{oid}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
 						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
-						<label for="nome" class="form-label">CNPJ</label>
-						<input type="text" id="cnpj" name="cnpj" th:value="*{cnpj}" class="form-control" />
-						<label for="nome" class="form-label">Telefone</label>
-						<input type="text" id="telefone" name="telefone" th:value="*{telefone}" class="form-control" />
+						<label for="nome" class="form-label">Data</label>
+						<input type="date" id="data" name="data" th:value="*{data}" class="form-control" />
+						<label for="hora" class="form-label">Hora</label>
+						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
+						<label for="nome" class="form-label">Paciente</label>
+						<select th:field="*{paciente_id}" class="form-control">
+							<option value="">Selecione</option>
+						    <option th:each="p : ${pacientes}" th:value="${p.oid}" th:text="${p.nome}">
+						    </option>
+						</select>
+						<label for="role">Retorno</label>
+				    	<select id="role" name="role" th:field="*{retorno}" class="form-control">
+				    		<option th:value="false">Selecione</option>
+				    		<option th:value="true">SIM</option>
+				    		<option th:value="false">NÃO</option>
+				    	</select>
+				    	<label for="role">Cancelado</label>
+				    	<select id="role" name="role" th:field="*{cancelada}" class="form-control">
+				    		<option th:value="false">Selecione</option>
+				    		<option th:value="true">SIM</option>
+				    		<option th:value="false">NÃO</option>
+				    	</select>
+				    	<!-- label for="nome" class="form-label">Agenda</label>
+						<select th:field="*{agenda}" class="form-control">
+							<option value="">Selecione</option>
+						    <option th:each="a : ${agenda}" th:value="${a}" th:text="${a}">
+						    </option>
+						</select-->
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>

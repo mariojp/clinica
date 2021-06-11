@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,10 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Convenio</title>
+<title>Horario</title>
 </head>
 <body>
-	<header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white">
 		<div class="container">
 			<div
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -33,8 +33,8 @@
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" th:href="@{/home}" class="nav-link px-2 text-white">UNIFISIO</a></li>
           			<li><a href="#" th:href="@{/agenda}" class="nav-link px-2 text-white">Agenda</a></li>
-			          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-white">Horário</a></li>			          
-			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-secondary">Convênio</a></li>
+			          <li><a href="#" th:href="@{/horario}" class="nav-link px-2 text-secondary">Horário</a></li>			          
+			          <li><a href="#" th:href="@{/convenio}" class="nav-link px-2 text-white">Convênio</a></li>
 			          <li><a href="#" th:href="@{/consulta}" class="nav-link px-2 text-white">Consulta</a></li>
 			          <li><a href="#" th:href="@{/paciente}" class="nav-link px-2 text-white">Paciente</a></li>
 				</ul>
@@ -51,19 +51,23 @@
 		</div>
 	</header>
 
-	<div class="container-fluid">
+<div class="container-fluid">
 		<main>
-			<h2>Convenios</h2>
-				<form  th:action="@{/convenio/salvar}" th:object="${convenio}" method="post" >
+			<h2>Horario</h2>
+				<form  th:action="@{/horario/salvar}" th:object="${horario}" method="post" >
 
-					<input type="hidden" name="oid" th:value="*{oid}"> 
+					<input type="hidden" name="categoriaId" th:value="*{categoriaId}"> 
 					<div class="mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
-						<label for="nome" class="form-label">CNPJ</label>
-						<input type="text" id="cnpj" name="cnpj" th:value="*{cnpj}" class="form-control" />
-						<label for="nome" class="form-label">Telefone</label>
-						<input type="text" id="telefone" name="telefone" th:value="*{telefone}" class="form-control" />
+						<label for="diaSemana" class="form-label">Dia da semana</label>
+						<input type="date" id="diaSemana" name="diaSemana" th:value="*{diaSemana}" class="form-control" />
+						<label for="hora" class="form-label">Horario</label>
+						<input type="time" id="hora" name="hora" th:value="*{hora}" class="form-control" />
+						<label for="nome" class="form-label">Adicionar na Agenda do Médico</label>
+						<select th:field="*{agendaoid}" class="form-control">
+							<option value="">Selecione</option>
+						    <option th:each="a : ${agendas}" th:value="${a.id}" th:text="${a.medico.nome}">
+						    </option>
+						</select>
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
