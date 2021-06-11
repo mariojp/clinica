@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="obj: ${medicos}" >
-                    <td> <a href="#" th:href="@{/medico/form/update(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
+                    <td> <a href="#" th:href="@{/medico/form(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
                     <td th:text="${obj.funcionario.getNome()}" > Nome </td>
                      <td th:text="${obj.concelho}">CRM</td>
                      <td th:text ="${obj.especialidade.getNome()}">Especialidade</td>

@@ -61,7 +61,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="obj: ${funcionarios}" >
-                    <td> <a href="#" th:href="@{/funcionario/form/update(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
+                    <td> <a href="#" th:href="@{/funcionario/form(id=${obj.oid})}"> <span th:text="${obj.oid}" > -1 </span></a></td>
                     <td th:text="${obj.nome}" > Nome </td>
                     <td th:text="${obj.celular}"> Celular</td>
                      <td th:text="${obj.endereco.getLogradouro()}">Logradouro</td>

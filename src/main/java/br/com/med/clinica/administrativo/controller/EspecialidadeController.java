@@ -22,16 +22,20 @@ public class EspecialidadeController {
 	@GetMapping("/especialidade")
 	public String listEspecialidade(Model model) {
 
-		List<Especialidade> especialidades = new ArrayList<Especialidade>();
-
-		especialidades.add(especialidadeRepository.findById(1l).get());
-		especialidades.add(especialidadeRepository.findById(2l).get());
-		especialidades.add(especialidadeRepository.findById(3l).get());
+//FIX: 		
+//  	List<Especialidade> especialidades = new ArrayList<Especialidade>();
+//
+//		especialidades.add(especialidadeRepository.findById(1l).get());
+//		especialidades.add(especialidadeRepository.findById(2l).get());
+//		especialidades.add(especialidadeRepository.findById(3l).get());
+		
+		List<Especialidade> especialidades = especialidadeRepository.findAll();
 		model.addAttribute("especialidades", especialidades);
 
 		return "/administrativo/especialidade";
 	}
 
+	//Cadastro de Especialidade
 	@GetMapping("/especialidade/form")
 	public String form(Model model, @Param(value = "id") Long id) {
 		Especialidade especialidade = new Especialidade();

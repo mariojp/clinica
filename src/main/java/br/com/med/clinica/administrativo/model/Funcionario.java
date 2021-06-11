@@ -69,7 +69,7 @@ public class Funcionario {
 	}
 
 	/** The endereco. */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_oid")
 	private Endereco endereco;
 

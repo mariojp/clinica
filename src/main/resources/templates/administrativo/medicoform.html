@@ -53,49 +53,56 @@
 <div class="container-fluid">
   <main>
     <h5> Cadastro de Medico</h5>
-   <form  th:action="@{/medico/salvar}" th:object="${obj}" method="post" >
+   <form  th:action="@{/medico/salvar}" th:object="${medicoDTO}" method="post" >
+   
+   
+          <input type="hidden" id="oid" name="oid" th:value="*{oid}"  class="form-control" />
+       	  <input type="hidden" id="funcionario.oid" name="funcionario.oid" th:value="*{funcionario.oid}" />
+          <input type="hidden" id="funcionario.endereco.oid" name="funcionario.endereco.oid" th:value="*{funcionario.endereco.oid}" />
+       
       <div class="mb-3">
       	<h5>Nome</h5>
-        <input type="text" required="required"id="funcionario_nome" name="funcionario_nome" th:value="*{funcionario_nome}"  class="form-control" />
+        <input type="text" required="required"id="funcionario.nome" name="funcionario.nome" th:value="*{funcionario.nome}"  class="form-control" />
         <h5>RG</h5>
-        <input type="text" required="required"id="funcionario_rg" name="funcionario_rg" th:value="*{funcionario_rg}"  class="form-control" />
+        <input type="text" required="required"id="funcionario.rg" name="funcionario.rg" th:value="*{funcionario.rg}"  class="form-control" />
         <h5>Orgao</h5>
-        <input type="text" required="required"id="funcionario_orgao" name="funcionario_orgao"  th:value="*{funcionario_orgao}"   class="form-control" />
+        <input type="text" required="required"id="funcionario.orgao" name="funcionario.orgao"  th:value="*{funcionario.orgao}"   class="form-control" />
         <h5>CPF</h5>
-        <input type="text" required="required"id="funcionario_cpf"  name="funcionario_cpf"  th:value="*{funcionario_cpf}"  class="form-control" />
+        <input type="text" required="required"id="funcionario.cpf"  name="funcionario.cpf"  th:value="*{funcionario.cpf}"  class="form-control" />
         <h5>Telefone</h5>
-        <input type="text"required="required" placeholder="(DDD)XXXXXXXX" id ="funcionario_telefone" name="funcionario_telefone"  th:value="*{funcionario_telefone}"  class="form-control" />
+        <input type="text"required="required" placeholder="(DDD)XXXXXXXX" id ="funcionario.telefone" name="funcionario.telefone"  th:value="*{funcionario.telefone}"  class="form-control" />
         <h5>Celular</h5>
-        <input type="text" required="required"placeholder="(DDD)(9)XXXXXXXX" id = "funcionario_celular" name="funcionario_celular"   th:value="*{funcionario_celular}"  class="form-control" />
+        <input type="text" required="required"placeholder="(DDD)(9)XXXXXXXX" id = "funcionario.celular" name="funcionario.celular"   th:value="*{funcionario.celular}"  class="form-control" />
         <h5>Logradouro</h5>
-					<input type="text"required="required" id="endereco_logradouro" name="endereco_logradouro" th:value="*{endereco_logradouro}"
+					<input type="text"required="required" id="funcionario.endereco.logradouro" name="funcionario.endereco.logradouro" th:value="*{funcionario.endereco.logradouro}"
 						class="form-control" />
 					<h5>Numero</h5>
-					<input type="text"required="required" id="endereco_numero" name="endereco_numero" th:value="*{endereco_numero}"
+					<input type="text"required="required" id="funcionario.endereco.numero" name="funcionario.endereco.numero" th:value="*{funcionario.endereco.numero}"
 						class="form-control" />
 					<h5>Complemento</h5>
-					<input type="text"required="required" id="endereco_complemento" name="endereco_complemento" th:value="*{endereco_complemento}"
+					<input type="text"required="required" id="funcionario.endereco.complemento" name="funcionario.endereco.complemento" th:value="*{funcionario.endereco.complemento}"
 						class="form-control" />
 					<h5>Bairro</h5>
-					<input type="text"required="required" id="endereco_bairro" name="endereco_bairro" th:value="*{endereco_bairro}"
+					<input type="text"required="required" id="funcionario.endereco.bairro" name="funcionario.endereco.bairro" th:value="*{funcionario.endereco.bairro}"
 						class="form-control" />
 					<h5>Cidade</h5>
-					<input type="text"  required="required"id="endereco_cidade"
-						name="endereco_cidade" th:value="*{endereco_cidade}" class="form-control" />
+					<input type="text"  required="required"id="funcionario.endereco.cidade"
+						name="funcionario.endereco.cidade" th:value="*{funcionario.endereco.cidade}" class="form-control" />
 					<h5>CEP</h5>
-					<input type="text" required="required" id="endereco_cep"
-						name="endereco_cep" th:value="*{endereco_cep}" class="form-control" />
+					<input type="text" required="required" id="funcionario.endereco.cep"
+						name="funcionario.endereco.cep" th:value="*{funcionario.endereco.cep}" class="form-control" />
             <h5>ESTADO</h5>
-            <input type="text"  required="required" id="endereco_estado"
-              name="endereco_estado" th:value="*{endereco_estado}" class="form-control" />
+            <input type="text"  required="required" id="funcionario.endereco.estado"
+              name="funcionario.endereco.estado" th:value="*{funcionario.endereco.estado}" class="form-control" />
              
              <h5>CONCELHO</h5>
-             <input type="text" required="required" id="medico_concelho"
-              name="medico_concelho" th:value="*{medico_concelho}" class="form-control" />
+             <input type="text" required="required" id="conselho"
+              name="conselho" th:value="*{conselho}" class="form-control" />
               
-             <select required="required" class="form-select" th:field = "${obj.especialidade}" >
+             <h5>Especialidade</h5> 
+             <select required="required" class="form-select" th:field="*{especialidade}" >
 							<option  selected value="" >---Escolha a especialidade---</option>
-							<option th:each = "e : ${especialidades}" th:text = "${e.nome}+'('+${e.oid}+')'" th:value="${e.oid}" ></option>
+							<option th:each = "e : ${especialidades}" th:text = "${e.nome}" th:value="${e.oid}" ></option>
 			</select>
               
               
