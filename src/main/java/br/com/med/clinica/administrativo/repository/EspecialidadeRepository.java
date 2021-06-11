@@ -10,6 +10,5 @@ import br.com.med.clinica.administrativo.model.Especialidade;
 @Repository
 public interface EspecialidadeRepository extends CrudRepository<Especialidade,Long>{
 
-	
 	List<Especialidade> findAll();
 }

@@ -28,10 +28,10 @@ public class EspecialidadeController {
 	}
 	
 	@GetMapping("/especialidade/form")
-	public String form(Model model,@Param(value = "id") Long id) {
+	public String form(Model model,@Param(value = "oid") Long oid) {
 		Especialidade especialidade = new Especialidade();
-		if(id != null) {
-			Optional<Especialidade> op = especialidadeRepository.findById(id);
+		if(oid != null) {
+			Optional<Especialidade> op = especialidadeRepository.findById(oid);
 			if(op.isPresent()) {
 				especialidade = op.get();
 			}
@@ -49,12 +49,8 @@ public class EspecialidadeController {
 	
 
 	@GetMapping("/especialidade/delete")
-	public String delete(Long id) {
-		especialidadeRepository.deleteById(id);
+	public String delete(Long oid) {
+		especialidadeRepository.deleteById(oid);
 		return "redirect:/especialidade";
 	}
-
-	
-	
-	
 }

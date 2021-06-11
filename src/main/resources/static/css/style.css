@@ -1,0 +1,191 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #dff9fb;
+}
+
+
+#banner{
+    width: 100%;
+	min-height: 350px;
+    background-image: url(../imagens/clinica-header2.jpg);
+    background-position: center;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+    background-repeat: no-repeat;
+    background-color: #d8f1f6;
+}
+
+.nav-bar{
+    flex: 1;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.nav-bar ul li{
+    list-style: none;
+	display: inline-block;
+	margin-right: 50px;
+	position: relative;
+}
+
+.nav-bar ul li a{
+    text-decoration: none;
+	text-transform: uppercase;
+	color: black;
+    font-family: 'Poppins SemiBold';
+}
+.nav-bar ul li::after{
+	content: '';
+	height: 2px;
+	width: 0%;
+	background: #19a1ad;
+	position: absolute;
+	left: 0;
+	bottom: -10px;
+	transition: 0.5s;
+}
+
+.nav-bar ul li:hover:after{
+    width: 100%;
+}
+
+#main-text{
+    text-align: center;
+}
+.content1{
+    width: 100%;
+    height: 300px;
+}
+
+#img1{
+    width: 35%;
+    height: 300px;
+    float: left;
+    background-image: url(../imagens/map.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+}
+.info1{
+    float: right;
+    width: 60%;
+    text-align: justify;
+    margin-top: 5%;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.content2{
+    margin-top: 10%;
+    width: 100%;
+    height: 300px;
+    clear: both;
+}
+
+#img2{
+    width: 35%;
+    height: 300px;
+    float: left;
+    background-image: url(../imagens/especialidade.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+    margin-left: 3%;
+}
+.info2{
+    float: right;
+    width: 60%;
+    text-align: justify;
+    margin-top: 5%;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.content3{
+    margin-top: 10%;
+    width: 100%;
+    height: 300px;
+    clear: both;
+}
+
+#img3{
+    width: 35%;
+    height: 300px;
+    float: left;
+    background-image: url(../imagens/usuario2.png);
+    margin-left: 3%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+}
+.info3{
+    float: right;
+    width: 60%;
+    text-align: justify;
+    margin-top: 5%;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.content4{
+    margin-top: 10%;
+    width: 100%;
+    height: 300px;
+    clear: both;
+}
+
+#img4{
+    width: 35%;
+    height: 300px;
+    float: left;
+    background-image: url(../imagens/estetoscopico.png);
+    margin-left: 3%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+}
+.info4{
+    float: right;
+    width: 60%;
+    text-align: justify;
+    margin-top: 5%;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+#button{
+    text-align: center;
+    padding-top: 2%;
+}
+
+.content5{
+    margin-top: 10%;
+    width: 100%;
+    height: 300px;
+    clear: both;
+}
+
+#img5{
+    width: 35%;
+    height: 300px;
+    float: left;
+    background-image: url(../imagens/ui-ux-designing.png);
+    margin-left: 3%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 3%;
+}
+.info5{
+    float: right;
+    width: 60%;
+    text-align: justify;
+    margin-top: 5%;
+    font-size: 120%;
+    font-weight: bold;
+}

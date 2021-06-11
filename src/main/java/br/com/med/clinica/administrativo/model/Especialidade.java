@@ -1,6 +1,5 @@
 package br.com.med.clinica.administrativo.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,12 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Especialidade {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
-	
-	@Column(length = 250)
+
 	private String nome;
 
 	public Long getOid() {
@@ -33,18 +31,28 @@ public class Especialidade {
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Especialidade [oid=");
-		builder.append(oid);
-		builder.append(", nome=");
-		builder.append(nome);
-		builder.append("]");
-		return builder.toString();
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+		return result;
 	}
-	
-	
 
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Especialidade other = (Especialidade) obj;
+		if (oid == null) {
+			if (other.oid != null)
+				return false;
+		} else if (!oid.equals(other.oid))
+			return false;
+		return true;
+	}
+
 }
