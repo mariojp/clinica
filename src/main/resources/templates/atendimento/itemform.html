@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="main.css" media="screen"/>
-<title>Droga Cadastro</title>
+<title>Formulário de Itens</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -30,13 +30,15 @@
 		  </svg>
 				</a>
 
-				 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-          <li><a href="/droga" class="nav-link px-2 text-secondary">Droga</a></li>
-          <li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
-          <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
+				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
+          <li><a href="/droga" class="nav-link px-2 text-white">Droga</a></li>
           <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-          <li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
+          <li><a href="/item" class="nav-link px-2 text-secondary">Itens</a></li>
+          <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
+          
+          <li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
         </ul>
 
 			</div>
@@ -45,32 +47,37 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Drogas</h2>
-				<form  th:action="@{/droga/salvar}" th:object="${droga}" method="post" >
+			<h2>Itens</h2>
+			<form th:action="@{/item/salvar}" th:object="${item}" method="post">
 
-					<input type="hidden" name="oid" th:value="*{oid}"> 
-					<div class="mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" 
-						 th:classappend="${#fields.hasErrors('nome')} ? 'alert alert-danger' : '' " />
-					    <!--  mensagem de erro -->		
-						<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro Message</div>
-				           <!--bindingResult.hasFieldErrors(field);--> 
-					</div>
-			
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</form>
+				<input type="hidden" name="oid" th:value="*{oid}">
+
+				<div class="mb-3">
+					<label for="droga" class="form-label">Droga</label>
+					<select
+						name="droga" id="droga" th:value=*{droga} class="form-control">
+						<option>Selecione</option>
+						<option th:each="dro: ${drogas}" th:text="${dro.nome}" th:value="${dro.oid}"
+					 		th:selected="${item.droga!= null && dro.oid == item.droga.oid}"	></option>
+					</select>
+				</div>
+				
+				<div class="mb-3">
+					<label for="texto" class="form-label">Texto</label> <input required
+						type="text" id="texto" name="texto" th:value="*{texto}"
+						class="form-control" />
+				</div>
+
+
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</form>
 		</main>
 	</div>
-
-	<!-- JavaScript Bundle with Popper -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
-		crossorigin="anonymous"></script>
-		
-		
-		<footer>
+	
+	
+	
+	<footer>
         <div class="container-fluid bg-dark text-center text-white p-3 ">
         <div class="row " >
         <div class="col-sm-12">
@@ -85,8 +92,14 @@
         
         
         </footer>
-		
-		
-		
+	
+	
+	
+
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
 </body>
 </html>

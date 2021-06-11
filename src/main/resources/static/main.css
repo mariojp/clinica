@@ -1,0 +1,154 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Lobster&display=swap');
+
+
+body{
+	
+ background-image: linear-gradient( to right, rgb(79, 176, 214), rgb(151, 210, 238));
+	
+	
+}
+
+
+
+
+.slideshow-container {
+  max-width: 600px;
+  position: relative;
+  margin: auto;
+   margin-top: 120px;
+   
+   
+    
+}
+
+img{
+	
+	border-radius: 30px;
+	
+	
+}
+
+footer{
+	margin-bottom: 0;
+ position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+display: flex;
+
+}
+
+h1{
+	
+	 font-family: 'Antonio', sans-serif;
+	border-color: white;
+	 border-width: 3px;
+  border-style: solid;
+	
+	text-align: center;
+	align-items:center;
+	justify-content:center;
+	margin-left:34.5%;
+	width:600px;
+	border-color: white;
+	 border-width: 4px;
+  border-style: solid;
+	
+	
+}
+
+.letrinha p{
+	font-size: 40px;
+		 font-family: 'Antonio', sans-serif;
+	text-align: center;
+	align-items:center;
+	justify-content:center;
+	margin-left:34.5%;
+	width:600px;
+	border-color: white;
+	 border-width: 4px;
+  border-style: solid;
+	
+}
+
+#demo{
+		 font-family: 'Antonio', sans-serif;
+		font-size: 40px;	
+		text-align:center;
+		margin-top:10px;
+}
+
+
+.nav{
+	
+		
+	font-family: 'Antonio', sans-serif;
+	font-size: 20px;
+	
+}
+
+
+
+
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+  animation-name: fade;
+  animation-duration: 4.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+ 
