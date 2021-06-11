@@ -24,7 +24,7 @@ public class EspecialidadeController {
 	public String listEspecialidade(Model model) {
 		List<Especialidade> especialidades =  especialidadeRepository.findAll();
 		model.addAttribute("especialidades",especialidades);
-		return "/administrativo/especialidade";
+		return "administrativo/especialidade";
 	}
 	
 	@GetMapping("/especialidade/form")
@@ -38,7 +38,7 @@ public class EspecialidadeController {
 		}
 		model.addAttribute("especialidade",especialidade);
 		
-		return "/administrativo/especialidadeform";
+		return "administrativo/especialidadeform";
 	}
 	
 	@PostMapping("/especialidade/salvar")

@@ -23,7 +23,7 @@ public class ConvenioController {
 	public String listConvenio(Model model) {
 		List<Convenio> convenios =  convenioRepository.findAll();
 		model.addAttribute("convenios",convenios);
-		return "/agendamento/convenio";
+		return "agendamento/convenio";
 	}
 	
 	@GetMapping("/convenio/form")
@@ -37,7 +37,7 @@ public class ConvenioController {
 		}
 		model.addAttribute("convenio",convenio);
 		
-		return "/agendamento/convenioform";
+		return "agendamento/convenioform";
 	}
 	
 	@PostMapping("/convenio/salvar")
