@@ -26,6 +26,12 @@ public class Item {
 	@ManyToOne()
 	@JoinColumn(name = "droga_oid")
 	private Droga droga;
+	
+	
+	@ManyToOne()
+	@JoinColumn(name = "receita_oid")
+	private Receita receita;
+	
 
 	public Long getOid() {
 		return oid;
@@ -49,6 +55,14 @@ public class Item {
 
 	public void setDroga(Droga droga) {
 		this.droga = droga;
+	}
+
+	public Receita getReceita() {
+		return receita;
+	}
+
+	public void setReceita(Receita receita) {
+		this.receita = receita;
 	}
 
 
