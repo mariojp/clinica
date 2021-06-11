@@ -49,68 +49,67 @@
 
 	<div class="container-fluid">
 		<main>
-			<form th:action="@{/funcionario/salvar}" th:object="${funcionario}"
+			<form th:action="@{/funcionario/salvar}" th:object="${formularioDTO}"
 				method="post">
 
 				<h3>Dados Funcionário</h3>
-				<input type="hidden" name="funcionario_oid"
-					th:value="*{funcionario_oid}">
+				<input type="hidden" name="funcionario.oid" th:value="*{funcionario.oid}">
+				<input type="hidden" name="medico.oid" th:value="*{medico.oid}">
+				
 
 				<div class="mb-3">
 					<label for="nome" class="form-label">Nome :</label> <input
-						type="text" id="nome" name="funcionario_nome" required="required"
-						th:value="*{funcionario_nome}" class="form-control" />
+						type="text" id="nome" name="funcionario.nome" required="required"
+						th:value="*{funcionario.nome}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="rg" class="form-label">RG :</label> <input type="text" required="required"
-						id="rg" name="funcionario_rg" th:value="*{funcionario_rg}"
+						id="rg" name="funcionario.rg" th:value="*{funcionario.rg}"
 						class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="orgaoEmissor" class="form-label">Orgão Emissor
 						:</label> <input type="text" id="orgaoEmissor" required="required"
-						name="funcionario_orgaoEmissor"
-						th:value="*{funcionario_orgaoEmissor}" class="form-control" />
+						name="funcionario.orgaoEmissor"
+						th:value="*{funcionario.orgaoEmissor}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">CPF :</label> <input
-						type="text" id="cpf" name="funcionario_cpf" required="required"
-						th:value="*{funcionario_cpf}" class="form-control" />
+						type="text" id="cpf" name="funcionario.cpf" required="required"
+						th:value="*{funcionario.cpf}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">Telefone :</label> <input
-						type="text" id="telefone" name="funcionario_telefone" required="required"
-						th:value="*{funcionario_telefone}" class="form-control" />
+						type="text" id="telefone" name="funcionario.telefone" required="required"
+						th:value="*{funcionario.telefone}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cpf" class="form-label">Celular :</label> <input
-						type="text" id="celular" name="funcionario_celular" required="required"
-						th:value="*{funcionario_celular}" class="form-control" />
+						type="text" id="celular" name="funcionario.celular" required="required"
+						th:value="*{funcionario.celular}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="isMedico">Médico : </label> <input type="checkbox"
-						id="isMedico"  onclick="verificaMedico();">
+						id="isMedico" name="isMedico" th:checked="*{isMedico}"   onclick="verificaMedico();">
 				</div>
 
 				<div id="medico" style = "display :none;">
 
-					<input type="hidden" name="medico_oid" th:value="*{medico_oid}">
-
 					<div class="mb-3">
-						<label for="concelho" class="form-label">Concelho :</label> <input
-							type="text" id="concelho" name="medico_concelho"
-							th:value="*{medico_concelho}" class="form-control" />
+						<label for="concelho" class="form-label">Conselho :</label> <input
+							type="text" id="conselho" name="medico.conselho"
+							th:value="*{medico.conselho}" class="form-control" />
 					</div>
 
 					<div>
 					<label for="especialidade">Especialidade :</label>
-						<select class="form-select" th:field = "${funcionario.medico_especialidade}" >
+						<select class="form-select" th:field = "*{medico.especialidade}" >
 							<option value="" >---Choose---</option>
 							<option th:each = "e : ${especialidades}" th:text = "${e.nome}" th:value="${e.oid}" ></option>
 						</select>
@@ -120,47 +119,47 @@
 
 				<h3>Endereço</h3>
 
-				<input type="hidden" name="endereco_oid" th:value="*{endereco_oid}">
+				<input type="hidden" name="funcionario.endereco.oid" th:value="*{funcionario.endereco.oid}">
 
 				<div class="mb-3">
 					<label for="nomeEndereco" class="form-label">Endereço :</label> <input
-						type="text" id="nomeEndereco" name="endereco_nome" required="required"
-						th:value="*{endereco_nome}" class="form-control" />
+						type="text" id="nomeEndereco" name="funcionario.endereco.logradouro" required="required"
+						th:value="*{funcionario.endereco.logradouro}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="numero" class="form-label">Número</label> <input
-						type="text" id="numero" name="endereco_numero" required="required"
-						th:value="*{endereco_numero}" class="form-control" />
+						type="text" id="numero" name="funcionario.endereco.numero" required="required"
+						th:value="*{funcionario.endereco.numero}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="complemento" class="form-label">Complemento</label> <input
-						type="text" id="complemento" name="endereco_complemento" required="required"
-						th:value="*{endereco_complemento}" class="form-control" />
+						type="text" id="complemento" name="funcionario.endereco.complemento" required="required"
+						th:value="*{funcionario.endereco.complemento}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="bairro" class="form-label">Bairro</label> <input
-						type="text" id="bairro" name="endereco_bairro" required="required"
-						th:value="*{endereco_bairro}" class="form-control" />
+						type="text" id="bairro" name="funcionario.endereco.bairro" required="required"
+						th:value="*{funcionario.endereco.bairro}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cidade" class="form-label">Cidade</label> <input
-						type="text" id="cidade" name="endereco_cidade" required="required"
-						th:value="*{endereco_cidade}" class="form-control" />
+						type="text" id="cidade" name="funcionario.endereco.cidade" required="required"
+						th:value="*{funcionario.endereco.cidade}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="estado" class="form-label">Estado</label> <input
-						type="text" id="estado" name="endereco_estado" required="required"
-						th:value="*{endereco_estado}" class="form-control" />
+						type="text" id="estado" name="funcionario.endereco.estado" required="required"
+						th:value="*{funcionario.endereco.estado}" class="form-control" />
 				</div>
 
 				<div class="mb-3">
 					<label for="cep" class="form-label">Cep</label> <input type="text"
-						id="cep" name="endereco_cep" th:value="*{endereco_cep}" required="required" pattern= "\d{5}-?\d{3}"
+						id="cep" name="funcionario.endereco.cep" th:value="*{funcionario.endereco.cep}" required="required" pattern= "\d{5}-?\d{3}"
 						class="form-control" />
 				</div>
 
@@ -183,6 +182,8 @@
 				document.getElementById('medico').style.display = "none";
 			}
 		}
+		
+		verificaMedico();
 	</script>
 
 </body>

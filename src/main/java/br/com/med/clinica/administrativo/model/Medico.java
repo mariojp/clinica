@@ -15,13 +15,13 @@ public class Medico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
-	private String concelho;
+	private String conselho;
 
 	@ManyToOne
 	@JoinColumn(name = "especialidade_oid")
 	private Especialidade especialidade;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "funcionario_oid")
 	private Funcionario funcionario;
 	
@@ -33,12 +33,12 @@ public class Medico {
 		this.oid = oid;
 	}
 
-	public String getConcelho() {
-		return concelho;
+	public String getConselho() {
+		return conselho;
 	}
 
-	public void setConcelho(String concelho) {
-		this.concelho = concelho;
+	public void setConselho(String conselho) {
+		this.conselho = conselho;
 	}
 
 	public Especialidade getEspecialidade() {

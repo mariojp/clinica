@@ -11,3 +11,10 @@
 
 
 
+# Melhorias e Correções
+- FuncionarioEndereco.java
+- Nomes de variaveis usando "_" o padão é o uso de CamelCase.
+- Criação de Mapper e de DTO
+- Correção de Formularios
+- Correção de Cotroller
+- Correção de Delete de Medico
