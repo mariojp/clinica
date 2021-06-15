@@ -47,7 +47,6 @@ public class AgendaController {
 	@PostMapping("/agenda/salvar")
 	public String salvar(@Valid Agenda agenda, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(a -> System.out.print(a));
             model.addAttribute("agendas", agendaRepository.findAll());
             return "agendamento/agendaform";
         }

@@ -54,35 +54,68 @@
 	<div class="container-fluid">
 		<main>
 			<h2>Consulta</h2>
-			<h1>
-				<div class="alert alert-danger" role="alert" th:text="${error}"></div>
-			</h1>
-				<form  th:action="@{/consulta/salvar}" th:object="${consulta}" method="post" >
-					<input type="hidden" name="consultaOid" th:value="*{consultaOid}"/> 
-					<div class="mb-3">
-					
-					<label for="nomeDiaHora" class="form-label">Medico/Horario</label>
-					<select id="nomeDiaHora" name="nomeDiaHora" th:value="*{nomeDiaHora}" class="form-control" required>
-    						<option  value="" disabled selected >Selecione</option>
-
-							<option th:each="horario: ${horarios}" th:value="${horario.agenda.medico}+'-'+${horario.diaDaSemana}+'-'+${horario.horaInicio}" th:text="${horario.agenda.medico}+' - '+${horario.diaDaSemana}+' ás '+${horario.horaInicio}"> </option>
-    		
-    				</select>
-
-					<label for="semana" class="form-label">Data</label>
-						<input type="week" id="semana" name="semana" th:value="*{semana}" class="form-control" required/>
-
-					<label for="paciente" class="form-label">Paciente</label>
-					<select id="paciente" name="paciente" th:value="*{paciente}" class="form-control" required>
-    						<option  value="" disabled selected >Selecione</option>
-
-							<option th:each="paciente: ${pacientes}" th:value="${paciente.nome}" th:text="${paciente.nome}"> </option>
-    		
-    				</select> 
+			<form th:action="@{/consulta/salvar}" th:object="${consulta}"
+				method="post">
+				<input type="hidden" name="oid" th:value="*{oid}" />
+				<div class="mb-3">
+				
+				<label for="paciente" class="form-label">Paciente</label> 
 						
-					</div>
-					<button type="submit" class="btn btn-primary">Salvar</button>
-				</form>
+						<select id="paciente" name="paciente" th:value="*{paciente}" class="form-control" required>
+						<option value="" disabled selected>Selecione</option>
+						<option th:each="paciente: ${pacientes}"
+							th:value="${paciente.oid}" th:text="${paciente.nome}">
+						</option>
+						</select>
+
+
+					<label for="horario" class="form-label">Medico/Horario</label> <select
+						id="horario" name="horario" th:value="*{horario}"
+						class="form-control" required>
+						<option value="" disabled selected>Selecione</option>
+						<option th:each="horario: ${horarios}"
+							th:value="${horario.oid}"
+							th:text="${horario.agenda.medico}+' - '+${horario.diaDaSemana}+' ás '+${horario.horaInicio}">
+						</option>
+					</select> 
+					
+					
+					<label for="data" class="form-label">Data</label> 
+					<input
+						type="date" id="data" name="data" th:value="*{data}"
+						class="form-control" required /> 
+						
+						
+						
+						
+
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+
+
+
+			</form>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-sm">
+					<thead>
+						<tr>
+							<th>Dia:</th>
+							<th>Inicio :</th>
+							<th>Fim :</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="horario: ${horarios}">
+							<td th:text="${horario.horaInicio}">Horario Inicial</td>
+							<td th:text="${horario.horaFinal}">Horario Final</td>
+							<td th:text="${horario.diaDaSemana}">Dia da semana</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
 		</main>
 	</div>
 

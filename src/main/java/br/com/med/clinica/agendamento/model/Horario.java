@@ -18,10 +18,10 @@ public class Horario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long horarioOid;
+	private Long oid;
 
 	@ManyToOne()
-	@JoinColumn(name = "agendaOid")
+	@JoinColumn(name = "agenda_oid")
 	private Agenda agenda;
 
 	@Column
@@ -33,20 +33,23 @@ public class Horario {
 	@Column
 	private String horaFinal;
 	
-	@OneToMany(mappedBy = "horarios")
+	@OneToMany(mappedBy = "horario")
 	private List<Consulta> consultas;
-
-	public Long getHorarioOid() {
-		return horarioOid;
-	}
-
-	public void setHorarioOid(Long horarioOid) {
-		this.horarioOid = horarioOid;
-	}
 
 	public Agenda getAgenda() {
 		return agenda;
 	}
+	
+
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
+
+	
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;

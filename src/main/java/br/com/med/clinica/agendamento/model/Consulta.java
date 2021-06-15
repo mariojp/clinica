@@ -1,5 +1,7 @@
 package br.com.med.clinica.agendamento.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,86 +11,77 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Consulta")
 public class Consulta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long consultaOid;
+	private Long oid;
 
-	@Column
-	private String nomeDiaHora;
 
 	@ManyToOne()
-	@JoinColumn(name = "horarioOid")
-	private Horario horarios;
+	@JoinColumn(name = "horario_oid")
+	private Horario horario;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate data;
 
 	@Column
-	private String semana;
-
-	@Column
-	private String retorno = "Não disponivel";
+	private boolean retorno;
 
 	@Column
 	private boolean cancelada;
 
-	@Column
-	private String paciente;
 
-	@Column
-	@JoinColumn
-	private Long pacienteOid;
+	@ManyToOne
+	@JoinColumn(name="paciente_oid")
+	private Paciente paciente;
 
-	@Column
-	private Long agendaOid;
 
-	public Long getConsultaOid() {
-		return consultaOid;
+	public Long getOid() {
+		return oid;
 	}
 
-	public void setConsultaOid(Long consultaOid) {
-		this.consultaOid = consultaOid;
+	public void setOid(Long oid) {
+		this.oid = oid;
 	}
 
-	public String getNomeDiaHora() {
-		return nomeDiaHora;
-	}
 	
+	public LocalDate getData() {
+		return data;
+	}
 
-	public String getPaciente() {
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+
+	public Horario getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
+
+	public Paciente getPaciente() {
 		return paciente;
 	}
 
-	public void setPaciente(String paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-	public void setNomeDiaHora(String nomeDiaHora) {
-		this.nomeDiaHora = nomeDiaHora;
-	}
 
-	public Horario getHorarios() {
-		return horarios;
-	}
-
-	public void setHorarios(Horario horarios) {
-		this.horarios = horarios;
-	}
-
-	public String getSemana() {
-		return semana;
-	}
-
-	public void setSemana(String semana) {
-		this.semana = semana;
-	}
-
-	public String getRetorno() {
+	
+	public boolean isRetorno() {
 		return retorno;
 	}
 
-	public void setRetorno(String retorno) {
+	public void setRetorno(boolean retorno) {
 		this.retorno = retorno;
 	}
 
@@ -100,21 +93,7 @@ public class Consulta {
 		this.cancelada = cancelada;
 	}
 
-	public Long getPacienteOid() {
-		return pacienteOid;
-	}
 
-	public void setPacienteOid(Long pacienteOid) {
-		this.pacienteOid = pacienteOid;
-	}
-
-	public Long getAgendaOid() {
-		return agendaOid;
-	}
-
-	public void setAgendaOid(Long agendaOid) {
-		this.agendaOid = agendaOid;
-	}
 
 	
 	

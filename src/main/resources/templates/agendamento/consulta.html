@@ -60,12 +60,12 @@
           </thead>
           <tbody>
             <tr th:each="consulta: ${consultas}" >
-              <td th:text="${consulta.paciente}" > Paciente </td>
-                <td th:text="${consulta.nomeDiaHora}" > Agendamento </td>
-                <td th:text="${consulta.semana}" > Semana </td> 
+              <td th:text="${consulta.paciente.nome}" > Paciente </td>
+                <td th:text="${consulta.horario.agenda.medico}+' - '+${consulta.horario.horaInicio}" > Agendamento </td>
+                <td th:text="${consulta.data}" > Data </td> 
                  <td th:text="${consulta.retorno}" > Retorno </td>
                  <td th:text="${consulta.cancelada}" > Cancelada </td>
-              <td><a href="#" th:href="@{/consulta/delete(id=${consulta.consultaOid})}">
+              <td><a href="#" th:href="@{/consulta/delete(id=${consulta.oid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

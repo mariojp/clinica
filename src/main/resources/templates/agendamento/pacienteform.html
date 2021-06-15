@@ -55,7 +55,7 @@
 		<main>
 			<h2>Paciente</h2>
 				<form  th:action="@{/paciente/salvar}" th:object="${paciente}" method="post" >
-					<input type="hidden" name="pacienteOid" th:value="*{pacienteOid}"/> 
+					<input type="hidden" name="oid" th:value="*{oid}"/> 
 					<div class="mb-3">
 					
 					<label for="nome" class="form-label">Nome</label>

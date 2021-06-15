@@ -1,5 +1,6 @@
 package br.com.med.clinica.agendamento.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.med.clinica.agendamento.model.Consulta;
 import br.com.med.clinica.agendamento.model.Horario;
@@ -58,20 +60,22 @@ public class ConsultaController {
 	}
 
 	@PostMapping("/consulta/salvar")
-	public String salvar(@Valid Consulta Consulta, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			bindingResult.getAllErrors().forEach(a -> System.out.print(a));
-			model.addAttribute("consultas", consultaRepository.findAll());
-			return "agendamento/consultaform";
-		}
-		List<Consulta> consultas = consultaRepository.findAll();
-		for (Consulta consulta : consultas){
-			if(consulta.getNomeDiaHora().equals(Consulta.getNomeDiaHora()) && consulta.getSemana().equals(Consulta.getSemana())){
-				return "redirect:/consulta/form/?error=Horario indisponivel";
-			}
-		}
-		System.out.println(Consulta.getPacienteOid());
-		consultaRepository.save(Consulta);
+	public String salvar(@Valid Consulta consulta, BindingResult bindingResult, Model model, @RequestParam String data) {
+//		if (bindingResult.hasErrors()) {
+//			model.addAttribute("consultas", consultaRepository.findAll());
+//			return "agendamento/consultaform";
+//		}
+		
+		//List<Consulta> consultas = consultaRepository.findAll();
+		//for (Consulta consulta : consultas){
+//			if(consulta.getNomeDiaHora().equals(Consulta.getNomeDiaHora()) && consulta.getSemana().equals(Consulta.getSemana())){
+//				return "redirect:/consulta/form/?error=Horario indisponivel";
+//			}
+		//}
+		System.out.println(data);
+
+		System.out.println(consulta.getData());
+		consultaRepository.save(consulta);
 		return "redirect:/consulta";
 	}
 
