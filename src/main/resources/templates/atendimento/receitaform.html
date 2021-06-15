@@ -57,19 +57,22 @@
 			<h2>Receita</h2>
 			<form th:action="@{/atendimento/receita/salvar}" th:object="${receitaDTO}" method="post">
 
-				<input type="hidden" name="oidReceita" th:value="*{oidReceita}">
-				<input type="hidden" name="oidAtendimento" th:value="*{oidAtendimento}">
+				<input type="hidden" name="oid" th:value="*{oid}">
+				<input type="hidden" name="atendimentoOID" th:value="${atendimentoOID}">
 
 				<div class="mb-3">
-					<label for="textoReceita" class="form-label">Texto</label> 
-					<textarea rows="3" cols="100" id="textoReceita" name="textoReceita" class="form-control" th:text="*{textoReceita}" 
-					th:classappend="${#fields.hasErrors('textoReceita')} ? 'alert alert-danger' : '' "></textarea>
-					<div th:if="${#fields.hasErrors('textoReceita')}" th:errors="*{textoReceita}">Erro Message</div>
+					<label for="texto" class="form-label">Texto</label> 
+					<textarea rows="3" cols="100" id="textoReceita" name="texto" class="form-control" th:text="*{texto}" 
+					th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "></textarea>
+					<div th:if="${#fields.hasErrors('texto')}" th:errors="*{texto}">Erro Message</div>
 				</div>
 				
+				<button type="submit" class="btn btn-primary">Salvar</button>
+				
+				
 				<div class="mb-3">
-					<label for="oidDroga" class="form-label">Drogas</label> 
-					<select name="oidDroga" id="oidDroga" th:value="*{oidDroga}" class="form-control">
+					<label for="drogaOID" class="form-label">Drogas</label> 
+					<select name="drogaOID" id="drogaOID" class="form-control">
 						<option>Selecione</option>
 						<option th:each="droga: ${drogas}" th:value="${droga.oid}" th:text="${droga.nome}"></option>
 					</select>
@@ -78,10 +81,12 @@
 				
 				<div class="mb-3">
 					<label for="drogaTexto" class="form-label">Uso</label> 
-					<textarea rows="3" cols="100" id="drogaTexto" name="drogaTexto" class="form-control" th:text="*{drogaTexto}" ></textarea>
+					<textarea rows="3" cols="100" id="drogaTexto" name="drogaTexto" class="form-control" ></textarea>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Salvar</button>
+				<input  type="submit" th:formaction="@{/atendimento/receita/adicionar}" class="btn btn-primary" value="Adicionar" /> 
+				
+
 			</form>
 		
 		
@@ -95,8 +100,8 @@
             </tr>
             </thead>
              <tbody>
-              <tr th:each="item: ${itens}" >
-              <td th:text="${item.droga.nome}" >Nome</td>
+              <tr th:each="item: ${receitaDTO.items}" >
+              <td th:text="${item.droga}" >Nome</td>
               <td th:text="${item.texto}" >Texto</td>
               <td><a href="#" th:href="@{/item/delete(id=${item.oid})}">
               	<i class="bi bi-trash"></i>

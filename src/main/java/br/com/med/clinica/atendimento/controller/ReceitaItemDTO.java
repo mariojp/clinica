@@ -1,15 +1,14 @@
 package br.com.med.clinica.atendimento.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ReceitaDTO {
+public class ReceitaItemDTO {
 
 	
 	private Long oid;
 	
-	private List<ReceitaItemDTO> items = new ArrayList<>();
+	private Long oidDroga;
 	
+	private String droga;
+
 	private String texto;
 
 	public Long getOid() {
@@ -20,12 +19,20 @@ public class ReceitaDTO {
 		this.oid = oid;
 	}
 
-	public List<ReceitaItemDTO> getItems() {
-		return items;
+	public Long getOidDroga() {
+		return oidDroga;
 	}
 
-	public void setItems(List<ReceitaItemDTO> items) {
-		this.items = items;
+	public void setOidDroga(Long oidDroga) {
+		this.oidDroga = oidDroga;
+	}
+
+	public String getDroga() {
+		return droga;
+	}
+
+	public void setDroga(String droga) {
+		this.droga = droga;
 	}
 
 	public String getTexto() {
