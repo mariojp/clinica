@@ -8,23 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "convenios")
+@Table(name = "convenio")
 public class Convenio {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long oid;
-	
+	private Long convenioOid;
+
 	@Column(length = 250)
 	private String nome;
 
-	public Long getOid() {
-		return oid;
+	@Column
+	private String cnpj;
+
+	@Column
+	private String telefone;
+
+	public Long getConvenioOid() {
+		return convenioOid;
 	}
 
-	public void setOid(Long oid) {
-		this.oid = oid;
+	public void setConvenioOid(Long convenioOid) {
+		this.convenioOid = convenioOid;
 	}
 
 	public String getNome() {
@@ -35,9 +40,20 @@ public class Convenio {
 		this.nome = nome;
 	}
 
+	public String getCnpj() {
+		return cnpj;
+	}
 
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
-	
-	
-	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 }

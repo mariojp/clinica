@@ -6,7 +6,7 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Convenio</title>
+<title>Paciente</title>
 </head>
 <body>
 <header class="p-3 bg-dark text-white">
@@ -42,24 +42,39 @@
 
 <div class="container-fluid">	
 	<main>
-		<h2>Convenios</h2>
+		<h2>Paciente</h2>
 		
 	<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
               <th>Nome</th>
-              <th><a href="#" th:href="@{/convenio/form}">
+              <th>RG</th>
+              <th>Orgão</th>
+              <th>CPF</th>
+              <th>Telefone</th>
+              <th>Celular</th>
+              <th>Email</th>
+              <th>Convenio</th>
+
+              <th><a href="#" th:href="@{/paciente/form}">
               	<i class="bi bi-plus-square"></i>
               </a></th>
             </tr>
           </thead>
           <tbody>
-            <tr th:each="convenio: ${convenios}" >
-              <td> <a href="#" th:href="@{/convenio/form(id=${convenio.convenioOid})}"> <span th:text="${convenio.convenioOid}" > -1 </span></a></td>
-              <td th:text="${convenio.nome}" > Nome </td>
-              <td><a href="#" th:href="@{/convenio/delete(id=${convenio.convenioOid})}">
+            <tr th:each="paciente: ${pacientes}" >
+                <td th:text="${paciente.nome}" > Nome </td>
+                <td th:text="${paciente.rg}" > RG</td>
+                 <td th:text="${paciente.orgao}" > Orgão </td>
+                 <td th:text="${paciente.cpf}" > CPF </td> 
+                 <td th:text="${paciente.telefone}" > Telefone </td>
+                 <td th:text="${paciente.celular}" > Celular </td>
+                 <td th:text="${paciente.email}" > Email </td> 
+                 <td th:text="${paciente.convenio}" > Convenio </td> 
+
+
+              <td><a href="#" th:href="@{/paciente/delete(id=${paciente.pacienteOid})}">
               	<i class="bi bi-trash"></i>
               </a></td>
             </tr>

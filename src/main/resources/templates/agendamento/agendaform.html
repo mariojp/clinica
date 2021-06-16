@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Convenio</title>
+<title>Agenda</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -29,7 +29,7 @@
 		  </svg>
 				</a>
 
-			<ul
+				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="/" class="nav-link px-2 text-white">UNIFISIO</a></li>
 					<li><a href="/convenio" class="nav-link px-2 text-secondary">Convenio</a></li>
@@ -53,21 +53,15 @@
 
 	<div class="container-fluid">
 		<main>
-			<h2>Convenios</h2>
-				<form  th:action="@{/convenio/salvar}" method="post" >
-					<input type="hidden" name="convenioOid" th:value="*{convenioOid}"> 
+			<h2>Agenda</h2>
+				<form  th:action="@{/agenda/salvar}" method="post" >
+					<input type="hidden" name="agenda_oid" th:value="*{agenda_oid}"/> 
 					<div class="mb-3">
-					
-						<label for="nome" class="form-label">Nome</label>
-							<input type="text" id="nome" name="nome" placeholder ="Nome do convenio" th:value="*{convenio.nome}" class="form-control" required/>
-						<label for="cnpj" class="form-label">CNPJ</label>
-							<input type="number" id="cnpj" name="cnpj" placeholder ="XXXXXXXXXXXX" th:value="*{convenio.cnpj}" class="form-control" required/>
-						<label for="nome" class="form-label">Telefone</label>
-							<input type="number" id="telefone" name="telefone" placeholder ="(XX) XXXXX-XXXX" th:value="*{convenio.telefone}" class="form-control" required/>
-					
-					
+
+						<label for="medico" class="form-label">Nome do médico</label>
+						<input type="text" id="medico" name="medico" th:value="*{agenda.medico}" class="form-control" required/>
+
 					</div>
-			
 					<button type="submit" class="btn btn-primary">Salvar</button>
 				</form>
 		</main>
