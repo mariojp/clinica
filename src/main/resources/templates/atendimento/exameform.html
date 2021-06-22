@@ -43,16 +43,11 @@
 	<div class="container-fluid">
 		<main>
 		<h2>Formulário de Exame</h2>
-		<form th:action="@{/exame/salvar}" th:object="${exame}" method="post">
+		<form th:action="@{/exame/salvar}" th:object="${exameDTO}" method="post">
+			<input type="hidden" name="atendimentoOID" th:value="${atendimentoOID}">
 			<input type="hidden" name="oid" th:value="*{oid}">
-			<label for="atendimento" class="form-label">Selecionar Atendimento</label>
-				<div class="dropdown">
-				<select name ="atendimento" id="atendimento" th:value=*{atendimento} class="select" required>
-				<option value="Selecionar">Selecionar</option>
-				<option th:each="atend: ${atendimentos}" th:value="${atend.oid}" th:text="${atend.paciente}"
-					th:selected="${exame.atendimento != null && atend.oid == exame.atendimento.oid}"></option>
-				</select> 
-				</div> <br> <br>
+			
+			<br> <br>
 				<label for="texto" class="form-label">Texto</label> 
 				<textarea rows="3" cols="100"  id="texto" name="texto" class="form-control" th:value="*{texto}" th:text="*{texto}" 
 				th:classappend="${#fields.hasErrors('texto')} ? 'alert alert-danger' : '' "></textarea>		

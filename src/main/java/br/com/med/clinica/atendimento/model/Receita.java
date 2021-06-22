@@ -25,13 +25,10 @@ public class Receita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
 
-	@NotEmpty
-	@Column(length = 250)
 	private String texto;
 
 	@ManyToOne()
 	@JoinColumn(name = "atendimento_oid")
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Atendimento atendimento;
 
 	@OneToMany(mappedBy = "receita")
@@ -40,6 +37,15 @@ public class Receita {
 	public Receita() {
 
 	}
+	
+	
+
+	public Receita(Long oid) {
+		super();
+		this.oid = oid;
+	}
+
+
 
 	public Receita(String texto) {
 		super();

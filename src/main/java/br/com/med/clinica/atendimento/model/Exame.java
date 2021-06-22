@@ -27,7 +27,6 @@ public class Exame {
 
 	@ManyToOne
 	@JoinColumn(name = "atendimento_oid")
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Atendimento atendimento;
 
 	public Exame() {
@@ -109,7 +108,7 @@ public class Exame {
 
 	@Override
 	public String toString() {
-		return "Exame [oid=" + oid + ", texto=" + texto + ", atendimento=" + atendimento + "]";
+		return "Exame [oid=" + oid + ", texto=" + texto + "]";
 	}
 
 }

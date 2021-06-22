@@ -11,8 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.med.clinica.atendimento.model.Atendimento;
 import br.com.med.clinica.atendimento.model.Exame;
 import br.com.med.clinica.atendimento.repository.AtendimentoRepository;
 import br.com.med.clinica.atendimento.repository.ExameRepository;
@@ -53,20 +57,20 @@ public class ExameController {
 	 */	
 	
 	@GetMapping("/exame/form")
-	public String form(Model model, @Param(value = "id") Long id) {
-		Exame exame = new Exame();
-		if (id != null) {
-			Optional<Exame> op = exameRepository.findById(id);
-			if (op.isPresent()) {
-				exame = op.get();
-			}
-		}
-
-		model.addAttribute("atendimentos", atendimentoRepository.findAll());
-		model.addAttribute("exame", exame);
-
+	public String form(ExameDTO exameDTO, @Param(value = "id") Long id, Model model) {
+		model.addAttribute("atendimentoOID", id);
 		return "/atendimento/exameform";
 	}
+	
+	@GetMapping("/exame/update")
+	public String update(ExameDTO exameDTO, @Param(value = "id") Long id, Model model) {
+		Exame exame = exameRepository.findById(id).get();
+		exameDTO = ExameMapper.toDTO(exame);
+		model.addAttribute("exameDTO", exameDTO);
+		model.addAttribute("atendimentoOID", exame.getAtendimento().getOid());
+		return "/atendimento/exameform";
+	}
+	
 	
 	/**
 	 * Método responsavel por salvar e validar um exame. ->
@@ -80,15 +84,17 @@ public class ExameController {
 	 */
 	
 	@PostMapping("/exame/salvar")
-	public String salvar(@Valid Exame exame, BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
-			// bindingResult.getAllErrors().forEach(e -> System.out.println(e));
-			model.addAttribute("atendimentos", atendimentoRepository.findAll());
-			return "/atendimento/exameform";
-		}
+	public String salvar(ExameDTO exameDTO, Model model, @RequestParam("atendimentoOID") Long atendimentoOID,
+			RedirectAttributes redirectAttributes) {
+		
 
+		Exame exame = ExameMapper.toExame(exameDTO);
+		
+		//Atendimento atendimento = atendimentoRepository.findById(oid).get();
+		exame.setAtendimento(new Atendimento(atendimentoOID));
 		exameRepository.save(exame);
-		return "redirect:/exame";
+		redirectAttributes.addAttribute("id", atendimentoOID);
+		return "redirect:/atendimento/form"; // funciona
 	}
 	
 	/**

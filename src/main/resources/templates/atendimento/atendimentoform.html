@@ -33,10 +33,7 @@
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
 					<li><a href="/droga" class="nav-link px-2 text-secondary">Droga</a></li>
-					<li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
 					<li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
-					<li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
-					<li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
 				</ul>
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control form-control-dark"
@@ -49,9 +46,8 @@
     <main>
 		<h2>Formulário de atendimento</h2>
 		<br>
-		<form th:action="@{/atendimento/salvar}" th:object="${atendimento}" method="post">
+		<form th:action="@{/atendimento/salvar}" th:object="${atendimentoDTO}" method="post">
 		  <input type="hidden" name="oid" th:value="*{oid}">
-		  <input type="hidden" name="oidc" th:value="*{consultas_oid}">
 			
 				<label for="nome" class="form-label">Nome do Paciente</label> 
 				<input type="text" id="nome" name="paciente" th:value="*{paciente}" class="form-control"
@@ -67,10 +63,10 @@
 				</div>
 				
 				<button type="submit" class="btn btn-primary">Salvar</button><br> <br>
-		   
-		    <a href="#" th:href="@{/exame/form}" class="btn btn-outline-info">Add Exame</a>
-		    <a href="#" th:href="@{/atendimento/receita/form(id=${atendimento.oid})}" class="btn btn-outline-warning">Add Receita</a> 
-		  
+		   	<div th:if="${atendimentoDTO.oid != null }" >
+		    	<a href="#"  th:href="@{/exame/form(id=${atendimentoDTO.oid})}" class="btn btn-outline-info">Add Exame</a>
+		    	<a href="#" th:href="@{/receita/form(id=${atendimentoDTO.oid})}" class="btn btn-outline-warning">Add Receita</a> 
+		  	</div>
 			</form> <br>	  
 		Exames
 		<div class="table-responsive">
@@ -82,8 +78,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="exame: ${exames}" >
-              <td> <a href="#" th:href="@{/exame/form(id=${exame.oid})}"> <span th:text="${exame.oid}" > -1 </span></a></td>
+            <tr th:each="exame: ${atendimentoDTO.exames}" >
+              <td> <a href="#" th:href="@{/exame/update(id=${exame.oid})}"> <span th:text="${exame.oid}" > -1 </span></a></td>
               <td th:text="${exame.texto}" > Exame </td>
               <td><a href="#" th:href="@{/exame/delete(id=${exame.oid})}">
               	<i class="bi bi-trash"></i>
@@ -102,8 +98,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="receita: ${receitas}" >
-              <td> <a href="#" th:href="@{/atendimento/receita/form(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
+            <tr th:each="receita: ${atendimentoDTO.receitas}" >
+              <td> <a href="#" th:href="@{/receita/update(id=${receita.oid})}"> <span th:text="${receita.oid}" > -1 </span></a></td>
               <td th:text="${receita.texto}" > Receita </td>
               <td><a href="#" th:href="@{/atendimento/receita/delete(id=${receita.oid})}">
               	<i class="bi bi-trash"></i>

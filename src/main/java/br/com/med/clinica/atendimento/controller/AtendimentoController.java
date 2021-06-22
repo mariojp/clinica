@@ -2,8 +2,10 @@ package br.com.med.clinica.atendimento.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.med.clinica.atendimento.model.Atendimento;
 import br.com.med.clinica.atendimento.model.Exame;
@@ -62,29 +68,23 @@ public class AtendimentoController {
 	 */
 	
 	@GetMapping("/atendimento/form")
-	public String form(Model model, @Param(value = "id") Long id) {
-		Atendimento atendimento = new Atendimento();
-		List<Exame> exames = new ArrayList<>();
-		List<Receita> receitas = new ArrayList<>();
-		List<Atendimento> historico = new ArrayList<>();
+	public String form(Model model, @Param(value = "id") Long id, HttpServletRequest request) {
+		
+//	    Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+//	    if (inputFlashMap != null) {
+//	    	System.out.println("inputFlashMap: "+ inputFlashMap.get("teste"));
+//	    }
+//		redirectAttributes.addFlashAttribute("teste", "teste");
 
+		AtendimentoDTO atendimentoDTO = new AtendimentoDTO();
 		if (id != null) {
 			Optional<Atendimento> op = atendimentoRepository.findById(id);
 			if (op.isPresent()) {
-				atendimento = op.get();
-				// Lazy
-				exames = exameRepository.findByAtendimento(atendimento);
-				// Eagle
-				// atendimento.getExames();
-				receitas = receitaRepository.findByAtendimento(atendimento);
-				historico = atendimentoRepository.findAllByPaciente(atendimento.getPaciente());
-
+				Atendimento atendimento = op.get();
+				atendimentoDTO = AtendimentoMapper.toDTO(atendimento);
 			}
 		}
-		model.addAttribute("historico", historico); 
-		model.addAttribute("receitas", receitas);
-		model.addAttribute("exames", exames);
-		model.addAttribute("atendimento", atendimento);
+		model.addAttribute("atendimentoDTO", atendimentoDTO);
 
 		return "/atendimento/atendimentoform";
 	}
@@ -100,22 +100,21 @@ public class AtendimentoController {
 	 */
 	
 	@PostMapping("/atendimento/salvar")
-	public String salvar(@Valid Atendimento atendimento, BindingResult bindingResult) {
+	public String salvar(@Valid AtendimentoDTO atendimentoDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
 //			System.out.println("Erros");
 //		bindingResult.getAllErrors()
 //		.forEach(e -> System.out.println(e));
-
 			return "/atendimento/atendimentoform";// em caso de erro, volte para o form
 
 		}
 
-		atendimento.setConsultas_oid((long) (Math.random() * 10000));
+		
+		Atendimento atendimento = AtendimentoMapper.toAtendimento(atendimentoDTO);
 		atendimentoRepository.save(atendimento); // esse save tem papel de update tbm
-		return "redirect:/atendimento"; // funciona de acordo ao que ele recebe
-										// para atendimento novo ou editado.
-		// se o id vir vazio, ele cria um novo id e salva o novo dado.
-		// se vier com id preenchido, o save vai trabalhar como update.
+		
+		redirectAttributes.addAttribute("id", atendimento.getOid());
+		return "redirect:/atendimento/form"; 
 
 	}
 	

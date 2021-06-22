@@ -1,42 +1,78 @@
 package br.com.med.clinica.atendimento.controller;
 
-/**
- * VO
- * 
- * @author lucasagw
- *
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class AtendimentoDTO {
 
-	private String idReceita;
-
-	private String idAtendimento;
-
-	private String textoReceita;
-
-	public String getIdReceita() {
-		return idReceita;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("AtendimentoDTO [oid=");
+		builder.append(oid);
+		builder.append(", paciente=");
+		builder.append(paciente);
+		builder.append(", conduta=");
+		builder.append(conduta);
+		builder.append(", exames=");
+		builder.append(exames);
+		builder.append(", receitas=");
+		builder.append(receitas);
+		builder.append("]");
+		return builder.toString();
 	}
 
-	public void setIdReceita(String idReceita) {
-		this.idReceita = idReceita;
+	private Long oid;
+
+	private String paciente;
+
+	private String conduta;
+	
+	private List<ExameDTO> exames = new ArrayList<>();
+	
+	private List<ReceitaDTO> receitas= new ArrayList<>();
+
+	public Long getOid() {
+		return oid;
 	}
 
-	public String getIdAtendimento() {
-		return idAtendimento;
+	public void setOid(Long oid) {
+		this.oid = oid;
 	}
 
-	public void setIdAtendimento(String idAtendimento) {
-		this.idAtendimento = idAtendimento;
+	public String getPaciente() {
+		return paciente;
 	}
 
-	public String getTextoReceita() {
-		return textoReceita;
+	public void setPaciente(String paciente) {
+		this.paciente = paciente;
 	}
 
-	public void setTextoReceita(String textoReceita) {
-		this.textoReceita = textoReceita;
+	public String getConduta() {
+		return conduta;
 	}
 
+	public void setConduta(String conduta) {
+		this.conduta = conduta;
+	}
+
+	public List<ExameDTO> getExames() {
+		return exames;
+	}
+
+	public void setExames(List<ExameDTO> exames) {
+		this.exames = exames;
+	}
+
+	public List<ReceitaDTO> getReceitas() {
+		return receitas;
+	}
+
+	public void setReceitas(List<ReceitaDTO> receitas) {
+		this.receitas = receitas;
+	}
+	
+	
 }

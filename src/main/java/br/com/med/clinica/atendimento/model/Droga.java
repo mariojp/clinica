@@ -32,6 +32,15 @@ public class Droga {
 	public Droga() {
 
 	}
+	
+	
+
+	public Droga(Long oid) {
+		super();
+		this.oid = oid;
+	}
+
+
 
 	public Droga(String nome) {
 		super();
