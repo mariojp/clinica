@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<title>Droga</title>
+<title>Droga Cadastro</title>
 </head>
 <body>
 	<header class="p-3 bg-dark text-white">
@@ -29,13 +29,14 @@
 		  </svg>
 				</a>
 
-				<ul
-					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-					<li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
-					<li><a href="#" class="nav-link px-2 text-secondary">Droga</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Lorem</a></li>
-					<li><a href="#" class="nav-link px-2 text-white">Ipsum</a></li>
-				</ul>
+				 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="#" class="nav-link px-2 text-white">UNIFISIO</a></li>
+          <li><a href="/droga" class="nav-link px-2 text-secondary">Droga</a></li>
+          <li><a href="/item" class="nav-link px-2 text-white">Item</a></li>
+          <li><a href="/atendimento" class="nav-link px-2 text-white">Atendimento</a></li>
+          <li><a href="/exame" class="nav-link px-2 text-white">Exame</a></li>
+          <li><a href="/atendimento/receita" class="nav-link px-2 text-white">Receita</a></li>
+        </ul>
 
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
 					<input type="search" class="form-control form-control-dark"
@@ -58,7 +59,11 @@
 					<input type="hidden" name="oid" th:value="*{oid}"> 
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" />
+						<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" 
+						 th:classappend="${#fields.hasErrors('nome')} ? 'alert alert-danger' : '' " />
+					    <!--  mensagem de erro -->		
+						<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Erro Message</div>
+				           <!--bindingResult.hasFieldErrors(field);--> 
 					</div>
 			
 					<button type="submit" class="btn btn-primary">Salvar</button>
