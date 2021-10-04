@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<style type="text/css">
+		
+		form input[type=submit] {
+			
+			color: white;
+		}
+
+		form {
+			
+			margin-left: 35%;
+			margin-top: 11%;
+		}
+
+		.col .row {
+
+			margin-right: 0rem;
+			margin-left: 0rem;
+		}
+
+		input#username {
+			
+			border-radius: 7px;
+			border-bottom: none;
+		  
+		}
+		
+		input#password {
+			
+			border-radius: 7px;
+			border-bottom: none;
+		}
+	</style>
+</head>
+<body>
+
+	<form th:action="@{/login}" method="post" class="col s12">
+
+		<h5>Acesso</h5>
+		<div class="row">
+			<div class="input-fiel col s6">
+				<label for="username">Login</label>
+				<input type="text" name="username" id="username">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-fiel col s6">
+				<label for="password">Senha</label>
+				<input type="password" name="password" id="password">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-fiel col s6">
+				<input name="Entrar" class="waves-effect waves-light btn" type="submit" value="Entrar">
+			</div>
+		</div>
+	</form>
+
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

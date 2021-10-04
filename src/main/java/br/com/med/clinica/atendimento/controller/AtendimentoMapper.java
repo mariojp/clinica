@@ -1,20 +1,14 @@
 package br.com.med.clinica.atendimento.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import br.com.med.clinica.atendimento.model.Atendimento;
 import br.com.med.clinica.atendimento.model.Exame;
 import br.com.med.clinica.atendimento.model.Receita;
-import net.bytebuddy.asm.Advice.Return;
 
 public class AtendimentoMapper {
 
-	
-	
 	public static AtendimentoDTO toDTO(Atendimento entity ) {
 		AtendimentoDTO dto = new AtendimentoDTO();
 		dto.setOid(entity.getOid());

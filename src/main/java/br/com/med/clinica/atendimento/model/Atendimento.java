@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -18,13 +16,6 @@ import javax.validation.constraints.Size;
 @Table(name = "atendimentos")
 public class Atendimento {
 	
-	
-	
-
-
-
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;
@@ -37,8 +28,6 @@ public class Atendimento {
 	@Size(min = 3, max = 150)
 	@Column(length = 250)
 	private String conduta;
-
-
 
 	@OneToMany(mappedBy = "atendimento")
 	private List<Receita> receitas;
@@ -95,7 +84,5 @@ public class Atendimento {
 	public void setPaciente(String paciente) {
 		this.paciente = paciente;
 	}
-
-
 
 }

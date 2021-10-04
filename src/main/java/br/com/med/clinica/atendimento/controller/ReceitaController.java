@@ -32,9 +32,6 @@ public class ReceitaController {
 	private ReceitaRepository receitaRepository;
 
 	@Autowired
-	private AtendimentoRepository atendimentoRepository;
-
-	@Autowired
 	private DrogaRepository drogaRepository;
 
 	@Autowired

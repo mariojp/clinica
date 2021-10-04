@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,13 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { // define os acessos
 		http.requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
 
-		http.authorizeRequests().antMatchers("/").permitAll() // recursos permitidos
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/").permitAll() // recursos permitidos
 				.anyRequest().authenticated() // qualquer outro recurso, irá precisar de autenticação
 				.and()
-				// .formLogin().loginPage("/login").loginProcessingUrl("/logar").permitAll()//permitindo
-				// acesso a loginpage personalizada
-				.formLogin().permitAll()// permitindo acesso a loginpage default
-				.and().logout().permitAll()// permitindo acesso a logout
+				.formLogin().permitAll()// permite acesso a loginpage default, caso não continuar com o codigo a seguir
+				.loginPage("/login")
+				.defaultSuccessUrl("/atendimento")
+				.failureUrl("/login?error=true")
+				.and().logout()
+				.logoutSuccessUrl("/login") // permitindo acesso a logout
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // invalida a seção
 				.and().csrf().disable(); // desativando uma segurança contra ataques cross-site request
 
 	}
